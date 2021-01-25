@@ -1,0 +1,31 @@
+/**
+ * Usage:
+ *
+ * <div class="hidden block@md">Hello</div>
+ *
+ * Display variants:
+ *
+ * <div class="{display}"></div>
+ * <div class="{display}@{breakpoint}"></div>
+ */
+
+@use "../abstracts" as *;
+
+$display-values: (
+	block: block,
+	inline: inline,
+	hidden: none,
+	inline-block: inline-block,
+);
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $name, $value in $display-values {
+			.#{$name}#{$breakpoint-suffix} {
+				display: $value;
+			}
+		}
+	}
+}

@@ -1,0 +1,59 @@
+/**
+ * Usage:
+ *
+ * <div class="stack stack--s3 stack--s6@md">
+ *   <div class="my-component">Foo</div>
+ *   <div class="my-component">Bar</div>
+ *   <div class="my-component">Baz</div>
+ * </div>
+ */
+
+@use "../abstracts" as *;
+
+.stack {
+	display: block;
+}
+
+/**
+ * Split variants:
+ *
+ * <div class="stack stack--split"></div>
+ */
+
+.stack--split {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.stack--split:first-child:last-child {
+	height: 100%;
+}
+
+.stack--split > * {
+	// In Internet Explorer 10-11, column flex items don’t always preserve
+	// intrinsic aspect ratios. This bug can be avoided by `flex-shrink: 0`.
+	// https://github.com/philipwalton/flexbugs#flexbug-5
+	flex-shrink: 0;
+}
+
+/**
+ * Spacing variants:
+ *
+ * <div class="stack stack--s{spacing}"></div>
+ * <div class="stack stack--s{spacing}@{breakpoint}"></div>
+ */
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $spacing-key, $spacing in $spacings {
+			$name: s#{$spacing-key};
+
+			.stack--#{$name}#{$breakpoint-suffix} > * + * {
+				margin-top: $spacing;
+			}
+		}
+	}
+}

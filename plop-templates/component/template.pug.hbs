@@ -1,0 +1,6 @@
+mixin {{kebabCase name}}(props = {})
+	-
+		props = Object.assign({
+		}, props);
+
+	.{{kebabCase name}}&attributes(attributes)

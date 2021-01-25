@@ -1,0 +1,108 @@
+/**
+ * Usage:
+ *
+ * <div class="overflow-hidden">
+ *   <div class="grid grid--col-2@sm grid--col-3@lg grid--s3 grid--s4@xl">
+ *     <div>
+ *       <div class="my-component">Foo</div>
+ *     </div>
+ *     <div>
+ *       <div class="my-component">Bar</div>
+ *     </div>
+ *     <div>
+ *       <div class="my-component">Baz</div>
+ *     </div>
+ *   </div>
+ * </div>
+ */
+
+@use "../abstracts" as *;
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.grid > * {
+	width: 100%;
+}
+
+/**
+ * Columuns variants:
+ *
+ * <div class="grid grid--col-{columns}"></div>
+ * <div class="grid grid--col-{columns}@{breakpoint}"></div>
+ */
+
+$columns-list: (2, 3, 4);
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $columns in $columns-list {
+			$name: col-#{$columns};
+
+			.grid--#{$name}#{$breakpoint-suffix} > * {
+				width: percentage(1 / $columns);
+			}
+		}
+	}
+}
+
+/**
+ * Spacing variants:
+ *
+ * <div class="grid grid--s{spacing}"></div>
+ * <div class="grid grid--s{spacing}@{breakpoint}"></div>
+ * <div class="grid grid--sx{spacing}"></div>
+ * <div class="grid grid--sx{spacing}@{breakpoint}"></div>
+ * <div class="grid grid--sy{spacing}"></div>
+ * <div class="grid grid--sy{spacing}@{breakpoint}"></div>
+ */
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $spacing-key, $spacing in $spacings {
+			$name: s#{$spacing-key};
+
+			.grid--#{$name}#{$breakpoint-suffix} {
+				margin: ($spacing / 2 * -1);
+			}
+
+			.grid--#{$name}#{$breakpoint-suffix} > * {
+				padding: ($spacing / 2);
+			}
+		}
+
+		@each $spacing-key, $spacing in $spacings {
+			$name: sx#{$spacing-key};
+
+			.grid--#{$name}#{$breakpoint-suffix} {
+				margin-right: ($spacing / 2 * -1);
+				margin-left: ($spacing / 2 * -1);
+			}
+
+			.grid--#{$name}#{$breakpoint-suffix} > * {
+				padding-right: ($spacing / 2);
+				padding-left: ($spacing / 2);
+			}
+		}
+
+		@each $spacing-key, $spacing in $spacings {
+			$name: sy#{$spacing-key};
+
+			.grid--#{$name}#{$breakpoint-suffix} {
+				margin-top: ($spacing / 2 * -1);
+				margin-bottom: ($spacing / 2 * -1);
+			}
+
+			.grid--#{$name}#{$breakpoint-suffix} > * {
+				padding-top: ($spacing / 2);
+				padding-bottom: ($spacing / 2);
+			}
+		}
+	}
+}

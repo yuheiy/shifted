@@ -1,0 +1,21 @@
+include /setup
+
+doctype html
+html(lang=metadata.lang)
+	include /head
+
+	body
+		include /header
+
+		.mt-6
+
+		block before-main
+
+		main
+			block main
+
+		block after-main
+
+		.mt-6
+
+		include /footer

@@ -1,0 +1,78 @@
+@use "../abstracts" as *;
+
+/**
+ * Usage:
+ *
+ * <div class="overflow-hidden">
+ *   <div class="cluster cluster--s3 justify-center">
+ *     <div class="my-component">Foo</div>
+ *     <div class="my-component">Bar</div>
+ *     <div class="my-component">Baz</div>
+ *   </div>
+ * </div>
+ *
+ * Justify variants:
+ *
+ * <div class="justify-{position}"></div>
+ * <div class="justify-{position}@{breakpoint}"></div>
+ */
+
+$justify-content-values: (
+	start: flex-start,
+	end: flex-end,
+	center: center,
+	between: space-between,
+);
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $key, $value in $justify-content-values {
+			$name: justify-#{$key};
+
+			.#{$name}#{$breakpoint-suffix} {
+				justify-content: $value;
+			}
+		}
+	}
+}
+
+/**
+ * Usage:
+ *
+ * <div class="overflow-hidden">
+ *   <div class="cluster cluster--s3 items-center">
+ *     <div class="my-component">Foo</div>
+ *     <div class="my-component">Bar</div>
+ *     <div class="my-component">Baz</div>
+ *   </div>
+ * </div>
+ *
+ * Items variants:
+ *
+ * <div class="items-{position}"></div>
+ * <div class="items-{position}@{breakpoint}"></div>
+ */
+
+$align-items-values: (
+	start: flex-start,
+	end: flex-end,
+	center: center,
+	baseline: baseline,
+	stretch: stretch,
+);
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $key, $value in $align-items-values {
+			$name: items-#{$key};
+
+			.#{$name}#{$breakpoint-suffix} {
+				align-items: $value;
+			}
+		}
+	}
+}

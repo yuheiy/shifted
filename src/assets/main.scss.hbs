@@ -1,0 +1,10 @@
+@use "../../node_modules/normalize.css/normalize";
+@use "styles/base";
+
+{{#each dependencies.utility}}
+@use "{{relativePath this.path}}";
+{{/each}}
+
+{{#each dependencies.component}}
+@use "{{relativePath this.path}}";
+{{/each}}

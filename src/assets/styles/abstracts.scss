@@ -1,0 +1,65 @@
+@use "sass:map";
+
+// Media Queries
+
+// Use em units to avoid px-zooming bugs.
+// https://zellwk.com/blog/media-query-units/
+// prettier-ignore
+$mq-breakpoints: (
+	none: null,
+	sm: 36em, //  576px
+	md: 48em, //  768px
+	lg: 64em, // 1024px
+	xl: 80em, // 1280px
+);
+
+@mixin breakpoint($key, $until: false) {
+	@if not map.has-key($mq-breakpoints, $key) {
+		@error "`#{$key}` does not exist in `$mq-breakpoints`";
+	}
+
+	$breakpoint: map.get($mq-breakpoints, $key);
+
+	@if $breakpoint {
+		@if $until {
+			@media not all and (min-width: $breakpoint) {
+				@content;
+			}
+		} @else {
+			@media (min-width: $breakpoint) {
+				@content;
+			}
+		}
+	} @else {
+		@content;
+	}
+}
+
+// Spacings
+// https://standard.shiftbrain.com/blog/music-math-typography
+
+$-spacing-unit: 0.5rem;
+
+$spacing-1: $-spacing-unit / 2;
+$spacing-2: $-spacing-unit;
+$spacing-3: $-spacing-unit * 1.5;
+$spacing-4: $-spacing-unit * 2;
+$spacing-5: $-spacing-unit * 3;
+$spacing-6: $-spacing-unit * 5;
+$spacing-7: $-spacing-unit * 8;
+$spacing-8: $-spacing-unit * 13;
+$spacing-9: $-spacing-unit * 21;
+
+// prettier-ignore
+$spacings: (
+	0: 0,
+	1: $spacing-1, // 0.25rem =   4px
+	2: $spacing-2, //  0.5rem =   8px
+	3: $spacing-3, // 0.75rem =  12px
+	4: $spacing-4, //    1rem =  16px
+	5: $spacing-5, //  1.5rem =  24px
+	6: $spacing-6, //  2.5rem =  40px
+	7: $spacing-7, //    4rem =  64px
+	8: $spacing-8, //  6.5rem = 104px
+	9: $spacing-9, // 10.5rem = 168px
+);

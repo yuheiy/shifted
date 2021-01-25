@@ -1,0 +1,97 @@
+/**
+ * Usage:
+ *
+ * <div class="overflow-hidden">
+ *   <div class="switcher switcher--row@md switcher--s3 switcher--s5@md items-center">
+ *     <div class="my-component">Foo</div>
+ *     <div class="my-component">Bar</div>
+ *     <div class="my-component">Baz</div>
+ *   </div>
+ * </div>
+ */
+
+@use "../abstracts" as *;
+
+.switcher {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.switcher > * {
+	flex-grow: 1;
+	flex-basis: 100%;
+}
+
+/**
+ * Row variants:
+ *
+ * <div class="switcher switcher--row"></div>
+ * <div class="switcher switcher--row@{breakpoint}"></div>
+ */
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		.switcher--row#{$breakpoint-suffix} > * {
+			flex-basis: 0;
+		}
+	}
+}
+
+/**
+ * Spacing variants:
+ *
+ * <div class="switcher switcher--s{spacing}"></div>
+ * <div class="switcher switcher--s{spacing}@{breakpoint}"></div>
+ * <div class="switcher switcher--sx{spacing}"></div>
+ * <div class="switcher switcher--sx{spacing}@{breakpoint}"></div>
+ * <div class="switcher switcher--sy{spacing}"></div>
+ * <div class="switcher switcher--sy{spacing}@{breakpoint}"></div>
+ */
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $spacing-key, $spacing in $spacings {
+			$name: s#{$spacing-key};
+
+			.switcher--#{$name}#{$breakpoint-suffix} {
+				margin: ($spacing / 2 * -1);
+			}
+
+			.switcher--#{$name}#{$breakpoint-suffix} > * {
+				margin: ($spacing / 2);
+			}
+		}
+
+		@each $spacing-key, $spacing in $spacings {
+			$name: sx#{$spacing-key};
+
+			.switcher--#{$name}#{$breakpoint-suffix} {
+				margin-right: ($spacing / 2 * -1);
+				margin-left: ($spacing / 2 * -1);
+			}
+
+			.switcher--#{$name}#{$breakpoint-suffix} > * {
+				margin-right: ($spacing / 2);
+				margin-left: ($spacing / 2);
+			}
+		}
+
+		@each $spacing-key, $spacing in $spacings {
+			$name: sy#{$spacing-key};
+
+			.switcher--#{$name}#{$breakpoint-suffix} {
+				margin-top: ($spacing / 2 * -1);
+				margin-bottom: ($spacing / 2 * -1);
+			}
+
+			.switcher--#{$name}#{$breakpoint-suffix} > * {
+				margin-top: ($spacing / 2);
+				margin-bottom: ($spacing / 2);
+			}
+		}
+	}
+}

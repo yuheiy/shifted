@@ -1,0 +1,11 @@
+header.header
+	nav.center.overflow-hidden
+		.cluster.cluster--sx6.justify-between
+			a(href=url('/'))
+				= metadata.siteTitle
+				span.visually-hidden ホーム
+			div
+				ul.cluster.cluster--sx4
+					each styleGuide in eleventyNavigation(collections.all, 'スタイルガイド').filter(page => page.url)
+						li
+							a(href=url(styleGuide.url))= styleGuide.title

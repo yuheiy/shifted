@@ -1,0 +1,11 @@
+@use "../styles/abstracts" as *;
+
+.header {
+	border-bottom: 1px solid hsl(0 0% 90%);
+}
+
+.header a {
+	display: block;
+	padding-top: $spacing-4;
+	padding-bottom: $spacing-4;
+}

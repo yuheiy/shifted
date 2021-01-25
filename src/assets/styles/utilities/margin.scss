@@ -1,0 +1,61 @@
+@use "../abstracts" as *;
+
+/**
+ * Usage:
+ *
+ * <div class="mt-4">bar</div>
+ * <div class="mt-3 mt-6@md"></div>
+ *
+ * Spacing variants:
+ *
+ * <div class="mt-{spacing}"></div>
+ * <div class="mt-{spacing}@{breakpoint}"></div>
+ */
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $spacing-key, $spacing in $spacings {
+			$name: mt-#{$spacing-key};
+
+			.#{$name}#{$breakpoint-suffix} {
+				margin-top: $spacing;
+			}
+		}
+	}
+}
+
+/**
+ * Usage:
+ *
+ * <div class="stack stack--s2">
+ *   <div>foo</div>
+ *   <div class="mb-auto">bar</div>
+ *   <div>baz</div>
+ * </div>
+ *
+ * Spacing variants:
+ *
+ * <div class="mb-{spacing}"></div>
+ * <div class="mb-{spacing}@{breakpoint}"></div>
+ */
+
+$margin-bottom-spacings: (
+	0: 0,
+	auto: auto,
+);
+
+@each $breakpoint-key, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+
+	@include breakpoint($breakpoint-key) {
+		@each $spacing-key, $spacing in $margin-bottom-spacings {
+			$name: mb-#{$spacing-key};
+
+			.#{$name}#{$breakpoint-suffix} {
+				margin-bottom: $spacing;
+			}
+		}
+	}
+}
