@@ -44,10 +44,6 @@
  *
  * <div class="switcher switcher--s{spacing}"></div>
  * <div class="switcher switcher--s{spacing}@{breakpoint}"></div>
- * <div class="switcher switcher--sx{spacing}"></div>
- * <div class="switcher switcher--sx{spacing}@{breakpoint}"></div>
- * <div class="switcher switcher--sy{spacing}"></div>
- * <div class="switcher switcher--sy{spacing}@{breakpoint}"></div>
  */
 
 @each $breakpoint-key, $breakpoint in $mq-breakpoints {
@@ -63,34 +59,6 @@
 
 			.switcher--#{$name}#{$breakpoint-suffix} > * {
 				margin: ($spacing / 2);
-			}
-		}
-
-		@each $spacing-key, $spacing in $spacings {
-			$name: sx#{$spacing-key};
-
-			.switcher--#{$name}#{$breakpoint-suffix} {
-				margin-right: ($spacing / 2 * -1);
-				margin-left: ($spacing / 2 * -1);
-			}
-
-			.switcher--#{$name}#{$breakpoint-suffix} > * {
-				margin-right: ($spacing / 2);
-				margin-left: ($spacing / 2);
-			}
-		}
-
-		@each $spacing-key, $spacing in $spacings {
-			$name: sy#{$spacing-key};
-
-			.switcher--#{$name}#{$breakpoint-suffix} {
-				margin-top: ($spacing / 2 * -1);
-				margin-bottom: ($spacing / 2 * -1);
-			}
-
-			.switcher--#{$name}#{$breakpoint-suffix} > * {
-				margin-top: ($spacing / 2);
-				margin-bottom: ($spacing / 2);
 			}
 		}
 	}
