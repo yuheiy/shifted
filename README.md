@@ -68,6 +68,10 @@ Eleventyのページに対応するテンプレートファイルとデータフ
 
 本番用にビルドしたファイルを`dist`ディレクトリに出力します。
 
+### `npx webpack --analyze`
+
+[Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)を利用してwebpackが出力するバンドルファイルを解析します。
+
 ### `npm run test`
 
 [Jest](https://jestjs.io/en/)による自動テストを実行します。

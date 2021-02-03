@@ -117,7 +117,6 @@ out
 
 # Project specific output
 /dist/
-/src/assets/analyze.html
 /src/assets/main.scss
 /src/assets/controllers/index.ts
 /src/site/_includes/components/index.pug

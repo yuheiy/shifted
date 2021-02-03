@@ -10,13 +10,12 @@ const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const {
 	ECMAVersionValidatorPlugin,
 } = require("ecma-version-validator-webpack-plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const detectPort = require("detect-port");
 const address = require("address");
 const { pathPrefix } = require("./config");
 
-module.exports = async (_env, { mode }) => {
-	const isDev = mode !== "production";
+module.exports = async (env) => {
+	const isDev = !env.WEBPACK_BUILD;
 	const port = isDev && (await detectPort(3000));
 	const networkHost = port && `${address.ip()}:${port}`;
 
@@ -144,12 +143,6 @@ module.exports = async (_env, { mode }) => {
 			!isDev &&
 				new MiniCssExtractPlugin({
 					filename: "[name].[contenthash:8].css",
-				}),
-			process.env.ANALYZE === "true" &&
-				!isDev &&
-				new BundleAnalyzerPlugin({
-					analyzerMode: "static",
-					reportFilename: path.join(__dirname, "src", "assets", "analyze.html"),
 				}),
 		].filter(Boolean),
 		devServer: {
