@@ -34,7 +34,7 @@
  * <div class="grid grid--col-{value}@{breakpoint}"></div>
  */
 
-$columns-values: (2, 3, 4);
+$columns-values: (1, 2, 3, 4);
 
 @each $breakpoint-name, $breakpoint in $mq-breakpoints {
 	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
