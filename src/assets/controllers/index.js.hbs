@@ -1,8 +1,18 @@
-export const definitions = [
-{{#each dependencies}}
-	import("./{{relativePath this.path}}").then((module) => ({
-		identifier: "{{this.parsedPath.name}}",
-		controllerConstructor: module.default,
-	})),
-{{/each}}
-];
+export function loadDefinitions(application) {
+	return Promise.all(
+		[
+			{{#each dependencies}}
+			[
+				"{{this.parsedPath.name}}",
+				import(
+					/* webpackChunkName: "controller-{{this.parsedPath.name}}" */
+					"./{{relativePath this.path}}"
+				),
+			],
+			{{/each}}
+		].map(async ([identifier, fetchingModule]) => {
+			const Controller = (await fetchingModule).default;
+			application.register(identifier, Controller);
+		})
+	);
+}
