@@ -14,7 +14,7 @@
 - MPA（非SPA）向けのJavaScriptコンポーネント化ライブラリとして[Stimulus](https://stimulus.hotwire.dev/)を採用
 - コンポーネント指向開発の支援機能
   - Pug mixin、Sassコンポーネント、Stimulusコントローラーの各種ファイルの自動読み込み
-  - [Plop](https://github.com/plopjs/plop)によるScaffoldの自動生成
+  - [scaffdog](https://github.com/cats-oss/scaffdog)によるScaffoldの自動生成
 
 ## 導入
 
@@ -35,33 +35,9 @@ npm install
 
 開発用サーバーを起動してファイルの変更監視を行います。起動したサーバーのURLがコンソールに出力され、プライベートネットワーク上から同URLへアクセスできるようになります。
 
-### `npx plop [type] [name]`
+### `npx scaffdog generate`
 
-Plopを利用してソースコードのScaffoldを生成します。テンプレートは`plop-templates`ディレクトリに配置されています。
-
-#### コンポーネント
-
-```sh
-npx plop ct my-component
-```
-
-Pug mixin、Sassコンポーネントを生成します。
-
-#### コントローラー
-
-```sh
-npx plop cr my-controller
-```
-
-Stimulusコントローラーを生成します。
-
-#### ページ
-
-```sh
-npx plop p services/research
-```
-
-Eleventyのページに対応するテンプレートファイルとデータファイルを生成します。
+scaffdogを利用してソースコードのScaffoldを生成します。テンプレートは`.scaffdog`ディレクトリに配置されています。
 
 ### `npm run build`
 
