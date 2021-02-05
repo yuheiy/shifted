@@ -13,12 +13,12 @@ $mq-breakpoints: (
 	xl: 80em, // 1280px
 );
 
-@mixin breakpoint($key, $until: false) {
-	@if not map.has-key($mq-breakpoints, $key) {
-		@error "`#{$key}` does not exist in `$mq-breakpoints`";
+@mixin breakpoint($name, $until: false) {
+	@if not map.has-key($mq-breakpoints, $name) {
+		@error "`#{$name}` does not exist in `$mq-breakpoints`";
 	}
 
-	$breakpoint: map.get($mq-breakpoints, $key);
+	$breakpoint: map.get($mq-breakpoints, $name);
 
 	@if $breakpoint {
 		@if $until {

@@ -29,11 +29,13 @@
  * <div class="switcher switcher--row@{breakpoint}"></div>
  */
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		.switcher--row#{$breakpoint-suffix} > * {
+	@include breakpoint($breakpoint-name) {
+		$base: switcher--row;
+
+		.#{$base}#{$breakpoint-suffix} > * {
 			flex-basis: 0;
 		}
 	}
@@ -42,23 +44,23 @@
 /**
  * Spacing variants:
  *
- * <div class="switcher switcher--s{spacing}"></div>
- * <div class="switcher switcher--s{spacing}@{breakpoint}"></div>
+ * <div class="switcher switcher--s{value}"></div>
+ * <div class="switcher switcher--s{value}@{breakpoint}"></div>
  */
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $spacing-key, $spacing in $spacings {
-			$name: s#{$spacing-key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $spacings {
+			$base: switcher--s#{$name};
 
-			.switcher--#{$name}#{$breakpoint-suffix} {
-				margin: ($spacing / 2 * -1);
+			.#{$base}#{$breakpoint-suffix} {
+				margin: ($value / 2 * -1);
 			}
 
-			.switcher--#{$name}#{$breakpoint-suffix} > * {
-				margin: ($spacing / 2);
+			.#{$base}#{$breakpoint-suffix} > * {
+				margin: ($value / 2);
 			}
 		}
 	}

@@ -20,55 +20,55 @@
 /**
  * Spacing variants:
  *
- * <div class="cluster cluster--s{spacing}"></div>
- * <div class="cluster cluster--s{spacing}@{breakpoint}"></div>
- * <div class="cluster cluster--sx{spacing}"></div>
- * <div class="cluster cluster--sx{spacing}@{breakpoint}"></div>
- * <div class="cluster cluster--sy{spacing}"></div>
- * <div class="cluster cluster--sy{spacing}@{breakpoint}"></div>
+ * <div class="cluster cluster--s{value}"></div>
+ * <div class="cluster cluster--s{value}@{breakpoint}"></div>
+ * <div class="cluster cluster--sx{value}"></div>
+ * <div class="cluster cluster--sx{value}@{breakpoint}"></div>
+ * <div class="cluster cluster--sy{value}"></div>
+ * <div class="cluster cluster--sy{value}@{breakpoint}"></div>
  */
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $spacing-key, $spacing in $spacings {
-			$name: s#{$spacing-key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $spacings {
+			$base: cluster--s#{$name};
 
-			.cluster--#{$name}#{$breakpoint-suffix} {
-				margin: ($spacing / 2 * -1);
+			.#{$base}#{$breakpoint-suffix} {
+				margin: ($value / 2 * -1);
 			}
 
-			.cluster--#{$name}#{$breakpoint-suffix} > * {
-				margin: ($spacing / 2);
-			}
-		}
-
-		@each $spacing-key, $spacing in $spacings {
-			$name: sx#{$spacing-key};
-
-			.cluster--#{$name}#{$breakpoint-suffix} {
-				margin-right: ($spacing / 2 * -1);
-				margin-left: ($spacing / 2 * -1);
-			}
-
-			.cluster--#{$name}#{$breakpoint-suffix} > * {
-				margin-right: ($spacing / 2);
-				margin-left: ($spacing / 2);
+			.#{$base}#{$breakpoint-suffix} > * {
+				margin: ($value / 2);
 			}
 		}
 
-		@each $spacing-key, $spacing in $spacings {
-			$name: sy#{$spacing-key};
+		@each $name, $value in $spacings {
+			$base: cluster--sx#{$name};
 
-			.cluster--#{$name}#{$breakpoint-suffix} {
-				margin-top: ($spacing / 2 * -1);
-				margin-bottom: ($spacing / 2 * -1);
+			.#{$base}#{$breakpoint-suffix} {
+				margin-right: ($value / 2 * -1);
+				margin-left: ($value / 2 * -1);
 			}
 
-			.cluster--#{$name}#{$breakpoint-suffix} > * {
-				margin-top: ($spacing / 2);
-				margin-bottom: ($spacing / 2);
+			.#{$base}#{$breakpoint-suffix} > * {
+				margin-right: ($value / 2);
+				margin-left: ($value / 2);
+			}
+		}
+
+		@each $name, $value in $spacings {
+			$base: cluster--sy#{$name};
+
+			.#{$base}#{$breakpoint-suffix} {
+				margin-top: ($value / 2 * -1);
+				margin-bottom: ($value / 2 * -1);
+			}
+
+			.#{$base}#{$breakpoint-suffix} > * {
+				margin-top: ($value / 2);
+				margin-bottom: ($value / 2);
 			}
 		}
 	}

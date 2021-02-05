@@ -43,23 +43,23 @@
 /**
  * Ratio variants:
  *
- * <div class="frame frame--ratio-{x}x{y}"></div>
- * <div class="frame frame--ratio-{x}x{y}@{breakpoint}"></div>
+ * <div class="frame frame--ratio-{x-value}x{y-value}"></div>
+ * <div class="frame frame--ratio-{x-value}x{y-value}@{breakpoint}"></div>
  */
 
 // https://material.io/design/layout/spacing-methods.html#containers-and-ratios
 $aspect-ratios: ((16, 9), (3, 2), (4, 3), (1, 1), (3, 4), (2, 3));
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $aspect-ratio in $aspect-ratios {
-			$x: list.nth($aspect-ratio, 1);
-			$y: list.nth($aspect-ratio, 2);
-			$name: ratio-#{$x}x#{$y};
+	@include breakpoint($breakpoint-name) {
+		@each $value in $aspect-ratios {
+			$x: list.nth($value, 1);
+			$y: list.nth($value, 2);
+			$base: frame--ratio-#{$x}x#{$y};
 
-			.frame--#{$name}#{$breakpoint-suffix} {
+			.#{$base}#{$breakpoint-suffix} {
 				padding-top: percentage($y / $x);
 			}
 		}

@@ -13,25 +13,25 @@
  *
  * Justify variants:
  *
- * <div class="justify-{position}"></div>
- * <div class="justify-{position}@{breakpoint}"></div>
+ * <div class="justify-{value}"></div>
+ * <div class="justify-{value}@{breakpoint}"></div>
  */
 
-$justify-content-values: (
+$justify-values: (
 	start: flex-start,
 	end: flex-end,
 	center: center,
 	between: space-between,
 );
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $key, $value in $justify-content-values {
-			$name: justify-#{$key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $justify-values {
+			$base: justify-#{$name};
 
-			.#{$name}#{$breakpoint-suffix} {
+			.#{$base}#{$breakpoint-suffix} {
 				justify-content: $value;
 			}
 		}
@@ -51,11 +51,11 @@ $justify-content-values: (
  *
  * Items variants:
  *
- * <div class="items-{position}"></div>
- * <div class="items-{position}@{breakpoint}"></div>
+ * <div class="items-{value}"></div>
+ * <div class="items-{value}@{breakpoint}"></div>
  */
 
-$align-items-values: (
+$items-values: (
 	start: flex-start,
 	end: flex-end,
 	center: center,
@@ -63,14 +63,14 @@ $align-items-values: (
 	stretch: stretch,
 );
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $key, $value in $align-items-values {
-			$name: items-#{$key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $items-values {
+			$base: items-#{$name};
 
-			.#{$name}#{$breakpoint-suffix} {
+			.#{$base}#{$breakpoint-suffix} {
 				align-items: $value;
 			}
 		}

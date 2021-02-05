@@ -11,8 +11,8 @@
  *
  * Overflow variants:
  *
- * <div class="overflow-{overflow}"></div>
- * <div class="overflow-{overflow}@{breakpoint}"></div>
+ * <div class="overflow-{value}"></div>
+ * <div class="overflow-{value}@{breakpoint}"></div>
  */
 
 @use "../abstracts" as *;
@@ -23,12 +23,14 @@ $overflow-values: (
 	auto: auto,
 );
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
+	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $overflow-values {
-			.overflow-#{$name}#{$breakpoint-suffix} {
+			$base: overflow-#{$name};
+
+			.#{$base}#{$breakpoint-suffix} {
 				overflow: $value;
 			}
 		}

@@ -30,21 +30,21 @@
 /**
  * Columuns variants:
  *
- * <div class="grid grid--col-{columns}"></div>
- * <div class="grid grid--col-{columns}@{breakpoint}"></div>
+ * <div class="grid grid--col-{value}"></div>
+ * <div class="grid grid--col-{value}@{breakpoint}"></div>
  */
 
-$columns-list: (2, 3, 4);
+$columns-values: (2, 3, 4);
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $columns in $columns-list {
-			$name: col-#{$columns};
+	@include breakpoint($breakpoint-name) {
+		@each $value in $columns-values {
+			$base: grid--col-#{$value};
 
-			.grid--#{$name}#{$breakpoint-suffix} > * {
-				width: percentage(1 / $columns);
+			.#{$base}#{$breakpoint-suffix} > * {
+				width: percentage(1 / $value);
 			}
 		}
 	}
@@ -53,55 +53,55 @@ $columns-list: (2, 3, 4);
 /**
  * Spacing variants:
  *
- * <div class="grid grid--s{spacing}"></div>
- * <div class="grid grid--s{spacing}@{breakpoint}"></div>
- * <div class="grid grid--sx{spacing}"></div>
- * <div class="grid grid--sx{spacing}@{breakpoint}"></div>
- * <div class="grid grid--sy{spacing}"></div>
- * <div class="grid grid--sy{spacing}@{breakpoint}"></div>
+ * <div class="grid grid--s{value}"></div>
+ * <div class="grid grid--s{value}@{breakpoint}"></div>
+ * <div class="grid grid--sx{value}"></div>
+ * <div class="grid grid--sx{value}@{breakpoint}"></div>
+ * <div class="grid grid--sy{value}"></div>
+ * <div class="grid grid--sy{value}@{breakpoint}"></div>
  */
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $spacing-key, $spacing in $spacings {
-			$name: s#{$spacing-key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $spacings {
+			$base: grid--s#{$name};
 
-			.grid--#{$name}#{$breakpoint-suffix} {
-				margin: ($spacing / 2 * -1);
+			.#{$base}#{$breakpoint-suffix} {
+				margin: ($value / 2 * -1);
 			}
 
-			.grid--#{$name}#{$breakpoint-suffix} > * {
-				padding: ($spacing / 2);
-			}
-		}
-
-		@each $spacing-key, $spacing in $spacings {
-			$name: sx#{$spacing-key};
-
-			.grid--#{$name}#{$breakpoint-suffix} {
-				margin-right: ($spacing / 2 * -1);
-				margin-left: ($spacing / 2 * -1);
-			}
-
-			.grid--#{$name}#{$breakpoint-suffix} > * {
-				padding-right: ($spacing / 2);
-				padding-left: ($spacing / 2);
+			.#{$base}#{$breakpoint-suffix} > * {
+				padding: ($value / 2);
 			}
 		}
 
-		@each $spacing-key, $spacing in $spacings {
-			$name: sy#{$spacing-key};
+		@each $name, $value in $spacings {
+			$base: grid--sx#{$name};
 
-			.grid--#{$name}#{$breakpoint-suffix} {
-				margin-top: ($spacing / 2 * -1);
-				margin-bottom: ($spacing / 2 * -1);
+			.#{$base}#{$breakpoint-suffix} {
+				margin-right: ($value / 2 * -1);
+				margin-left: ($value / 2 * -1);
 			}
 
-			.grid--#{$name}#{$breakpoint-suffix} > * {
-				padding-top: ($spacing / 2);
-				padding-bottom: ($spacing / 2);
+			.#{$base}#{$breakpoint-suffix} > * {
+				padding-right: ($value / 2);
+				padding-left: ($value / 2);
+			}
+		}
+
+		@each $name, $value in $spacings {
+			$base: grid--sy#{$name};
+
+			.#{$base}#{$breakpoint-suffix} {
+				margin-top: ($value / 2 * -1);
+				margin-bottom: ($value / 2 * -1);
+			}
+
+			.#{$base}#{$breakpoint-suffix} > * {
+				padding-top: ($value / 2);
+				padding-bottom: ($value / 2);
 			}
 		}
 	}

@@ -8,19 +8,19 @@
  *
  * Spacing variants:
  *
- * <div class="mt-{spacing}"></div>
- * <div class="mt-{spacing}@{breakpoint}"></div>
+ * <div class="mt-{value}"></div>
+ * <div class="mt-{value}@{breakpoint}"></div>
  */
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $spacing-key, $spacing in $spacings {
-			$name: mt-#{$spacing-key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $spacings {
+			$base: mt-#{$name};
 
-			.#{$name}#{$breakpoint-suffix} {
-				margin-top: $spacing;
+			.#{$base}#{$breakpoint-suffix} {
+				margin-top: $value;
 			}
 		}
 	}
@@ -37,24 +37,24 @@
  *
  * Spacing variants:
  *
- * <div class="mb-{spacing}"></div>
- * <div class="mb-{spacing}@{breakpoint}"></div>
+ * <div class="mb-{value}"></div>
+ * <div class="mb-{value}@{breakpoint}"></div>
  */
 
-$margin-bottom-spacings: (
+$margin-bottom-values: (
 	0: 0,
 	auto: auto,
 );
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $spacing-key, $spacing in $margin-bottom-spacings {
-			$name: mb-#{$spacing-key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $margin-bottom-values {
+			$base: mb-#{$name};
 
-			.#{$name}#{$breakpoint-suffix} {
-				margin-bottom: $spacing;
+			.#{$base}#{$breakpoint-suffix} {
+				margin-bottom: $value;
 			}
 		}
 	}

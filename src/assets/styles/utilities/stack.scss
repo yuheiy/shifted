@@ -40,19 +40,19 @@
 /**
  * Spacing variants:
  *
- * <div class="stack stack--s{spacing}"></div>
- * <div class="stack stack--s{spacing}@{breakpoint}"></div>
+ * <div class="stack stack--s{value}"></div>
+ * <div class="stack stack--s{value}@{breakpoint}"></div>
  */
 
-@each $breakpoint-key, $breakpoint in $mq-breakpoints {
-	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-key}", null);
+@each $breakpoint-name, $breakpoint in $mq-breakpoints {
+	$breakpoint-suffix: if($breakpoint, "\\@#{$breakpoint-name}", null);
 
-	@include breakpoint($breakpoint-key) {
-		@each $spacing-key, $spacing in $spacings {
-			$name: s#{$spacing-key};
+	@include breakpoint($breakpoint-name) {
+		@each $name, $value in $spacings {
+			$base: stack--s#{$name};
 
-			.stack--#{$name}#{$breakpoint-suffix} > * + * {
-				margin-top: $spacing;
+			.#{$base}#{$breakpoint-suffix} > * + * {
+				margin-top: $value;
 			}
 		}
 	}
