@@ -4,11 +4,11 @@
 		"drygen": "drygen",
 		"start": "npm-run-all clean drygen --parallel start:*",
 		"start:eleventy": "cross-env STYLE_GUIDE=true eleventy --watch --quiet",
-		"start:webpack": "webpack serve --mode development",
+		"start:webpack": "webpack serve",
 		"start:drygen": "drygen --watch",
 		"build": "npm-run-all clean drygen --parallel build:*",
 		"build:eleventy": "cross-env ELEVENTY_ENV=production eleventy",
-		"build:webpack": "webpack --mode production",
+		"build:webpack": "webpack",
 		"format": "prettier --write .",
 		"test": "jest"
 	},

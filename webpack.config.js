@@ -20,6 +20,7 @@ module.exports = async (env) => {
 	const networkHost = port && `${address.ip()}:${port}`;
 
 	return {
+		mode: isDev ? "development" : "production",
 		context: path.join(__dirname, "src", "assets"),
 		entry: {
 			main: "./main.js",
