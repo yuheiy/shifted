@@ -1,6 +1,6 @@
 const { pathPrefix } = require("../../../config");
 
-(process.env as any).PATH_PREFIX = pathPrefix;
+process.env.PATH_PREFIX = pathPrefix;
 
 Object.defineProperty(window, "matchMedia", {
 	writable: true,

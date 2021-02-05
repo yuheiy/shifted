@@ -19,37 +19,11 @@ module.exports = async (env) => {
 	const port = isDev && (await detectPort(3000));
 	const networkHost = port && `${address.ip()}:${port}`;
 
-	const babelLoader = {
-		loader: "babel-loader",
-		options: {
-			presets: [
-				[
-					"@babel/preset-env",
-					{
-						bugfixes: true,
-						modules: false,
-						useBuiltIns: "entry",
-						corejs: 3,
-					},
-				],
-			],
-			plugins: [
-				[
-					"@babel/plugin-transform-runtime",
-					{
-						useESModules: true,
-					},
-				],
-			],
-			cacheDirectory: true,
-		},
-	};
-
 	return {
 		context: path.join(__dirname, "src", "assets"),
 		entry: {
-			main: "./main.ts",
-			"polyfill-nomodule": "./polyfill-nomodule.ts",
+			main: "./main.js",
+			"polyfill-nomodule": "./polyfill-nomodule.js",
 		},
 		output: {
 			path: path.join(__dirname, "dist", "assets"),
@@ -62,21 +36,39 @@ module.exports = async (env) => {
 		module: {
 			rules: [
 				{
-					test: /\.ts$/,
-					use: [
-						babelLoader,
-						{
-							loader: "ts-loader",
-							options: {
-								transpileOnly: true,
-							},
-						},
-					],
-				},
-				{
 					test: /\.m?js$/,
 					include: path.join(__dirname, "src", "assets"),
-					use: babelLoader,
+					use: {
+						loader: "babel-loader",
+						options: {
+							presets: [
+								[
+									"@babel/preset-env",
+									{
+										bugfixes: true,
+										modules: false,
+										useBuiltIns: "entry",
+										corejs: 3,
+									},
+								],
+							],
+							plugins: [
+								[
+									"@babel/plugin-proposal-class-properties",
+									{
+										loose: true,
+									},
+								],
+								[
+									"@babel/plugin-transform-runtime",
+									{
+										useESModules: true,
+									},
+								],
+							],
+							cacheDirectory: true,
+						},
+					},
 				},
 				{
 					test: /\.scss$/,
@@ -110,7 +102,7 @@ module.exports = async (env) => {
 					],
 				},
 				{
-					exclude: [/\.(ts|m?js)$/, /\.json$/, /\.scss$/],
+					exclude: [/\.m?js$/, /\.json$/, /\.scss$/],
 					use: [
 						{
 							loader: "file-loader",
@@ -125,7 +117,7 @@ module.exports = async (env) => {
 			],
 		},
 		resolve: {
-			extensions: [".ts", ".mjs", ".js"],
+			extensions: [".mjs", ".js"],
 		},
 		devtool: isDev && "cheap-module-eval-source-map",
 		optimization: {

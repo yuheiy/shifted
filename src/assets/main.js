@@ -3,12 +3,6 @@ import "wicg-inert";
 import { Application } from "stimulus";
 import { definitions } from "./controllers";
 
-declare global {
-	interface HTMLElement {
-		inert: boolean;
-	}
-}
-
 // load all asset files to be passed to file-loader
 require.context(
 	".",
@@ -29,5 +23,5 @@ definitions.forEach(async (definitionLoaded) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
-	(window as any).application = application;
+	window.application = application;
 }

@@ -118,6 +118,6 @@ out
 # Project specific output
 /dist/
 /src/assets/main.scss
-/src/assets/controllers/index.ts
+/src/assets/controllers/index.js
 /src/site/_includes/components/index.pug
 /src/site/webpack-manifest.json

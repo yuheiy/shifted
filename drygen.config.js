@@ -29,13 +29,13 @@ module.exports = {
 		{
 			name: "stimulus-controllers",
 			dependencies: [
-				"src/assets/controllers/*.ts",
-				"!src/assets/controllers/index.ts",
+				"src/assets/controllers/*.js",
+				"!src/assets/controllers/index.js",
 			],
 			outputs: [
 				{
-					path: "src/assets/controllers/index.ts",
-					template: "src/assets/controllers/index.ts.hbs",
+					path: "src/assets/controllers/index.js",
+					template: "src/assets/controllers/index.js.hbs",
 				},
 			],
 		},

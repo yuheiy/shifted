@@ -7,19 +7,19 @@ const breakpoints = {
 };
 
 export function installMediaQueryWatcher(
-	breakpointOrMediaQueryString: keyof typeof breakpoints | string,
-	onChange: (matches: boolean) => void
+	breakpointOrMediaQueryString,
+	onChange
 ) {
 	const mediaQueryString =
 		breakpointOrMediaQueryString in breakpoints
-			? breakpoints[breakpointOrMediaQueryString as keyof typeof breakpoints]
+			? breakpoints[breakpointOrMediaQueryString]
 			: breakpointOrMediaQueryString;
 	const mediaQueryList = window.matchMedia(mediaQueryString);
 	mediaQueryList.addEventListener("change", listener);
 	onChange(mediaQueryList.matches);
 	return uninstall;
 
-	function listener(event: MediaQueryListEvent) {
+	function listener(event) {
 		onChange(event.matches);
 	}
 

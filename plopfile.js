@@ -57,8 +57,8 @@ module.exports = (plop) => {
 		actions: [
 			{
 				type: "add",
-				path: "src/assets/controllers/{{kebabCase name}}.ts",
-				templateFile: "plop-templates/controller/controller.ts.hbs",
+				path: "src/assets/controllers/{{kebabCase name}}.js",
+				templateFile: "plop-templates/controller/controller.js.hbs",
 			},
 		],
 	});

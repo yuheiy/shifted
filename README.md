@@ -11,7 +11,6 @@
 - HTMLのテンプレートエンジンとして[Pug](https://pugjs.org/api/getting-started.html)を採用
   - [Eleventyが対応しているテンプレートエンジン](https://www.11ty.dev/docs/languages/)との入れ替えおよび併用が可能
 - CSSのビルドに[Sass](https://sass-lang.com/)と[Autoprefixer](https://github.com/postcss/autoprefixer)を採用
-- JavaScriptの代替として[TypeScript](https://www.typescriptlang.org/)を採用
 - MPA（非SPA）向けのJavaScriptコンポーネント化ライブラリとして[Stimulus](https://stimulus.hotwire.dev/)を採用
 - コンポーネント指向開発の支援機能
   - Pug mixin、Sassコンポーネント、Stimulusコントローラーの各種ファイルの自動読み込み
@@ -78,12 +77,6 @@ Eleventyのページに対応するテンプレートファイルとデータフ
 
 `npm run test -- --watch`コマンドを利用するとファイルの変更を監視できます。
 
-### `npm run type-check`
-
-TypeScriptの型検査を実行します。
-
-型検査は通常、開発時のエディタ上やGitHub Actionsによる実行を推奨します。
-
 ### `npm run format`
 
 [Prettier](https://prettier.io/)によるフォーマットを実行します。
@@ -107,9 +100,9 @@ TypeScriptの型検査を実行します。
 │   │   ├── components/
 │   │   │   └── my-component.scss
 │   │   ├── controllers/
-│   │   │   ├── index.ts
-│   │   │   ├── index.ts.hbs
-│   │   │   └── my-controller.ts
+│   │   │   ├── index.js
+│   │   │   ├── index.js.hbs
+│   │   │   └── my-controller.js
 │   │   ├── styles/
 │   │   │   ├── utilities/
 │   │   │   │   └── my-utility.scss
@@ -117,9 +110,9 @@ TypeScriptの型検査を実行します。
 │   │   │   └── base.scss
 │   │   ├── main.scss
 │   │   ├── main.scss.hbs
-│   │   ├── main.ts
+│   │   ├── main.js
 │   │   ├── ogp.png
-│   │   └── polyfill-nomodule.ts
+│   │   └── polyfill-nomodule.js
 │   ├── site/
 │   │   ├── _data/
 │   │   │   └── metadata.yml
@@ -155,7 +148,7 @@ webpackが出力するアセットのパスは`webpack-manifest.json`として�
 
 ### `src/assets`ディレクトリ
 
-CSS、TypeScript、画像ファイルなどを配置します。同ディレクトリに配置されたすべてのアセットは`main.ts`によって自動的に読み込まれ、ファイル名にフィンガープリントが付与された状態で`dist`ディレクトリに出力されます。
+CSS、JavaScript、画像ファイルなどを配置します。同ディレクトリに配置されたすべてのアセットは`main.js`によって自動的に読み込まれ、ファイル名にフィンガープリントが付与された状態で`dist`ディレクトリに出力されます。
 
 ### `src/static`ディレクトリ
 
@@ -191,10 +184,10 @@ Sass:
 }
 ```
 
-TypeScript:
+JavaScript:
 
-```typescript
-// src/assets/controllers/header.ts
+```javascript
+// src/assets/controllers/header.js
 
 import background from "../components/header/background.svg";
 
@@ -232,9 +225,9 @@ Eleventyのテンプレート内でサブディレクトリを前提としたパ
 //- `/path/to/subdir/assets/main.[contenthash].js`
 ```
 
-TypeScript内では`process.env.PATH_PREFIX`変数から設定を参照できます。
+JavaScript内では`process.env.PATH_PREFIX`変数から設定を参照できます。
 
-```typescript
+```javascript
 location.assign(`${process.env.PATH_PREFIX}/about/`);
 ```
 
@@ -251,7 +244,7 @@ location.assign(`${process.env.PATH_PREFIX}/about/`);
   ],
 ```
 
-また、レガシーブラウザ向けのポリフィル（`polyfill-nomodule.ts`）は、`nomodule`属性を用いてES Modulesが実装されていない環境にのみ提供されるよう設定されています。
+また、レガシーブラウザ向けのポリフィル（`polyfill-nomodule.js`）は、`nomodule`属性を用いてES Modulesが実装されていない環境にのみ提供されるよう設定されています。
 
 ## ライセンス
 

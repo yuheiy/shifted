@@ -1,6 +1,6 @@
 export const definitions = [
 {{#each dependencies}}
-	import("./{{stripExt (relativePath this.path)}}").then((module) => ({
+	import("./{{relativePath this.path}}").then((module) => ({
 		identifier: "{{this.parsedPath.name}}",
 		controllerConstructor: module.default,
 	})),

@@ -8,8 +8,6 @@ const htmlClasses = {
 
 export default class extends Controller {
 	static targets = ["button", "root"];
-	readonly rootTarget!: HTMLElement;
-	readonly buttonTarget!: HTMLElement;
 
 	toggle() {
 		this.rootTarget.classList.add(htmlClasses.COLLAPSING);

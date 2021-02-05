@@ -13,7 +13,6 @@ jobs:
                   node-version: 12
             - run: npm install
             - run: npm run drygen
-            - run: npm run type-check
             - run: npm test
             - run: npm run build
 
