@@ -1,7 +1,7 @@
 import "./main.scss";
 import "wicg-inert";
 import { Application } from "stimulus";
-import { loadDefinitions } from "./controllers";
+import { registerTo } from "./controllers";
 
 // load all asset files to be passed to file-loader
 require.context(
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const application = Application.start();
-loadDefinitions(application);
+registerTo(application);
 
 if (process.env.NODE_ENV !== "production") {
 	window.application = application;
