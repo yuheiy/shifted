@@ -3,8 +3,8 @@
 /**
  * Usage:
  *
- * <div class="mt-4">bar</div>
- * <div class="mt-3 mt-6@md"></div>
+ * <div class="mt-4">foo</div>
+ * <div class="mt-3 mt-6@md">bar</div>
  *
  * Spacing variants:
  *
@@ -29,7 +29,7 @@
 /**
  * Usage:
  *
- * <div class="stack stack--s2">
+ * <div class="stack-split stack-s2">
  *   <div>foo</div>
  *   <div class="mb-auto">bar</div>
  *   <div>baz</div>
