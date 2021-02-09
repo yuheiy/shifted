@@ -37,6 +37,7 @@
 
 		.#{$base}#{$breakpoint-suffix} > * {
 			flex-basis: 0;
+			width: 0;
 		}
 	}
 }
