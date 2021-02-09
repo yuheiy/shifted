@@ -117,9 +117,6 @@ module.exports = async (env) => {
 				},
 			],
 		},
-		resolve: {
-			extensions: [".mjs", ".js"],
-		},
 		devtool: isDev && "cheap-module-eval-source-map",
 		optimization: {
 			minimizer: [new TerserJSPlugin(), new CssMinimizerPlugin()],
