@@ -18,8 +18,7 @@
 }
 
 .switcher > * {
-	flex-grow: 1;
-	flex-basis: 100%;
+	flex: auto;
 
 	// By default, flex items won’t shrink below their minimum content size
 	// (the length of the longest word or fixed-size element). To change this,
@@ -42,7 +41,7 @@
 		$base: switcher--row;
 
 		.#{$base}#{$breakpoint-suffix} > * {
-			flex-basis: 0;
+			flex: 1;
 		}
 	}
 }
