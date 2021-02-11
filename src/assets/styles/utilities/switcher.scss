@@ -20,7 +20,12 @@
 .switcher > * {
 	flex-grow: 1;
 	flex-basis: 100%;
-	width: 0;
+
+	// By default, flex items won’t shrink below their minimum content size
+	// (the length of the longest word or fixed-size element). To change this,
+	// set the min-width or min-height property.
+	// https://www.w3.org/TR/css-flexbox-1/#flex-common
+	min-width: 0;
 }
 
 /**
