@@ -17,13 +17,12 @@
 	flex-wrap: wrap;
 }
 
+// By default, flex items won’t shrink below their minimum content size
+// (the length of the longest word or fixed-size element). To change this,
+// set the min-width or min-height property.
+// https://www.w3.org/TR/css-flexbox-1/#flex-common
 .switcher > * {
 	flex: auto;
-
-	// By default, flex items won’t shrink below their minimum content size
-	// (the length of the longest word or fixed-size element). To change this,
-	// set the min-width or min-height property.
-	// https://www.w3.org/TR/css-flexbox-1/#flex-common
 	min-width: 0;
 }
 
