@@ -13,7 +13,7 @@ mixin post-card(props = {})
 		.frame.frame--ratio-16x9
 			img(src=props.image, alt="", decoding="async")
 
-		.post-card__body.stack-split.stack-s3
+		.post-card__body.stack-split.stack-3
 			p
 				time(datetime=props.date.toISO())= props.date.setLocale(metadata.lang).toFormat('y年L月d日')
 

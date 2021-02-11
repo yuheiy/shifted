@@ -1,7 +1,7 @@
 /**
  * Usage:
  *
- * <div class="stack-s3 stack-s6@md">
+ * <div class="stack-3 stack-6@md">
  *   <div class="my-component">Foo</div>
  *   <div class="my-component">Bar</div>
  *   <div class="my-component">Baz</div>
@@ -13,8 +13,8 @@
 /**
  * Spacing variants:
  *
- * <div class="stack-s{value}"></div>
- * <div class="stack-s{value}@{breakpoint}"></div>
+ * <div class="stack-{value}"></div>
+ * <div class="stack-{value}@{breakpoint}"></div>
  */
 
 @each $breakpoint-name, $breakpoint in $mq-breakpoints {
@@ -22,7 +22,7 @@
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $spacings {
-			$base: stack-s#{$name};
+			$base: stack-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} > * + * {
 				margin-top: $value;
