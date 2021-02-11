@@ -2,7 +2,7 @@
  * Usage:
  *
  * <div class="overflow-hidden">
- *   <div class="switcher switcher--row@md switcher--s3 switcher--s5@md items-center">
+ *   <div class="switcher switcher--row@md switcher--space-3 switcher--space-5@md items-center">
  *     <div class="my-component">Foo</div>
  *     <div class="my-component">Bar</div>
  *     <div class="my-component">Baz</div>
@@ -45,8 +45,8 @@
 /**
  * Spacing variants:
  *
- * <div class="switcher switcher--s{value}"></div>
- * <div class="switcher switcher--s{value}@{breakpoint}"></div>
+ * <div class="switcher switcher--space-{value}"></div>
+ * <div class="switcher switcher--space-{value}@{breakpoint}"></div>
  */
 
 @each $breakpoint-name, $breakpoint in $mq-breakpoints {
@@ -54,7 +54,7 @@
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $spacings {
-			$base: switcher--s#{$name};
+			$base: switcher--space-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				margin: ($value / 2 * -1);
