@@ -14,15 +14,28 @@ module.exports = {
 			],
 		},
 		{
-			name: "sass-imports",
-			dependencies: {
-				utility: ["src/assets/styles/utilities/*.scss"],
-				component: ["src/assets/components/*.scss"],
-			},
+			name: "sass-utilities",
+			dependencies: [
+				"src/assets/styles/utilities/*.scss",
+				"!src/assets/styles/utilities/index.scss",
+			],
 			outputs: [
 				{
-					path: "src/assets/main.scss",
-					template: "src/assets/main.scss.hbs",
+					path: "src/assets/styles/utilities/index.scss",
+					template: "src/assets/styles/utilities/index.scss.hbs",
+				},
+			],
+		},
+		{
+			name: "sass-components",
+			dependencies: [
+				"src/assets/components/*.scss",
+				"!src/assets/components/index.scss",
+			],
+			outputs: [
+				{
+					path: "src/assets/components/index.scss",
+					template: "src/assets/components/index.scss.hbs",
 				},
 			],
 		},
