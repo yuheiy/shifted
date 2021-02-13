@@ -1,6 +1,6 @@
 # shifted
 
-静的サイト構築のための開発環境です。ページ数が多いサイトでも柔軟かつ快適な開発ができます。静的サイトジェネレーターのEleventyとwebpackを中心に構成されています。
+静的サイト構築のための開発環境です。ページ数が多いサイトでも快適かつ柔軟な開発ができます。静的サイトジェネレーターのEleventyとwebpackを中心に構成されています。
 
 ## 特徴
 
@@ -9,7 +9,7 @@
   - 開発用サーバーの[webpack-dev-server](https://webpack.js.org/configuration/dev-server/)によってアセットのビルドおよびライブリロードを提供
   - アセットのファイル名へのフィンガープリント付与による[Cache busting](#cache-busting)が組み込み済み
 - HTMLのテンプレートエンジンとして[Pug](https://pugjs.org/api/getting-started.html)を採用
-  - [Eleventyが対応しているテンプレートエンジン](https://www.11ty.dev/docs/languages/)との入れ替えおよび併用が可能
+  - [その他Eleventyが対応しているテンプレートエンジン](https://www.11ty.dev/docs/languages/)との入れ替えおよび併用が可能
 - CSSのビルドに[Sass](https://sass-lang.com/)と[Autoprefixer](https://github.com/postcss/autoprefixer)を採用
 - MPA（非SPA）向けのJavaScriptコンポーネント化ライブラリとして[Stimulus](https://stimulus.hotwire.dev/)を採用
 - コンポーネント指向開発の支援機能
@@ -204,7 +204,7 @@ Eleventyのテンプレート内でサブディレクトリを前提としたパ
 //- `/path/to/subdir/assets/main.[contenthash].js`
 ```
 
-JavaScript内では`process.env.PATH_PREFIX`変数から設定を参照できます。
+JavaScriptでは`process.env.PATH_PREFIX`変数から設定を参照できます。
 
 ```javascript
 location.assign(`${process.env.PATH_PREFIX}/about/`);
@@ -212,7 +212,7 @@ location.assign(`${process.env.PATH_PREFIX}/about/`);
 
 ## 対応ブラウザ
 
-`package.json`に指定されている次の[Browserslist](https://github.com/browserslist/browserslist)の設定にもとづいて、[Autoprefixer](https://github.com/postcss/autoprefixer)と[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)が実行されます。必要に応じてこの設定を変更してください。
+`package.json`に指定されている次の[Browserslist](https://github.com/browserslist/browserslist)の設定に基づいて、[Autoprefixer](https://github.com/postcss/autoprefixer)と[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)が実行されます。必要に応じてこの設定を変更してください。
 
 ```json
   "browserslist": [
