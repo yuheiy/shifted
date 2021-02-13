@@ -1,10 +1,13 @@
+// Base
 @use "../../node_modules/normalize.css/normalize";
 @use "styles/base";
 
+// Utilities
 {{#each dependencies.utility}}
 @use "{{relativePath this.path}}";
 {{/each}}
 
+// Components
 {{#each dependencies.component}}
 @use "{{relativePath this.path}}";
 {{/each}}
