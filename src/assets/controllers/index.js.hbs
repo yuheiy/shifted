@@ -1,16 +1,17 @@
 export function registerTo(application) {
-	return Promise.all(
+	const controllerModules = [
+		{{#each dependencies}}
 		[
-			{{#each dependencies}}
-			[
-				"{{this.parsedPath.name}}",
-				import(
-					/* webpackChunkName: "controller-{{this.parsedPath.name}}" */
-					"./{{relativePath this.path}}"
-				),
-			],
-			{{/each}}
-		].map(async ([identifier, fetchingModule]) => {
+			"{{this.parsedPath.name}}",
+			import(
+				/* webpackChunkName: "controller-{{this.parsedPath.name}}" */
+				"./{{relativePath this.path}}"
+			),
+		],
+		{{/each}}
+	];
+	return Promise.all(
+		controllerModules.map(async ([identifier, fetchingModule]) => {
 			const Controller = (await fetchingModule).default;
 			application.register(identifier, Controller);
 		})
