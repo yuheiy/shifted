@@ -159,19 +159,15 @@ th {
 }
 
 input,
-textarea,
 select,
-button {
+button,
+textarea {
 	padding: 0;
 	font: inherit;
 	letter-spacing: inherit;
 	color: currentColor;
 	background-color: transparent;
 	border: 0;
-}
-
-input[type="search"] {
-	-webkit-appearance: none;
 }
 
 button,
@@ -183,6 +179,10 @@ button,
 
 button:not(:disabled):not([aria-disabled="true"]) {
 	cursor: pointer;
+}
+
+input[type="search"] {
+	-webkit-appearance: none;
 }
 
 select {
