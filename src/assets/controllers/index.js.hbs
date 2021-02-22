@@ -2,10 +2,10 @@ export function registerTo(application) {
 	const controllerModules = [
 		{{#each dependencies}}
 		[
-			"{{this.parsedPath.name}}",
+			"{{parsedPath.name}}",
 			import(
-				/* webpackChunkName: "controller-{{this.parsedPath.name}}" */
-				"./{{relativePath this.path}}"
+				/* webpackChunkName: "controller-{{parsedPath.name}}" */
+				"./{{relativePath path}}"
 			),
 		],
 		{{/each}}
