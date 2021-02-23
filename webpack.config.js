@@ -42,6 +42,10 @@ module.exports = async (env) => {
 					use: {
 						loader: "babel-loader",
 						options: {
+							assumptions: {
+								setPublicClassFields: true,
+								privateFieldsAsProperties: true,
+							},
 							presets: [
 								[
 									"@babel/preset-env",
@@ -54,18 +58,8 @@ module.exports = async (env) => {
 								],
 							],
 							plugins: [
-								[
-									"@babel/plugin-proposal-class-properties",
-									{
-										loose: true,
-									},
-								],
-								[
-									"@babel/plugin-transform-runtime",
-									{
-										useESModules: true,
-									},
-								],
+								"@babel/plugin-proposal-class-properties",
+								"@babel/plugin-transform-runtime",
 							],
 							cacheDirectory: true,
 						},
