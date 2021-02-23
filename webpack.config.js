@@ -53,7 +53,7 @@ module.exports = async (env) => {
 										bugfixes: true,
 										modules: false,
 										useBuiltIns: "entry",
-										corejs: 3,
+										corejs: "3.9",
 									},
 								],
 							],
