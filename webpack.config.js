@@ -13,6 +13,7 @@ const {
 const detectPort = require("detect-port");
 const address = require("address");
 const { pathPrefix } = require("./config");
+const pkg = require("./package.json");
 
 module.exports = async (env) => {
 	const isDev = !env.WEBPACK_BUILD;
@@ -53,7 +54,7 @@ module.exports = async (env) => {
 										bugfixes: true,
 										modules: false,
 										useBuiltIns: "entry",
-										corejs: "3.9",
+										corejs: pkg.dependencies["core-js"],
 									},
 								],
 							],
