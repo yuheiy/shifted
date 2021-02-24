@@ -52,7 +52,6 @@ module.exports = async (env) => {
 									"@babel/preset-env",
 									{
 										bugfixes: true,
-										modules: false,
 										useBuiltIns: "entry",
 										corejs: pkg.dependencies["core-js"],
 									},
