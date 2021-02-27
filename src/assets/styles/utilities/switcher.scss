@@ -22,7 +22,7 @@
 // set the min-width or min-height property.
 // https://www.w3.org/TR/css-flexbox-1/#flex-common
 .switcher > * {
-	flex: auto;
+	flex: 100%;
 	min-width: 0;
 }
 
