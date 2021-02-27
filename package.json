@@ -10,7 +10,8 @@
 		"build:eleventy": "cross-env ELEVENTY_ENV=production eleventy",
 		"build:webpack": "webpack",
 		"format": "prettier --write .",
-		"test": "jest"
+		"test": "jest",
+		"prepare": "git config --local core.hooksPath .githook || echo \"Can not set git hooks\""
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.13.2",
@@ -44,7 +45,6 @@
 		"ecma-version-validator-webpack-plugin": "^1.1.0",
 		"fibers": "^5.0.0",
 		"file-loader": "^6.2.0",
-		"husky": "^4.3.8",
 		"import-fresh": "^3.3.0",
 		"jest": "^26.6.3",
 		"js-yaml": "^4.0.0",
@@ -76,10 +76,5 @@
 		"last 2 versions and > 0.01%",
 		"Firefox ESR",
 		"not dead"
-	],
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged"
-		}
-	}
+	]
 }
