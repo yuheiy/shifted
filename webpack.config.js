@@ -16,7 +16,7 @@ const { pathPrefix } = require("./config");
 const pkg = require("./package.json");
 
 module.exports = async (env) => {
-	const isDev = !env.WEBPACK_BUILD;
+	const isDev = Boolean(env.WEBPACK_SERVE);
 	const port = isDev && (await detectPort(3000));
 	const networkHost = port && `${address.ip()}:${port}`;
 
