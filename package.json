@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"clean": "rimraf dist src/site/webpack-manifest.json",
+		"clean": "rimraf dist/ src/site/webpack-manifest.json",
 		"drygen": "drygen",
 		"start": "npm-run-all clean drygen --parallel start:*",
 		"start:eleventy": "cross-env STYLE_GUIDE=true eleventy --watch --quiet",
