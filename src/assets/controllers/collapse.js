@@ -1,6 +1,6 @@
 import afterFrame from "afterframe";
-import invariant from "tiny-invariant";
 import { Controller } from "stimulus";
+import invariant from "tiny-invariant";
 
 const htmlClasses = {
 	COLLAPSING: "collapse--collapsing",
