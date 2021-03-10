@@ -179,12 +179,11 @@ button:not(:disabled):not([aria-disabled="true"]) {
 }
 
 input[type="search"] {
-	-webkit-appearance: none;
+	appearance: none;
 }
 
 select {
-	-moz-appearance: none;
-	-webkit-appearance: none;
+	appearance: none;
 	border-radius: 0;
 }
 
