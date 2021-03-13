@@ -1,5 +1,4 @@
-// https://github.com/fregante/object-fit-images/issues/104#issuecomment-547507026
-import objectFitImages from "object-fit-images";
+import objectFitImages from "object-fit-images"; // should be imported before picturefill, see https://github.com/fregante/object-fit-images/issues/104#issuecomment-547507026
 import "picturefill";
 import "picturefill/dist/plugins/mutation/pf.mutation";
 
