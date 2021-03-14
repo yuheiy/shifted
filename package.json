@@ -15,6 +15,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.13.10",
+		"abort-controller": "^3.0.0",
 		"afterframe": "^1.0.1",
 		"core-js": "^3.9.1",
 		"dom4": "^2.1.6",

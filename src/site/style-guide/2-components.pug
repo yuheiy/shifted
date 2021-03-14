@@ -5,37 +5,36 @@ block body
 		+sg-heading({ content: "collapse" })
 
 	+sg-demo
-		div(role="group", data-controller="collapse")
+		div(
+			role="group",
+			data-controller="collapse-trigger",
+			data-collapse-trigger-collapsing-class="collapse--collapsing"
+		)
 			button(
 				type="button",
 				aria-expanded="false",
 				aria-controles="collapsed-collapse",
-				data-action="collapse#toggle",
-				data-collapse-target="button"
+				data-action="collapse-trigger#toggle"
 			) Collapsed
-			#collapsed-collapse.collapse(
-				inert,
-				data-action="transitionend->collapse#postprocess",
-				data-collapse-target="root"
-			)
+			#collapsed-collapse.collapse(inert, data-collapse-trigger-target="collapse")
 				div
 					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas at corrupti veritatis ab esse, ea sint. Ab voluptatum officiis tenetur, obcaecati numquam, impedit, soluta nam aperiam possimus iure mollitia dolore!
 					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi laudantium exercitationem vitae minima quas inventore veniam facilis. Totam quod adipisci labore dolorem autem mollitia. Cupiditate, quibusdam. Fuga ipsa quia eos!
 					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam in amet doloremque itaque consequuntur eligendi praesentium aut tenetur ea numquam voluptatum rem, unde exercitationem sint natus ipsum? Reiciendis, ipsum labore!
 
 	+sg-demo
-		div(role="group", data-controller="collapse")
+		div(
+			role="group",
+			data-controller="collapse-trigger",
+			data-collapse-trigger-collapsing-class="collapse--collapsing"
+		)
 			button(
 				type="button",
 				aria-expanded="true",
-				aria-controles="shown-collapse",
-				data-action="collapse#toggle",
-				data-collapse-target="button"
+				aria-controles="expanded-collapse",
+				data-action="collapse-trigger#toggle"
 			) Expanded
-			#shown-collapse.collapse(
-				data-action="transitionend->collapse#postprocess",
-				data-collapse-target="root"
-			)
+			#expanded-collapse.collapse(data-collapse-trigger-target="collapse")
 				div
 					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas at corrupti veritatis ab esse, ea sint. Ab voluptatum officiis tenetur, obcaecati numquam, impedit, soluta nam aperiam possimus iure mollitia dolore!
 					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi laudantium exercitationem vitae minima quas inventore veniam facilis. Totam quod adipisci labore dolorem autem mollitia. Cupiditate, quibusdam. Fuga ipsa quia eos!

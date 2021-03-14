@@ -39,7 +39,10 @@ module.exports = async (env) => {
 			rules: [
 				{
 					test: /\.m?js$/,
-					include: path.join(__dirname, "src", "assets"),
+					include: [
+						path.join(__dirname, "node_modules", "abort-controller"),
+						path.join(__dirname, "src", "assets"),
+					],
 					use: {
 						loader: "babel-loader",
 						options: {
