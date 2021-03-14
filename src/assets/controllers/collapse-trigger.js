@@ -2,7 +2,7 @@ import AbortController from "abort-controller";
 import afterFrame from "afterframe";
 import { Controller } from "stimulus";
 import invariant from "tiny-invariant";
-import { waitForStyleToBeChanged } from "../lib/wait-for-style-to-be-changed";
+import { waitForStyleToBeSet } from "../lib/wait-for-style-to-be-set";
 
 export default class extends Controller {
 	static targets = ["collapse"];
@@ -46,7 +46,7 @@ export default class extends Controller {
 
 		// wait for the transition to finish
 		try {
-			await waitForStyleToBeChanged(this.collapseTarget, "height", height.to);
+			await waitForStyleToBeSet(this.collapseTarget, "height", height.to);
 		} catch (error) {
 			return;
 		}

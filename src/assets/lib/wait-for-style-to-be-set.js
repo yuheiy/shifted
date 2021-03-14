@@ -1,4 +1,4 @@
-export async function waitForStyleToBeChanged(
+export async function waitForStyleToBeSet(
 	element,
 	propertyName,
 	value,
@@ -12,11 +12,11 @@ export async function waitForStyleToBeChanged(
 
 	while (true) {
 		if (isTimedOut) {
-			throw new Error("Timed out in waitForStyleToBeChanged");
+			throw new Error("Timed out in waitForStyleToBeSet");
 		}
 
-		const hasChanged = getComputedStyle(element)[propertyName] === value;
-		if (hasChanged) {
+		const hasSet = getComputedStyle(element)[propertyName] === value;
+		if (hasSet) {
 			clearTimeout(timeoutId);
 			return;
 		}
