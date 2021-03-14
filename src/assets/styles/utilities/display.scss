@@ -1,12 +1,12 @@
 /**
  * Usage:
  *
- * <div class="hidden block@md">Hello</div>
+ * <div class="u-hidden u-block@md">Hello</div>
  *
  * Variants:
  *
- * <div class="{value}"></div>
- * <div class="{value}@{breakpoint}"></div>
+ * <div class="u-{value}"></div>
+ * <div class="u-{value}@{breakpoint}"></div>
  */
 
 @use "../abstracts" as *;
@@ -23,7 +23,7 @@ $display-values: (
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $display-values {
-			$base: $name;
+			$base: u-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				display: $value;

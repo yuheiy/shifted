@@ -1,10 +1,10 @@
 /**
  * Usage:
  *
- * <div class="stack-3 stack-6@md">
- *   <div class="my-component">Foo</div>
- *   <div class="my-component">Bar</div>
- *   <div class="my-component">Baz</div>
+ * <div class="u-stack-3 u-stack-6@md">
+ *   <div class="c-my-component">Foo</div>
+ *   <div class="c-my-component">Bar</div>
+ *   <div class="c-my-component">Baz</div>
  * </div>
  */
 
@@ -13,8 +13,8 @@
 /**
  * Spacing variants:
  *
- * <div class="stack-{value}"></div>
- * <div class="stack-{value}@{breakpoint}"></div>
+ * <div class="u-stack-{value}"></div>
+ * <div class="u-stack-{value}@{breakpoint}"></div>
  */
 
 @each $breakpoint-name, $breakpoint in $mq-breakpoints {
@@ -22,7 +22,7 @@
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $spacings {
-			$base: stack-#{$name};
+			$base: u-stack-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} > * + * {
 				margin-top: $value;
@@ -34,20 +34,20 @@
 /**
  * Split variants:
  *
- * <div class="stack-split"></div>
+ * <div class="u-stack-split"></div>
  */
 
-.stack-split {
+.u-stack-split {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 }
 
-.stack-split:first-child:last-child {
+.u-stack-split:first-child:last-child {
 	height: 100%;
 }
 
-.stack-split > * {
+.u-stack-split > * {
 	// In Internet Explorer 10-11, column flex items don’t always preserve
 	// intrinsic aspect ratios. This bug can be avoided by `flex-shrink: 0`.
 	// https://github.com/philipwalton/flexbugs#flexbug-5

@@ -1,12 +1,12 @@
 extends /layouts/base
 
 block main
-	h1.visually-hidden= `${metadata.siteTitle} ホーム`
+	h1.u-visually-hidden= `${metadata.siteTitle} ホーム`
 
-	section.center
+	section.u-center
 		h2 スタイルガイド
 
-		ul.mt-4
+		ul.u-mt-4
 			each styleGuide in eleventyNavigation(collections.all, 'スタイルガイド').filter(page => page.url)
 				li
 					a(href=url(styleGuide.url), style="text-decoration: underline")= styleGuide.title

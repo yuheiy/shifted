@@ -1,10 +1,10 @@
 @use "../styles/abstracts" as *;
 
-.collapse[inert]:not(.collapse--collapsing) {
+.c-collapse[inert]:not(.c-collapse--collapsing) {
 	display: none;
 }
 
-.collapse--collapsing {
+.c-collapse--collapsing {
 	overflow: hidden;
 	transition: height 200ms ease-out;
 }

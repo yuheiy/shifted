@@ -8,7 +8,7 @@ block body
 		div(
 			role="group",
 			data-controller="collapse-trigger",
-			data-collapse-trigger-collapsing-class="collapse--collapsing"
+			data-collapse-trigger-collapsing-class="c-collapse--collapsing"
 		)
 			button(
 				type="button",
@@ -16,7 +16,10 @@ block body
 				aria-controles="collapsed-collapse",
 				data-action="collapse-trigger#toggle"
 			) Collapsed
-			#collapsed-collapse.collapse(inert, data-collapse-trigger-target="collapse")
+			#collapsed-collapse.c-collapse(
+				inert,
+				data-collapse-trigger-target="collapse"
+			)
 				div
 					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas at corrupti veritatis ab esse, ea sint. Ab voluptatum officiis tenetur, obcaecati numquam, impedit, soluta nam aperiam possimus iure mollitia dolore!
 					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi laudantium exercitationem vitae minima quas inventore veniam facilis. Totam quod adipisci labore dolorem autem mollitia. Cupiditate, quibusdam. Fuga ipsa quia eos!
@@ -26,7 +29,7 @@ block body
 		div(
 			role="group",
 			data-controller="collapse-trigger",
-			data-collapse-trigger-collapsing-class="collapse--collapsing"
+			data-collapse-trigger-collapsing-class="c-collapse--collapsing"
 		)
 			button(
 				type="button",
@@ -34,7 +37,7 @@ block body
 				aria-controles="expanded-collapse",
 				data-action="collapse-trigger#toggle"
 			) Expanded
-			#expanded-collapse.collapse(data-collapse-trigger-target="collapse")
+			#expanded-collapse.c-collapse(data-collapse-trigger-target="collapse")
 				div
 					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas at corrupti veritatis ab esse, ea sint. Ab voluptatum officiis tenetur, obcaecati numquam, impedit, soluta nam aperiam possimus iure mollitia dolore!
 					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi laudantium exercitationem vitae minima quas inventore veniam facilis. Totam quod adipisci labore dolorem autem mollitia. Cupiditate, quibusdam. Fuga ipsa quia eos!
@@ -64,22 +67,22 @@ block body
 
 	+sg-demo
 		div(style={ 'max-width': '32rem' })
-			+post-card({ image: "https://source.unsplash.com/random", title: "私の個人主義", date: DateTime.fromISO('2020-04-01T00:00:00.000+09:00'), href: "#", lede: "彼らも十一月むくむくこの意味年というのの以上の考えですます。そのうち今を活動人も実にその助力なけれななどより受けるからならたをは関係しでですて、それだけには間違っんべきたです。権力を至るなのはそのうち一番の同時にましなた。", tags: ["講演録", "夏目漱石"], })
+			+c-post-card({ image: "https://source.unsplash.com/random", title: "私の個人主義", date: DateTime.fromISO('2020-04-01T00:00:00.000+09:00'), href: "#", lede: "彼らも十一月むくむくこの意味年というのの以上の考えですます。そのうち今を活動人も実にその助力なけれななどより受けるからならたをは関係しでですて、それだけには間違っんべきたです。権力を至るなのはそのうち一番の同時にましなた。", tags: ["講演録", "夏目漱石"], })
 
 	.sg-center
 		+sg-heading({ content: "post-card:with grid" })
 
 	+sg-demo
-		.grid.grid--space-3(
-			class="grid--col-2@sm grid--col-3@md grid--col-4@xl grid--space-5@md"
+		.u-grid.u-grid--space-3(
+			class="u-grid--col-2@sm u-grid--col-3@md u-grid--col-4@xl u-grid--space-5@md"
 		)
 			div
-				+post-card({ image: "https://source.unsplash.com/random", title: "私の個人主義", date: DateTime.fromISO('2020-05-01T00:00:00.000+09:00'), href: "#", lede: "もし久原さんに教育鮒もう少し仕事を見ます書物その事おれか混同がという実使用ませたですでが、その毎号も彼らか差権力のして、岡田さんの事を大名のあなたが別にお説明と詰めと私性質のお学習から抱いようにたしかお利用にあるなたて、ざっとけっして意味を知れなけれてつけないのをするたない。", })
+				+c-post-card({ image: "https://source.unsplash.com/random", title: "私の個人主義", date: DateTime.fromISO('2020-05-01T00:00:00.000+09:00'), href: "#", lede: "もし久原さんに教育鮒もう少し仕事を見ます書物その事おれか混同がという実使用ませたですでが、その毎号も彼らか差権力のして、岡田さんの事を大名のあなたが別にお説明と詰めと私性質のお学習から抱いようにたしかお利用にあるなたて、ざっとけっして意味を知れなけれてつけないのをするたない。", })
 			div
-				+post-card({ image: "https://source.unsplash.com/random?2", title: "ちくま日本文学全集", date: DateTime.fromISO('2020-04-01T00:00:00.000+09:00'), href: "#", lede: "だからだからご疳に反し訳はいっそ変と拵えましから、大した否やには焼いましてという個人で加えるていたいう。", tags: ["メディア", "プレスリリース"], })
+				+c-post-card({ image: "https://source.unsplash.com/random?2", title: "ちくま日本文学全集", date: DateTime.fromISO('2020-04-01T00:00:00.000+09:00'), href: "#", lede: "だからだからご疳に反し訳はいっそ変と拵えましから、大した否やには焼いましてという個人で加えるていたいう。", tags: ["メディア", "プレスリリース"], })
 			div
-				+post-card({ image: "https://source.unsplash.com/random?3", title: "夏目漱石全集10", date: DateTime.fromISO('2020-03-01T00:00:00.000+09:00'), href: "#", lede: "その時濶者のところそうした申は私上に当てるないかと岡田さんよりなるんらしい、個性の事実でというご招待なたたと、見識の中を心持に事実ぐらいの文芸を今いうといるて、ますますの今日になるてどんな以上を初めてなさいでしょたときめべきのたて、ないですでて全くご演壇着ん方ですませた。", tags: ["特集"], })
+				+c-post-card({ image: "https://source.unsplash.com/random?3", title: "夏目漱石全集10", date: DateTime.fromISO('2020-03-01T00:00:00.000+09:00'), href: "#", lede: "その時濶者のところそうした申は私上に当てるないかと岡田さんよりなるんらしい、個性の事実でというご招待なたたと、見識の中を心持に事実ぐらいの文芸を今いうといるて、ますますの今日になるてどんな以上を初めてなさいでしょたときめべきのたて、ないですでて全くご演壇着ん方ですませた。", tags: ["特集"], })
 			div
-				+post-card({ image: "https://source.unsplash.com/random", title: "ちくま日本文学全集", date: DateTime.fromISO('2020-02-01T00:00:00.000+09:00'), href: "#", lede: "それなら百姓か静粛か相違でしんて、先刻末兄を申し上げるがいるなためにお変化の当時へ出来だた。", })
+				+c-post-card({ image: "https://source.unsplash.com/random", title: "ちくま日本文学全集", date: DateTime.fromISO('2020-02-01T00:00:00.000+09:00'), href: "#", lede: "それなら百姓か静粛か相違でしんて、先刻末兄を申し上げるがいるなためにお変化の当時へ出来だた。", })
 			div
-				+post-card({ image: "https://source.unsplash.com/random?2", title: "夏目漱石全集10", date: DateTime.fromISO('2020-01-01T00:00:00.000+09:00'), href: "#", lede: "十一月にはまあ出がするたですですらしいけれども、いやしくももしして批評は少し下らないましのない。しかしお附与をあるてはいです気たて、気にさえ、はたして私かあっとなっれるますないとどまるれるうですと思っと、責任は怒りているたた。", tags: ["HTML", "CSS", "JavaScript"], })
+				+c-post-card({ image: "https://source.unsplash.com/random?2", title: "夏目漱石全集10", date: DateTime.fromISO('2020-01-01T00:00:00.000+09:00'), href: "#", lede: "十一月にはまあ出がするたですですらしいけれども、いやしくももしして批評は少し下らないましのない。しかしお附与をあるてはいです気たて、気にさえ、はたして私かあっとなっれるますないとどまるれるうですと思っと、責任は怒りているたた。", tags: ["HTML", "CSS", "JavaScript"], })

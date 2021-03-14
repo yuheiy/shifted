@@ -1,10 +1,10 @@
 @use "../styles/abstracts" as *;
 
-.footer {
+.c-footer {
 	border-top: 1px solid hsl(0 0% 90%);
 }
 
-.footer a {
+.c-footer a {
 	padding-top: $spacing-4;
 	padding-bottom: $spacing-4;
 }

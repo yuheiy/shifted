@@ -1,16 +1,16 @@
 /**
  * Usage:
  *
- * <div class="overflow-hidden">
- *   <div class="grid grid--col-2@sm grid--col-3@lg grid--space-3 grid--space-4@xl">
+ * <div class="u-overflow-hidden">
+ *   <div class="u-grid u-grid--col-2@sm u-grid--col-3@lg u-grid--space-3 u-grid--space-4@xl">
  *     <div>
- *       <div class="my-component">Foo</div>
+ *       <div class="c-my-component">Foo</div>
  *     </div>
  *     <div>
- *       <div class="my-component">Bar</div>
+ *       <div class="c-my-component">Bar</div>
  *     </div>
  *     <div>
- *       <div class="my-component">Baz</div>
+ *       <div class="c-my-component">Baz</div>
  *     </div>
  *   </div>
  * </div>
@@ -18,20 +18,20 @@
 
 @use "../abstracts" as *;
 
-.grid {
+.u-grid {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.grid > * {
+.u-grid > * {
 	width: 100%;
 }
 
 /**
  * Columuns variants:
  *
- * <div class="grid grid--col-{value}"></div>
- * <div class="grid grid--col-{value}@{breakpoint}"></div>
+ * <div class="u-grid u-grid--col-{value}"></div>
+ * <div class="u-grid u-grid--col-{value}@{breakpoint}"></div>
  */
 
 $columns-values: (1, 2, 3, 4);
@@ -41,7 +41,7 @@ $columns-values: (1, 2, 3, 4);
 
 	@include breakpoint($breakpoint-name) {
 		@each $value in $columns-values {
-			$base: grid--col-#{$value};
+			$base: u-grid--col-#{$value};
 
 			.#{$base}#{$breakpoint-suffix} > * {
 				width: percentage(1 / $value);
@@ -53,12 +53,12 @@ $columns-values: (1, 2, 3, 4);
 /**
  * Spacing variants:
  *
- * <div class="grid grid--space-{value}"></div>
- * <div class="grid grid--space-{value}@{breakpoint}"></div>
- * <div class="grid grid--space-x-{value}"></div>
- * <div class="grid grid--space-x-{value}@{breakpoint}"></div>
- * <div class="grid grid--space-y-{value}"></div>
- * <div class="grid grid--space-y-{value}@{breakpoint}"></div>
+ * <div class="u-grid u-grid--space-{value}"></div>
+ * <div class="u-grid u-grid--space-{value}@{breakpoint}"></div>
+ * <div class="u-grid u-grid--space-x-{value}"></div>
+ * <div class="u-grid u-grid--space-x-{value}@{breakpoint}"></div>
+ * <div class="u-grid u-grid--space-y-{value}"></div>
+ * <div class="u-grid u-grid--space-y-{value}@{breakpoint}"></div>
  */
 
 @each $breakpoint-name, $breakpoint in $mq-breakpoints {
@@ -66,7 +66,7 @@ $columns-values: (1, 2, 3, 4);
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $spacings {
-			$base: grid--space-#{$name};
+			$base: u-grid--space-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				margin: ($value / 2 * -1);
@@ -78,7 +78,7 @@ $columns-values: (1, 2, 3, 4);
 		}
 
 		@each $name, $value in $spacings {
-			$base: grid--space-x-#{$name};
+			$base: u-grid--space-x-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				margin-right: ($value / 2 * -1);
@@ -92,7 +92,7 @@ $columns-values: (1, 2, 3, 4);
 		}
 
 		@each $name, $value in $spacings {
-			$base: grid--space-y-#{$name};
+			$base: u-grid--space-y-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				margin-top: ($value / 2 * -1);

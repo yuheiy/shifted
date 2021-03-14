@@ -9,12 +9,12 @@ questions:
 # `src/site/_includes/components/{{ inputs.name | kebab }}.pug`
 
 ```pug
-mixin {{ inputs.name | kebab }}(props = {})
+mixin c-{{ inputs.name | kebab }}(props = {})
 	-
 		props = Object.assign({
 		}, props);
 
-	.{{ inputs.name | kebab }}&attributes(attributes)
+	.c-{{ inputs.name | kebab }}&attributes(attributes)
 
 ```
 
@@ -23,10 +23,10 @@ mixin {{ inputs.name | kebab }}(props = {})
 ```scss
 @use "../styles/abstracts" as *;
 
-.{{ inputs.name | kebab }} {
+.c-{{ inputs.name | kebab }} {
 }
 
-.{{ inputs.name | kebab }}__ {
+.c-{{ inputs.name | kebab }}__ {
 }
 
 ```

@@ -1,18 +1,18 @@
 /**
  * Usage:
  *
- * <label class="my-checkbox">
+ * <label class="c-my-checkbox">
  *   <input type="checkbox">
- *   <span class="my-checkbox__appearance next-focus-ring">Option</span>
+ *   <span class="c-my-checkbox__appearance u-next-focus-ring">Option</span>
  * </label>
  */
 
-:focus + .next-focus-ring {
+:focus + .u-next-focus-ring {
 	outline: dotted 1px;
 	outline: -webkit-focus-ring-color auto 5px;
 }
 
 // https://developer.paciellogroup.com/blog/2018/03/focus-visible-and-backwards-compatibility/
-:focus:not(:focus-visible) + .next-focus-ring {
+:focus:not(:focus-visible) + .u-next-focus-ring {
 	outline: 0;
 }

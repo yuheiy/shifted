@@ -157,7 +157,7 @@ Sass:
 ```scss
 // src/assets/components/header.scss
 
-.header {
+.c-header {
   background-image: url("./header/background.svg");
   // -> /assets/components/header/background.[contenthash].svg
 }

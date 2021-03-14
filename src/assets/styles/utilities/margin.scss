@@ -3,13 +3,13 @@
 /**
  * Usage:
  *
- * <div class="mt-4">foo</div>
- * <div class="mt-3 mt-6@md">bar</div>
+ * <div class="u-mt-4">foo</div>
+ * <div class="u-mt-3 mt-6@md">bar</div>
  *
  * Variants:
  *
- * <div class="mt-{value}"></div>
- * <div class="mt-{value}@{breakpoint}"></div>
+ * <div class="u-mt-{value}"></div>
+ * <div class="u-mt-{value}@{breakpoint}"></div>
  */
 
 @each $breakpoint-name, $breakpoint in $mq-breakpoints {
@@ -17,7 +17,7 @@
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $spacings {
-			$base: mt-#{$name};
+			$base: u-mt-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				margin-top: $value;
@@ -29,16 +29,16 @@
 /**
  * Usage:
  *
- * <div class="stack-split stack-2">
+ * <div class="u-stack-split u-stack-2">
  *   <div>foo</div>
- *   <div class="mb-auto">bar</div>
+ *   <div class="u-mb-auto">bar</div>
  *   <div>baz</div>
  * </div>
  *
  * Variants:
  *
- * <div class="mb-{value}"></div>
- * <div class="mb-{value}@{breakpoint}"></div>
+ * <div class="u-mb-{value}"></div>
+ * <div class="u-mb-{value}@{breakpoint}"></div>
  */
 
 $margin-bottom-values: (
@@ -51,7 +51,7 @@ $margin-bottom-values: (
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $margin-bottom-values {
-			$base: mb-#{$name};
+			$base: u-mb-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				margin-bottom: $value;

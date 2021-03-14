@@ -1,18 +1,18 @@
 /**
  * Usage:
  *
- * <div class="overflow-hidden">
- *   <div class="cluster cluster--space-3">
- *     <div class="my-component">Foo</div>
- *     <div class="my-component">Bar</div>
- *     <div class="my-component">Baz</div>
+ * <div class="u-overflow-hidden">
+ *   <div class="u-cluster u-cluster--space-3">
+ *     <div class="c-my-component">Foo</div>
+ *     <div class="c-my-component">Bar</div>
+ *     <div class="c-my-component">Baz</div>
  *   </div>
  * </div>
  *
  * Variants:
  *
- * <div class="overflow-{value}"></div>
- * <div class="overflow-{value}@{breakpoint}"></div>
+ * <div class="u-overflow-{value}"></div>
+ * <div class="u-overflow-{value}@{breakpoint}"></div>
  */
 
 @use "../abstracts" as *;
@@ -27,7 +27,7 @@ $overflow-values: (
 
 	@include breakpoint($breakpoint-name) {
 		@each $name, $value in $overflow-values {
-			$base: overflow-#{$name};
+			$base: u-overflow-#{$name};
 
 			.#{$base}#{$breakpoint-suffix} {
 				overflow: $value;

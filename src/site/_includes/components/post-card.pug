@@ -1,4 +1,4 @@
-mixin post-card(props = {})
+mixin c-post-card(props = {})
 	-
 		props = Object.assign({
 		  image: "",
@@ -9,22 +9,22 @@ mixin post-card(props = {})
 		  tags: [],
 		}, props);
 
-	article.post-card&attributes(attributes)
-		.frame.frame--ratio-16x9
+	article.c-post-card&attributes(attributes)
+		.u-frame.u-frame--ratio-16x9
 			img(src=props.image, alt="", decoding="async")
 
-		.post-card__body.stack-split.stack-3
+		.c-post-card__body.u-stack-split.u-stack-3
 			p
 				time(datetime=props.date.toISO())= props.date.setLocale(metadata.lang).toFormat('y年L月d日')
 
 			h3
 				a(href=props.href)= props.title
 
-			p.mb-auto= props.lede
+			p.u-mb-auto= props.lede
 
 			if props.tags.length
 				div
-					ul.cluster.cluster--space-2
+					ul.u-cluster.u-cluster--space-2
 						each tag in props.tags
 							li
-								.post-card__tag= tag
+								.c-post-card__tag= tag

@@ -1,7 +1,7 @@
 /**
  * Usage:
  *
- * <div class="frame frame--ratio-16x9">
+ * <div class="u-frame u-frame--ratio-16x9">
  *   <img src="https://source.unsplash.com/random" alt="" decoding="async">
  * </div>
  */
@@ -9,12 +9,12 @@
 @use "sass:list";
 @use "../abstracts" as *;
 
-.frame {
+.u-frame {
 	position: relative;
 	display: block;
 }
 
-.frame > * {
+.u-frame > * {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -26,15 +26,15 @@
 	overflow: hidden;
 }
 
-.frame > img,
-.frame > video,
-.frame > iframe {
+.u-frame > img,
+.u-frame > video,
+.u-frame > iframe {
 	width: 100%;
 	height: 100%;
 }
 
-.frame > img,
-.frame > video {
+.u-frame > img,
+.u-frame > video {
 	// https://github.com/fregante/object-fit-images
 	object-fit: cover;
 	font-family: "object-fit: cover;";
@@ -43,8 +43,8 @@
 /**
  * Ratio variants:
  *
- * <div class="frame frame--ratio-{x-value}x{y-value}"></div>
- * <div class="frame frame--ratio-{x-value}x{y-value}@{breakpoint}"></div>
+ * <div class="u-frame u-frame--ratio-{x-value}x{y-value}"></div>
+ * <div class="u-frame u-frame--ratio-{x-value}x{y-value}@{breakpoint}"></div>
  */
 
 // https://material.io/design/layout/spacing-methods.html#containers-and-ratios
@@ -57,7 +57,7 @@ $aspect-ratios: ((16, 9), (3, 2), (4, 3), (1, 1), (3, 4), (2, 3));
 		@each $value in $aspect-ratios {
 			$x: list.nth($value, 1);
 			$y: list.nth($value, 2);
-			$base: frame--ratio-#{$x}x#{$y};
+			$base: u-frame--ratio-#{$x}x#{$y};
 
 			.#{$base}#{$breakpoint-suffix} {
 				padding-top: percentage($y / $x);
