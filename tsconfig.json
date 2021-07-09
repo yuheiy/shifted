@@ -2,9 +2,9 @@
 	"compilerOptions": {
 		/* Basic Options */
 		"incremental": true,
-		"target": "ESNext",
-		"module": "ESNext",
-		"lib": ["ESNext", "DOM"],
+		"target": "ES2020",
+		"module": "ES2020",
+		"lib": ["ES2020", "DOM"],
 		"allowJs": true,
 		"sourceMap": true,
 		/* Module Resolution Options */
