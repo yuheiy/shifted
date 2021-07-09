@@ -6,7 +6,7 @@
 		"module": "ES2020",
 		"lib": ["ES2020", "DOM"],
 		"allowJs": true,
-		"sourceMap": true,
+		"isolatedModules": true,
 		/* Module Resolution Options */
 		"moduleResolution": "node",
 		"esModuleInterop": true,
