@@ -1,0 +1,51 @@
+// https://every-layout.dev/layouts/stack/
+
+@use "sass:map";
+@use "../settings" as s;
+@use "../tools" as t;
+
+%o-stack {
+	display: block;
+}
+
+%o-stack-owl {
+	margin-top: var(--o-stack-spacing);
+}
+
+.o-stack {
+	@extend %o-stack;
+
+	> :where(* + *) {
+		@extend %o-stack-owl;
+
+		--o-stack-spacing: initial;
+	}
+}
+
+@each $breakpoint in map.keys(s.$mq-breakpoints) {
+	$suffix: t.breakpoint-suffix($breakpoint);
+
+	@each $key, $spacer in s.$spacers {
+		.o-stack-#{$key}#{$suffix} {
+			@extend %o-stack;
+
+			> :where(* + *) {
+				@extend %o-stack-owl;
+
+				@include t.mq($breakpoint) {
+					--o-stack-spacing: #{$spacer};
+				}
+			}
+		}
+	}
+}
+
+.o-stack-split {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
+	&:where(:only-child) {
+		height: 100%;
+	}
+}

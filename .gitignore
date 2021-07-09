@@ -5,6 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+.pnpm-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -71,6 +72,7 @@ web_modules/
 # dotenv environment variables file
 .env
 .env.test
+.env.production
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -115,10 +117,12 @@ out
 .yarn/install-state.gz
 .pnp.*
 
-# Project specific output
+# Project specific outputs
 /dist/
-/src/assets/components/index.scss
-/src/assets/styles/utilities/index.scss
-/src/assets/controllers/index.js
-/src/site/_includes/components/index.pug
-/src/site/webpack-manifest.json
+/src/components/components.pug
+/src/components/components.scss
+/src/styles/settings.scss
+/src/styles/tools.scss
+/src/styles/objects.scss
+/src/styles/scopes.scss
+/src/styles/themes.scss

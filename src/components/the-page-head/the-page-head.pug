@@ -1,0 +1,16 @@
+mixin c-the-page-head(props = {})
+	-
+		props = Object.assign({}, props);
+
+	header.c-the-page-head&attributes(attributes)
+		nav.o-wrapper
+			.o-cluster.u-justify-content-between
+				a.u-py-12(href=f.url('/'))= metadata.siteTitle
+				modal-dialog-trigger.u-d-contents
+					button.u-py-12(
+						type="button",
+						aria-haspopup="dialog",
+						data-action="click:modal-dialog-trigger#open"
+					) メニュー
+					template(data-target="modal-dialog-trigger.template")
+						+c-the-site-modal-menu

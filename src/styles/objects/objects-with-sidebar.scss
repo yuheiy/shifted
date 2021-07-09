@@ -1,0 +1,23 @@
+// https://every-layout.dev/layouts/sidebar/
+
+@use "../settings" as s;
+
+.o-with-sidebar {
+	--o-with-sidebar__min-content-width: 50%;
+	--o-with-sidebar__sidebar-width: auto;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: s.$spacer-16;
+}
+
+.o-with-sidebar__sidebar {
+	flex-basis: var(--o-with-sidebar__sidebar-width);
+	flex-grow: 1;
+}
+
+.o-with-sidebar__content {
+	flex-basis: 0;
+	flex-grow: 999;
+	min-width: var(--o-with-sidebar__min-content-width);
+}

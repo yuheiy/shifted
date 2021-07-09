@@ -1,0 +1,33 @@
+@use "../../styles/settings" as s;
+@use "../../styles/tools" as t;
+
+.c-base-disclosure {
+	display: block;
+	border-radius: t.rem(4);
+	box-shadow: 0 t.rem(2) t.rem(4) hsla(0, 0%, 0%, 15%);
+}
+
+.c-base-disclosure__button {
+	display: flex;
+	column-gap: s.$spacer-8;
+	align-items: baseline;
+	width: 100%;
+	padding: s.$spacer-8 s.$spacer-12;
+	background-color: hsl(0, 0%, 90%);
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.c-base-disclosure__buttonIcon {
+	width: 0.75em;
+	height: 0.75em;
+	transition: transform 100ms ease-out;
+
+	.c-base-disclosure__button[aria-expanded="true"] & {
+		transform: rotate(90deg);
+	}
+}
+
+.c-base-disclosure__content {
+	overflow: hidden;
+}

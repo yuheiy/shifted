@@ -1,8 +1,3 @@
-*.md
-*.hbs
+*.ejs
+_templates/
 dist/
-src/assets/components/index.scss
-src/assets/styles/utilities/index.scss
-src/assets/controllers/index.js
-src/site/_includes/components/index.pug
-src/site/webpack-manifest.json

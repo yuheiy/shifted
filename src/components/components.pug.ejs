@@ -1,0 +1,3 @@
+<% dependencies.forEach((dep) => { -%>
+include <%- relative(replaceExt(dep.path, "")) %>
+<% }); -%>

@@ -1,0 +1,53 @@
+include ../../../components/components
+
+doctype html
+html(lang=metadata.lang)
+	head
+		meta(charset=metadata.encoding)
+
+		title
+			if title
+				= `${title} — ${metadata.siteTitle}`
+			else
+				= metadata.siteTitle
+
+		meta(name="viewport", content="width=device-width")
+		meta(name="description", content=description)
+		meta(name="format-detection", content="telephone=no")
+		meta(name="twitter:card", content="summary_large_image")
+
+		meta(property="og:title", content=title || metadata.siteTitle)
+		meta(property="og:type", content="website")
+		meta(
+			property="og:image",
+			content=`${metadata.siteUrl}${f.url('/assets/ogp.png')}`
+		)
+		meta(property="og:url", content=`${metadata.siteUrl}${f.url(page.url)}`)
+		meta(property="og:description", content=description)
+		meta(property="og:site_name", content=metadata.siteTitle)
+		meta(property="og:locale", content=metadata.locale)
+
+		link(rel="canonical", href=`${metadata.siteUrl}${f.url(page.url)}`)
+		link(rel="icon", href=f.url('/favicon.ico'))
+		link(rel="apple-touch-icon", href=f.url('/apple-touch-icon.png'))
+
+		if manifest
+			each cssPath in manifest['src/main.ts'].css
+				link(rel="stylesheet", href=f.url(`/${cssPath}`))
+			script(type="module", src=f.url(`/${manifest['src/main.ts'].file}`))
+
+		if environment === 'dev'
+			script(type="module", src=f.url('/@vite/client'))
+			script(type="module", src=f.url('/src/main.ts'))
+
+	+c-the-page
+		+c-the-page-head
+
+		.u-flex-1
+			block content
+
+		.u-mt-64
+
+		+c-base-breadcrumb({ items: f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true }) })
+
+		+c-the-page-foot

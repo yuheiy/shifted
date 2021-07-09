@@ -1,0 +1,27 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+@mixin generate-utility($utility, $suffix: "") {
+	$values: map.get($utility, values);
+
+	@if meta.type-of(list.nth($values, 1)) != "list" {
+		$values: list.zip($values, $values);
+	}
+
+	@each $key, $value in $values {
+		$properties: map.get($utility, property);
+
+		@if meta.type-of($properties) == "string" {
+			$properties: list.append((), $properties);
+		}
+
+		$property-class: map.get($utility, class);
+
+		.u-#{$property-class}-#{$key}#{$suffix} {
+			@each $property in $properties {
+				#{$property}: $value !important;
+			}
+		}
+	}
+}

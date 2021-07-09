@@ -1,0 +1,30 @@
+mixin c-base-disclosure(props = {})
+	-
+		props = Object.assign({
+			isExpanded: false,
+			contentId: f.id(),
+		}, props);
+
+	c-base-disclosure.c-base-disclosure&attributes(attributes)
+		button.c-base-disclosure__button(
+			type="button",
+			aria-expanded=String(props.isExpanded),
+			aria-controls=props.contentId,
+			data-target="c-base-disclosure.button",
+			data-action="click:c-base-disclosure#toggle"
+		)
+			svg.c-base-disclosure__buttonIcon(
+				width="0.75em",
+				height="0.75em",
+				viewBox="0 0 24 24"
+			)
+				path(d="M21 12.3923L3 22.7846L3 2L21 12.3923Z")
+			= props.summary
+		.c-base-disclosure__content(
+			id=props.contentId,
+			inert=!props.isExpanded,
+			data-target="c-base-disclosure.content",
+			style=!props.isExpanded && { height: 0 }
+		)
+			.u-p-12
+				block

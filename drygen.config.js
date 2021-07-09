@@ -1,56 +1,37 @@
+/**
+ * @type {import("drygen").UserConfig}
+ */
 module.exports = {
 	rules: [
 		{
-			name: "pug-components",
-			dependencies: [
-				"src/site/_includes/components/*.pug",
-				"!src/site/_includes/components/index.pug",
-			],
+			name: "pug/components",
+			dependencies: ["src/components/*/*.pug"],
 			outputs: [
 				{
-					path: "src/site/_includes/components/index.pug",
-					template: "src/site/_includes/components/index.pug.hbs",
+					path: "src/components/components.pug",
+					template: "src/components/components.pug.ejs",
 				},
 			],
 		},
 		{
-			name: "sass-utilities",
-			dependencies: [
-				"src/assets/styles/utilities/*.scss",
-				"!src/assets/styles/utilities/index.scss",
-			],
+			name: "scss/components",
+			dependencies: ["src/components/*/*.scss"],
 			outputs: [
 				{
-					path: "src/assets/styles/utilities/index.scss",
-					template: "src/assets/styles/utilities/index.scss.hbs",
+					path: "src/components/components.scss",
+					template: "src/styles/import.scss.ejs",
 				},
 			],
 		},
-		{
-			name: "sass-components",
-			dependencies: [
-				"src/assets/components/*.scss",
-				"!src/assets/components/index.scss",
-			],
+		...["settings", "tools", "objects", "scopes", "themes"].map((type) => ({
+			name: `scss/${type}`,
+			dependencies: [`src/styles/${type}/*.scss`],
 			outputs: [
 				{
-					path: "src/assets/components/index.scss",
-					template: "src/assets/components/index.scss.hbs",
+					path: `src/styles/${type}.scss`,
+					template: "src/styles/import.scss.ejs",
 				},
 			],
-		},
-		{
-			name: "stimulus-controllers",
-			dependencies: [
-				"src/assets/controllers/*.js",
-				"!src/assets/controllers/index.js",
-			],
-			outputs: [
-				{
-					path: "src/assets/controllers/index.js",
-					template: "src/assets/controllers/index.js.hbs",
-				},
-			],
-		},
+		})),
 	],
 };

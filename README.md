@@ -1,230 +1,193 @@
 # shifted
 
-静的サイト構築のための開発環境です。ページ数が多いサイトでも快適かつ柔軟な開発ができます。静的サイトジェネレーターのEleventyとwebpackを中心に構成されています。
+静的サイト構築のためのフロントエンド開発環境です。ページ数の多いサイトも柔軟かつ快適に開発できます。静的サイトジェネレーターの [Eleventy](https://www.11ty.dev/) と [Vite](https://vitejs.dev/) を中心に構成されています。
 
 ## 特徴
 
-- [Eleventy](https://www.11ty.io/)によってHTMLファイルの柔軟で効率的な構築を支援
-- [webpack](https://webpack.js.org/)との統合
-  - 開発用サーバーの[webpack-dev-server](https://webpack.js.org/configuration/dev-server/)によってアセットのビルドおよびライブリロードを提供
-  - アセットのファイル名へのフィンガープリント付与による[Cache busting](#cache-busting)が組み込み済み
-- HTMLのテンプレートエンジンとして[Pug](https://pugjs.org/api/getting-started.html)を採用
-  - [その他Eleventyが対応しているテンプレートエンジン](https://www.11ty.dev/docs/languages/)との入れ替えおよび併用が可能
-- CSSのビルドに[Sass](https://sass-lang.com/)と[Autoprefixer](https://github.com/postcss/autoprefixer)を採用
-- MPA（非SPA）向けのJavaScriptコンポーネント化ライブラリとして[Stimulus](https://stimulus.hotwire.dev/)を採用
-- コンポーネント指向開発の支援機能
-  - Pug mixin、Sassコンポーネント、Stimulusコントローラーの各種ファイルの自動読み込み
-  - [scaffdog](https://github.com/cats-oss/scaffdog)によるScaffoldの自動生成
+- 静的サイトジェネレーターの [Eleventy](https://www.11ty.dev/) を利用した HTML ファイル構築の支援
+- [Vite](https://vitejs.dev/) の採用および Eleventy との連携
+- HTML のテンプレートエンジンとして [Pug](https://pugjs.org/api/getting-started.html) を採用
+  - [別のテンプレートエンジン](https://www.11ty.dev/docs/languages/)との入れ替えおよび併用も可能
+- [Sass](https://sass-lang.com/) の採用
+- CSS アーキテクチャとして [ITCSS](https://speakerdeck.com/dafed/managing-css-projects-with-itcss) を採用
+  - レイヤリングに基づいたファイル構成の採用
+  - ベースとなるコンポーネントやユーティリティを同梱
+- [TypeScript](https://www.typescriptlang.org/) の採用
+- MPA（非 SPA）向けの JavaScript コンポーネント化ライブラリとして [Catalyst](https://github.github.io/catalyst/) を採用
+- コンポーネント指向開発のための構成
+  - コンポーネント中心のディレクトリ構成
+  - コンポーネントの各種ファイル自動読み込み
+  - [Hygen](http://www.hygen.io/) を利用したソースコードの雛形の自動生成
+- [Prettier](https://prettier.io/) の採用
+- [stylelint](https://stylelint.io/) の採用
+- [サブディレクトリでの公開](#サブディレクトリでの公開)に対応
+- Internet Explorer を除くモダンブラウザに向けた構成
 
 ## 導入
 
 要求開発環境:
 
-- Mac OS X、Windows、Linux
-- Node.js 12以上およびnpm
+- macOS、Windows、Linux
+- Node.js 16 以降
+
+推奨開発環境:
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+  - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+  - [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 
 依存パッケージのインストール:
 
 ```sh
-npm install
+$ npm install
 ```
+
+ローカルサーバーの起動:
+
+```sh
+$ npm start
+```
+
+## ディレクトリ構成
+
+```sh
+.
+├── _templates/
+├── dist/
+│   ├── assets/
+│   │   ├── main.[hash].js
+│   │   └── main.[hash].css
+│   ├── favicon.ico
+│   └── index.html
+├── public/
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   └── base-disclosure/
+│   │       ├── base-disclosure.controller.ts
+│   │       ├── base-disclosure.pug
+│   │       └── base-disclosure.scss
+│   ├── controllers/
+│   │   └── modal-dialog.controller.ts
+│   ├── site/
+│   │   ├── data/
+│   │   │   └── metadata.js
+│   │   └── pages/
+│   │       ├── index.11tydata.js
+│   │       └── index.pug
+│   ├── styles/
+│   │   ├── settings/
+│   │   ├── tools/
+│   │   ├── generic/
+│   │   ├── elements/
+│   │   ├── objects/
+│   │   ├── scopes/
+│   │   ├── themes/
+│   │   └── utilities/
+│   ├── main.scss
+│   └── main.ts
+├── .eleventy.js
+├── config.js
+└── package.json
+```
+
+### `src` ディレクトリ
+
+サイト本体のソースコードを配置します。
+
+### `src/site` ディレクトリ
+
+Eleventy で生成するページやそのデータファイル、その他 Eleventy に関するファイルを配置します。
+
+### `src/components` ディレクトリ
+
+サイトで利用するコンポーネントごとにファイルを配置します。
+
+### `public` ディレクトリ
+
+コンパイル等の処理を介さず `dist` ディレクトリ直下にコピーされ、そのまま公開されるファイルを配置します。
+
+### `dist` ディレクトリ
+
+ビルドされたファイルが当該ディレクトリに出力されます。
 
 ## 開発用コマンド
 
 ### `npm start`
 
-開発用サーバーを起動してファイルの変更監視を行います。起動したサーバーのURLがコンソールに出力され、プライベートネットワーク上から同URLへアクセスできるようになります。
-
-### `npx scaffdog generate`
-
-scaffdogを利用してソースコードのScaffoldを生成します。テンプレートは`.scaffdog`ディレクトリに配置されています。
+ローカルサーバーを起動して、ファイルの変更監視を行います。
 
 ### `npm run build`
 
-本番用にビルドしたファイルを`dist`ディレクトリに出力します。
+本番向けにビルドしたファイルを `dist` ディレクトリに出力します。
 
-### `npx webpack --analyze`
+### `npx hygen`
 
-[Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)を利用してwebpackが出力するバンドルファイルを解析します。
+[Hygen](http://www.hygen.io/) を利用して、ソースコードの雛形（scaffold）となるファイルを生成します。テンプレートは `_templates` ディレクトリに配置されています。
 
-### `npm run test`
+コンポーネント:
 
-[Jest](https://jestjs.io/en/)による自動テストを実行します。
+```sh
+$ npx hygen component new my-component
+```
 
-`npm run test -- --watch`コマンドを利用するとファイルの変更を監視できます。
+コンポーネント（コントローラー含む）:
+
+```sh
+$ npx hygen component new my-component --controller
+```
+
+コントローラー:
+
+```sh
+$ npx hygen controller my-controller
+```
+
+ページ:
+
+```sh
+$ npx hygen page path/to/page
+```
+
+### `npm test`
+
+[Jest](https://jestjs.io/) を利用した自動テストを実行します。
 
 ### `npm run format`
 
-[Prettier](https://prettier.io/)によるフォーマットを実行します。
+[Prettier](https://prettier.io/) と [stylelint](https://stylelint.io/) を利用して、ファイルの自動整形を行います。
 
-フォーマットはエディタと[VS CodeのPrettierプラグイン](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)などを用いてコーディングの最中に実行することを推奨します。もしフォーマットに漏れがあった場合は、Gitにコミットするタイミングで[husky](https://github.com/typicode/husky)によって自動的にフォーマットが実行されます。フォーマットされていないソースコードがGitHubリポジトリにプッシュされた場合は、GitHub Actionsによってフォーマット後の変更が自動的にコミットされます。
-
-## ディレクトリ構成
-
-```
-.
-├── dist/
-│   ├── assets/
-│   │   ├── main.[contenthash].css
-│   │   ├── main.[contenthash].js
-│   │   ├── ogp.[contenthash].png
-│   │   └── polyfill-nomodule.[contenthash].js
-│   ├── favicon.ico
-│   └── index.html
-├── src/
-│   ├── assets/
-│   │   ├── components/
-│   │   │   ├── index.scss
-│   │   │   ├── index.scss.hbs
-│   │   │   └── my-component.scss
-│   │   ├── controllers/
-│   │   │   ├── index.js
-│   │   │   ├── index.js.hbs
-│   │   │   └── my-controller.js
-│   │   ├── styles/
-│   │   │   ├── utilities/
-│   │   │   │   ├── index.scss
-│   │   │   │   ├── index.scss.hbs
-│   │   │   │   └── my-utility.scss
-│   │   │   ├── abstracts.scss
-│   │   │   └── base.scss
-│   │   ├── main.scss
-│   │   ├── main.js
-│   │   ├── ogp.png
-│   │   └── polyfill-nomodule.js
-│   ├── site/
-│   │   ├── _data/
-│   │   │   └── metadata.yml
-│   │   ├── _includes/
-│   │   │   ├── components/
-│   │   │   │   ├── index.pug
-│   │   │   │   ├── index.pug.hbs
-│   │   │   │   └── my-component.pug
-│   │   │   ├── layouts/
-│   │   │   │   └── base.pug
-│   │   │   └── setup.pug
-│   │   ├── index.pug
-│   │   ├── index.yml
-│   │   └── webpack-manifest.json
-│   └── static/
-│       └── favicon.ico
-├── .eleventy.js
-├── config.js
-├── drygen.config.js
-├── package.json
-└── webpack.config.js
-```
-
-### `src`ディレクトリ
-
-アプリケーション本体のソースコードを配置します。
-
-### `src/site`ディレクトリ
-
-Eleventyで生成するページやそのデータファイルを配置します。同ディレクトリ内のページから`src/assets`ディレクトリ内にあるアセットへのパスを参照する場合は`assetPath()`関数を利用します。
-
-webpackが出力するアセットのパスは`webpack-manifest.json`として同ディレクトリ内に出力されます。
-
-### `src/assets`ディレクトリ
-
-CSS、JavaScript、画像ファイルなどを配置します。同ディレクトリに配置されたすべてのアセットは`main.js`によって自動的に読み込まれ、ファイル名にフィンガープリントが付与された状態で`dist`ディレクトリに出力されます。
-
-### `src/static`ディレクトリ
-
-`dist`ディレクトリ直下にそのままコピーするファイルを配置します。同ディレクトリに配置されたファイルについては、ファイル名にフィンガープリントが付与されません。
-
-### `dist`ディレクトリ
-
-ビルド時に同ディレクトリへすべてのファイルが出力されます。[サブディレクトリ](#サブディレクトリでの公開)が指定された場合でもファイルは同ディレクトリ直下に出力されます。
-
-## Cache busting
-
-`src/assets`ディレクトリに配置されたファイルは、`main.51fb6a95.js`のようにファイル名にフィンガープリントが付与された状態で出力されます。これは、ソースファイルの内容が変更された際に出力するファイル名を変更することで、ブラウザに保存された前回のキャッシュを無効化するためです。
-
-参考: [アセットパイプライン - Railsガイド § 1.2 フィンガープリントと注意点](https://railsguides.jp/asset_pipeline.html#%E3%83%95%E3%82%A3%E3%83%B3%E3%82%AC%E3%83%BC%E3%83%97%E3%83%AA%E3%83%B3%E3%83%88%E3%81%A8%E6%B3%A8%E6%84%8F%E7%82%B9)
-
-ソースファイル内では次のようにしてファイル名を参照します。存在しないファイルを指定した場合はエラーが出力されます。
-
-Pug:
-
-```pug
-img(src=assetPath('components/header/background.svg') alt="")
-//- -> /assets/components/header/background.[contenthash].svg
-```
-
-Sass:
-
-```scss
-// src/assets/components/header.scss
-
-.c-header {
-  background-image: url("./header/background.svg");
-  // -> /assets/components/header/background.[contenthash].svg
-}
-```
-
-JavaScript:
-
-```javascript
-// src/assets/controllers/header.js
-
-import background from "../components/header/background.svg";
-
-const img = document.createElement("img");
-img.src = background;
-// -> /assets/components/header/background.[contenthash].svg
-```
-
-[サブディレクトリ](#サブディレクトリでの公開)が設定された場合にも同様の指定方法によって自動的にパスが解決されます。
-
-`src/static`ディレクトリに配置されたファイルにはこの機能が適用されません。
+GitHub Actions を利用して、GitHub リポジトリにプッシュするたびに当該コマンドが自動実行されます。
 
 ## サブディレクトリでの公開
 
-サブディレクトリでサイトが公開される場合には、`config.js`に次のように指定してビルドの設定を変更できます。
+サブディレクトリでサイトが公開される場合、`config.js` を次のように記述することでビルド設定を変更できます。
 
 ```diff
-module.exports = {
-- pathPrefix: "",
-+ pathPrefix: "/path/to/subdir",
+const config = {
+	// root: `/`
+	// subdir: `/path/to/subdir/`
+-	pathPrefix: "/",
++	pathPrefix: "/my-subdir/",
 };
 ```
 
-Eleventyのテンプレート内でサブディレクトリを前提としたパスを解決するには、`url()`関数を利用する必要があります。
+[Eleventy](https://www.11ty.dev/) の [Pug](https://pugjs.org/) テンプレート内でサブディレクトリのパスを解決するためには、`f.url()` 関数を使用する必要があります。
 
 ```diff
-- a(href="/about/") About
-+ a(href=url('/about/')) About
+-a(href="/about/") 私たちについて
++a(href=f.url('/about/')) 私たちについて
 ```
 
-`assetPath()`関数では値の先頭にサブディレクトリへのパスが自動的に付与されます。
-
-```pug
-= assetPath('main.js')
-//- `/path/to/subdir/assets/main.[contenthash].js`
-```
-
-JavaScriptでは`process.env.PATH_PREFIX`変数から設定を参照できます。
+[Vite](https://vitejs.dev/) でビルドされる JavaScript ファイル内でサブディレクトリのパスを参照するには、`import.meta.env.BASE_URL` 変数を使用します。
 
 ```javascript
-location.assign(`${process.env.PATH_PREFIX}/about/`);
+import.meta.env.BASE_URL; // "/my-subdir/"
 ```
 
-## 対応ブラウザ
+## 推奨ライブラリ
 
-`package.json`に指定されている次の[Browserslist](https://github.com/browserslist/browserslist)の設定に基づいて、[Autoprefixer](https://github.com/postcss/autoprefixer)と[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)が実行されます。必要に応じてこの設定を変更してください。
-
-```json
-  "browserslist": [
-    "> 0.5% in JP",
-    "last 2 versions and > 0.01%",
-    "Firefox ESR",
-    "not dead"
-  ],
-```
-
-また、レガシーブラウザ向けのポリフィル（`polyfill-nomodule.js`）は、`nomodule`属性を用いてES Modulesが実装されていない環境にのみ提供されるよう設定されています。
-
-## ライセンス
-
-MIT © [Yuhei Yasuda](http://yuheiy.com/)
+- [eleventy-cache-assets](https://www.11ty.dev/docs/plugins/cache/): 外部ネットワークに依存する、取得に時間がかかるデータをキャッシュするための Eleventy プラグイン
+- [\<include-fragment> element](https://github.com/github/include-fragment-element): 指定した URL から HTML 片を読み込んで、ページの特定箇所に自動で挿入できるカスタム要素。コンテンツを非同期的に読み込む必要がある場合に便利
+- [unistore](https://github.com/developit/unistore): ミニマルな状態管理ライブラリ。[Catalyst](https://github.github.io/catalyst/) のコントローラー同士で状態を共有する場合などに便利
+- [Mitt](https://github.com/developit/mitt): ミニマルなイベントエミッター。[Vite](https://vitejs.dev/) では Node.js の [Events モジュール](https://nodejs.org/api/events.html)が利用できないため、代替として採用が可能

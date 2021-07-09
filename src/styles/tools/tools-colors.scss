@@ -1,0 +1,13 @@
+@use "sass:color";
+
+// Slightly lighten a color
+// https://sass-guidelin.es/#lightening-and-darkening-colors
+@function tint($color, $percentage) {
+	@return color.mix(white, $color, $percentage);
+}
+
+// Slightly darken a color
+// https://sass-guidelin.es/#lightening-and-darkening-colors
+@function shade($color, $percentage) {
+	@return color.mix(black, $color, $percentage);
+}

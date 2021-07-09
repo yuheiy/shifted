@@ -1,0 +1,48 @@
+// Architecture, Layers
+// https://speakerdeck.com/dafed/managing-css-projects-with-itcss
+// https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/
+// https://csswizardry.com/2015/03/immutable-css/
+// https://github.com/inuitcss/inuitcss
+// https://github.com/csswizardry/discovr
+
+// Component naming
+// https://v3.vuejs.org/style-guide/#base-component-names-strongly-recommended
+// https://v3.vuejs.org/style-guide/#single-instance-component-names-strongly-recommended
+// https://v3.vuejs.org/style-guide/#tightly-coupled-component-names-strongly-recommended
+// https://v3.vuejs.org/style-guide/#order-of-words-in-component-names-strongly-recommended
+
+// Token naming
+// https://github.com/benfrain/ecss/issues/10
+
+// ---
+
+// Settings, Tools
+// no need to @use at this entry point
+
+// Generic
+@use "styles/generic/generic-box-sizing";
+@use "../node_modules/normalize.css/normalize";
+@use "styles/generic/generic-hidden";
+@use "styles/generic/generic-reset";
+
+// Elements
+@use "styles/elements/elements-page";
+@use "styles/elements/elements-embedded-content";
+@use "styles/elements/elements-forms";
+
+// Objects
+@use "styles/objects";
+
+// Components
+@use "components/components";
+
+// Scopes
+@use "styles/scopes";
+
+// Themes
+@use "styles/themes";
+
+// Utilities
+@use "styles/utilities/utilities-api";
+@use "styles/utilities/utilities-visually-hidden";
+@use "styles/utilities/utilities-shame";

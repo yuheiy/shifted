@@ -1,0 +1,3 @@
+<% dependencies.forEach((dep) => { -%>
+@forward "<%- relative(replaceExt(dep.path, "")) %>";
+<% }); -%>

@@ -1,0 +1,10 @@
+extends /layouts/base
+
+block content
+	.o-wrapper.o-stack-40.u-mt-64
+		h1= title
+
+		.o-frame.o-frame--16x9
+			img.u-width-full(src=image, alt="", decoding="async")
+
+		.o-stack-24.s-prose!= content

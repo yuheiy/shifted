@@ -1,0 +1,21 @@
+// https://piccalil.li/quick-tip/use-css-clamp-to-create-a-more-flexible-wrapper-utility/
+
+@use "../settings" as s;
+@use "../tools" as t;
+
+.o-wrapper {
+	--o-wrapper__ideal-width: calc(1280 / 1440 * 100%);
+	--o-wrapper__max-width: #{t.rem(1280)};
+	--o-wrapper__min-gutter: #{s.$spacer-16};
+
+	display: block;
+	width: var(--o-wrapper__ideal-width);
+	// https://github.com/kristerkari/stylelint-scss/issues/486
+	// stylelint-disable scss/no-global-function-names
+	max-width: min(
+		100% - var(--o-wrapper__min-gutter) * 2,
+		var(--o-wrapper__max-width)
+	);
+	// stylelint-enable scss/no-global-function-names
+	margin-inline: auto;
+}

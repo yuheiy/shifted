@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		/* Basic Options */
+		"incremental": true,
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM"],
+		"allowJs": true,
+		"sourceMap": true,
+		/* Module Resolution Options */
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		/* Experimental Options */
+		"experimentalDecorators": true,
+		/* Advanced Options */
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true
+	}
+}

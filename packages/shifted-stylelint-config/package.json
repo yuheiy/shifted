@@ -1,0 +1,10 @@
+{
+	"name": "shifted-stylelint-config",
+	"main": "css/index.js",
+	"dependencies": {
+		"stylelint-config-prettier": "^8.0.2",
+		"stylelint-config-recess-order": "^2.4.0",
+		"stylelint-config-standard": "^22.0.0",
+		"stylelint-scss": "^3.19.0"
+	}
+}

@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "../settings/settings-mq" as s-mq;
+
+@forward "../node_modules/sass-mq/mq" show mq with (
+	$mq-breakpoints: s-mq.$mq-breakpoints
+);
+
+@function breakpoint-suffix($key) {
+	// stylelint-disable length-zero-no-unit
+	@return if(map.get(s-mq.$mq-breakpoints, $key) != 0px, "\\@#{$key}", "");
+	// stylelint-enable length-zero-no-unit
+}

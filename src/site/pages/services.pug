@@ -1,0 +1,12 @@
+extends /layouts/base
+
+block content
+	.o-wrapper.u-mt-64
+		h1= title
+
+		.u-mt-40
+
+		ul.o-grid
+			each page in collections.service
+				li
+					+c-service-card(page).u-height-full

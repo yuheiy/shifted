@@ -1,0 +1,18 @@
+@use "../../styles/settings" as s;
+@use "../../styles/tools" as t;
+
+.c-base-breadcrumb {
+	background-color: hsl(0, 0%, 90%);
+}
+
+.c-base-breadcrumb__item {
+	display: flex;
+	align-items: center;
+}
+
+.c-base-breadcrumb__item::before {
+	.c-base-breadcrumb__item + & {
+		margin-right: s.$spacer-16;
+		content: ">";
+	}
+}

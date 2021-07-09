@@ -1,24 +1,54 @@
-const yaml = require("js-yaml");
-const { pathPrefix } = require("./config");
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const { nanoid } = require("nanoid");
+const { config } = require("./config");
+const { formatHTML } = require("./src/site/transforms/format-html");
 
 module.exports = (eleventyConfig) => {
-	eleventyConfig.addDataExtension("yml", (contents) => {
-		return yaml.load(contents);
+	eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+	eleventyConfig.setUseGitIgnore(false);
+
+	eleventyConfig.addFilter("id", nanoid);
+
+	eleventyConfig.addCollection("service", (collection) => {
+		return collection
+			.getFilteredByGlob("src/site/pages/services/*.md")
+			.sort((a, b) => a.inputPath.localeCompare(b.inputPath));
 	});
 
-	eleventyConfig.addCollection("post", (collection) => {
-		return collection.getFilteredByGlob("src/site/posts/*.md").sort((a, b) => {
-			return a.inputPath.localeCompare(b.inputPath);
-		});
+	eleventyConfig.addTransform("formatHTML", formatHTML);
+
+	eleventyConfig.addWatchTarget("src/components/components.pug");
+
+	eleventyConfig.setBrowserSyncConfig({
+		server: null, // override
+		proxy: "localhost:3000",
+		serveStatic: [
+			{
+				route: config.pathPrefix.slice(0, -1),
+				dir: "dist",
+			},
+		],
+		ui: false,
+		ghostMode: false,
 	});
 
-	eleventyConfig.addPassthroughCopy({ "src/static": "." });
+	// https://github.com/11ty/eleventy/issues/1523#issuecomment-733419587
+	global.f = eleventyConfig.javascriptFunctions;
+	eleventyConfig.setPugOptions({
+		globals: ["f"],
+	});
 
 	return {
 		dir: {
-			input: "src/site",
+			input: "src/site/pages",
+			includes: "../includes",
+			layouts: "../layouts",
+			data: "../data",
 			output: "dist",
 		},
-		pathPrefix: `${pathPrefix}/`,
+		markdownTemplateEngine: "njk",
+		htmlTemplateEngine: "njk",
+		pathPrefix: config.pathPrefix,
 	};
 };

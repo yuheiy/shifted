@@ -1,0 +1,13 @@
+mixin c-home-masthead(props = {})
+	-
+		props = Object.assign({}, props);
+
+	.c-home-masthead&attributes(attributes)
+		.o-frame.c-home-masthead__media
+			img.u-width-full(
+				src="https://source.unsplash.com/random",
+				alt="",
+				decoding="async"
+			)
+		.o-wrapper.u-mt-12.u-text-right
+			p.c-home-masthead__byline Lorem ipsum dolor sit amet.

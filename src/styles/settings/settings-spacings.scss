@@ -1,0 +1,26 @@
+// https://standard.shiftbrain.com/blog/music-math-typography
+
+@use "../tools/tools-units" as t-units;
+
+$spacer-4: t-units.rem(4);
+$spacer-8: t-units.rem(8);
+$spacer-12: t-units.rem(12);
+$spacer-16: t-units.rem(16);
+$spacer-24: t-units.rem(24);
+$spacer-40: t-units.rem(40);
+$spacer-64: t-units.rem(64);
+$spacer-104: t-units.rem(104);
+$spacer-168: t-units.rem(168);
+
+$spacers: (
+	0: 0,
+	4: $spacer-4,
+	8: $spacer-8,
+	12: $spacer-12,
+	16: $spacer-16,
+	24: $spacer-24,
+	40: $spacer-40,
+	64: $spacer-64,
+	104: $spacer-104,
+	168: $spacer-168,
+);

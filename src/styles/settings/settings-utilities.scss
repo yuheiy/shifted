@@ -1,0 +1,281 @@
+// https://getbootstrap.com/docs/5.0/utilities/api/
+// https://primer.style/css/utilities
+// https://tailwindcss.com/
+
+@use "sass:map";
+@use "./settings-spacings" as s-spacings;
+@use "../tools/tools-utilities" as t-utilities;
+
+$row-fractions: (
+	1\/2: calc(1 / 2 * 100%),
+	1\/3: calc(1 / 3 * 100%),
+	2\/3: calc(2 / 3 * 100%),
+	1\/4: calc(1 / 4 * 100%),
+	2\/4: calc(2 / 4 * 100%),
+	3\/4: calc(3 / 4 * 100%),
+	1\/5: calc(1 / 5 * 100%),
+	2\/5: calc(2 / 5 * 100%),
+	3\/5: calc(3 / 5 * 100%),
+	4\/5: calc(4 / 5 * 100%),
+	1\/6: calc(1 / 6 * 100%),
+	2\/6: calc(2 / 6 * 100%),
+	3\/6: calc(3 / 6 * 100%),
+	4\/6: calc(4 / 6 * 100%),
+	5\/6: calc(5 / 6 * 100%),
+	1\/12: calc(1 / 12 * 100%),
+	2\/12: calc(2 / 12 * 100%),
+	3\/12: calc(3 / 12 * 100%),
+	4\/12: calc(4 / 12 * 100%),
+	5\/12: calc(5 / 12 * 100%),
+	6\/12: calc(6 / 12 * 100%),
+	7\/12: calc(7 / 12 * 100%),
+	8\/12: calc(8 / 12 * 100%),
+	9\/12: calc(9 / 12 * 100%),
+	10\/12: calc(10 / 12 * 100%),
+	11\/12: calc(11 / 12 * 100%)
+);
+
+$utilities: (
+	"display": (
+		breakpoints: true,
+		property: display,
+		class: d,
+		values: inline inline-block block flex inline-flex contents none,
+	),
+	"flex-direction": (
+		breakpoints: true,
+		property: flex-direction,
+		class: flex,
+		values: row column row-reverse column-reverse,
+	),
+	"flex-wrap": (
+		breakpoints: true,
+		property: flex-wrap,
+		class: flex,
+		values: wrap nowrap wrap-reverse,
+	),
+	"justify-content": (
+		breakpoints: true,
+		property: justify-content,
+		class: justify-content,
+		values: (
+			start: flex-start,
+			end: flex-end,
+			center: center,
+			between: space-between,
+			around: space-around,
+			evenly: space-evenly,
+		),
+	),
+	"align-items": (
+		breakpoints: true,
+		property: align-items,
+		class: align-items,
+		values: (
+			start: flex-start,
+			end: flex-end,
+			center: center,
+			baseline: baseline,
+			stretch: stretch,
+		),
+	),
+	"align-content": (
+		breakpoints: true,
+		property: align-content,
+		class: align-content,
+		values: (
+			start: flex-start,
+			end: flex-end,
+			center: center,
+			between: space-between,
+			around: space-around,
+			stretch: stretch,
+		),
+	),
+	"flex": (
+		breakpoints: true,
+		property: flex,
+		class: flex,
+		values: initial auto none 1,
+	),
+	"align-self": (
+		breakpoints: true,
+		property: align-self,
+		class: align-self,
+		values: (
+			auto: auto,
+			start: flex-start,
+			end: flex-end,
+			center: center,
+			baseline: baseline,
+			stretch: stretch,
+		),
+	),
+	"margin": (
+		breakpoints: true,
+		property: margin,
+		class: m,
+		values: 0 auto,
+	),
+	"margin-x": (
+		breakpoints: true,
+		property: margin-right margin-left,
+		class: mx,
+		values: 0 auto,
+	),
+	"margin-y": (
+		breakpoints: true,
+		property: margin-top margin-bottom,
+		class: my,
+		values:
+			map.merge(
+				s-spacings.$spacers,
+				(
+					auto: auto,
+				)
+			),
+	),
+	"margin-top": (
+		breakpoints: true,
+		property: margin-top,
+		class: mt,
+		values:
+			map.merge(
+				s-spacings.$spacers,
+				(
+					auto: auto,
+				)
+			),
+	),
+	"margin-right": (
+		property: margin-right,
+		class: mr,
+		values:
+			map.merge(
+				$row-fractions,
+				(
+					0: 0,
+					auto: auto,
+				)
+			),
+	),
+	"margin-bottom": (
+		breakpoints: true,
+		property: margin-bottom,
+		class: mb,
+		values:
+			map.merge(
+				s-spacings.$spacers,
+				(
+					auto: auto,
+				)
+			),
+	),
+	"margin-left": (
+		breakpoints: true,
+		property: margin-left,
+		class: ml,
+		values:
+			map.merge(
+				$row-fractions,
+				(
+					0: 0,
+					auto: auto,
+				)
+			),
+	),
+	"padding": (
+		breakpoints: true,
+		property: padding,
+		class: p,
+		values: s-spacings.$spacers,
+	),
+	"padding-x": (
+		breakpoints: true,
+		property: padding-right padding-left,
+		class: px,
+		values: s-spacings.$spacers,
+	),
+	"padding-y": (
+		breakpoints: true,
+		property: padding-top padding-bottom,
+		class: py,
+		values: s-spacings.$spacers,
+	),
+	"padding-top": (
+		breakpoints: true,
+		property: padding-top,
+		class: pt,
+		values: s-spacings.$spacers,
+	),
+	"padding-right": (
+		breakpoints: true,
+		property: padding-right,
+		class: pr,
+		values: s-spacings.$spacers,
+	),
+	"padding-bottom": (
+		breakpoints: true,
+		property: padding-bottom,
+		class: pb,
+		values: s-spacings.$spacers,
+	),
+	"padding-left": (
+		breakpoints: true,
+		property: padding-left,
+		class: pl,
+		values: s-spacings.$spacers,
+	),
+	"gap": (
+		breakpoints: true,
+		property: gap,
+		class: gap,
+		values: s-spacings.$spacers,
+	),
+	"gap-x": (
+		breakpoints: true,
+		property: column-gap,
+		class: gap-x,
+		values: s-spacings.$spacers,
+	),
+	"gap-y": (
+		breakpoints: true,
+		property: row-gap,
+		class: gap-y,
+		values: s-spacings.$spacers,
+	),
+	"width": (
+		breakpoints: true,
+		property: width,
+		class: width,
+		values:
+			map.merge(
+				$row-fractions,
+				(
+					full: 100%,
+					auto: auto,
+				)
+			),
+	),
+	"height": (
+		breakpoints: true,
+		property: height,
+		class: height,
+		values: (
+			full: 100%,
+			auto: auto,
+		),
+	),
+	"text-align": (
+		breakpoints: true,
+		property: text-align,
+		class: text,
+		values: left center right,
+	),
+	"stack-spacing": (
+		breakpoints: true,
+		property: --o-stack-spacing,
+		class: stack-spacing,
+		values: s-spacings.$spacers,
+	),
+);

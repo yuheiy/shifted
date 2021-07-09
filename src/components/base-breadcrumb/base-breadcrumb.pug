@@ -1,0 +1,11 @@
+mixin c-base-breadcrumb(props = {})
+	-
+		props = Object.assign({}, props);
+
+	nav.c-base-breadcrumb&attributes(attributes)
+		.o-wrapper
+			ol.o-cluster
+				each item, index in props.items
+					- const isSelf = props.items.length - 1 === index;
+					li.c-base-breadcrumb__item
+						a.u-py-12(href=!isSelf && f.url(item.url))= item.key

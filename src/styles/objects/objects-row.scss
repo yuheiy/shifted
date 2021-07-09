@@ -1,0 +1,34 @@
+// https://github.com/inuitcss/inuitcss/blob/develop/objects/_objects.layout.scss
+
+@use "sass:map";
+@use "../settings" as s;
+@use "../tools" as t;
+
+.o-row {
+	--o-row__gutter: #{s.$spacer-16};
+
+	display: flex;
+	flex-wrap: wrap;
+	margin-inline-start: calc(var(--o-row__gutter) * -1);
+
+	@include t.mq(lg) {
+		--o-row__gutter: #{s.$spacer-24};
+	}
+
+	> :where(*) {
+		width: 100%;
+		padding-inline-start: calc(var(--o-row__gutter));
+	}
+}
+
+@each $breakpoint in map.keys(s.$mq-breakpoints) {
+	$suffix: t.breakpoint-suffix($breakpoint);
+
+	@each $key, $spacer in s.$spacers {
+		.o-row--gutter-#{$key}#{$suffix} {
+			@include t.mq($breakpoint) {
+				--o-row__gutter: #{$spacer};
+			}
+		}
+	}
+}
