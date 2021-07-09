@@ -179,7 +179,7 @@ const config = {
 +a(href=f.url('/about/')) 私たちについて
 ```
 
-[Vite](https://vitejs.dev/) でビルドされる JavaScript ファイル内でサブディレクトリのパスを参照するには、`import.meta.env.BASE_URL` 変数を使用します。
+[Vite](https://vitejs.dev/) 環境でビルドされる JavaScript か TypeScript からサブディレクトリのパスを参照するには、`import.meta.env.BASE_URL` 変数を使用します。
 
 ```javascript
 import.meta.env.BASE_URL; // "/my-subdir/"
