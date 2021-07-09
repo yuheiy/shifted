@@ -185,6 +185,8 @@ const config = {
 import.meta.env.BASE_URL; // "/my-subdir/"
 ```
 
+デフォルトで生成される `robots.txt` は、[サブディレクトリでは機能しません](https://developers.google.com/search/docs/advanced/robots/robots_txt?hl=ja#examples-of-valid-robots.txt-urls)。
+
 ## 推奨ライブラリ
 
 - [eleventy-cache-assets](https://www.11ty.dev/docs/plugins/cache/): 外部ネットワークに依存する、取得に時間がかかるデータをキャッシュするための Eleventy プラグイン
