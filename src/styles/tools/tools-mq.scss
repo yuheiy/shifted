@@ -10,3 +10,10 @@
 	@return if(map.get(s-mq.$mq-breakpoints, $key) != 0px, "\\@#{$key}", "");
 	// stylelint-enable length-zero-no-unit
 }
+
+// https://css-irl.info/detecting-hover-capable-devices/
+@mixin hoverable() {
+	@media (hover: hover) and (pointer: fine) {
+		@content;
+	}
+}
