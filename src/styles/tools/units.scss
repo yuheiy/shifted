@@ -13,9 +13,7 @@
 }
 
 @function rem($px-value) {
-	@return calc(
-		#{strip-unit($px-value)} / #{strip-unit(s-core.$global-font-size)} * 1rem
-	);
+	@return calc(#{$px-value} / #{strip-unit(s-core.$global-font-size)} * 1rem);
 }
 
 @function em($px-value, $context: s-core.$global-font-size) {
