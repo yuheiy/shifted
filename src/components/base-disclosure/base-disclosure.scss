@@ -10,7 +10,7 @@
 .c-base-disclosure__button {
 	display: flex;
 	column-gap: s.$spacer-8;
-	align-items: baseline;
+	align-items: center;
 	width: 100%;
 	padding: s.$spacer-8 s.$spacer-12;
 	background-color: hsl(0, 0%, 90%);
