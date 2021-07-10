@@ -1,6 +1,6 @@
 // https://standard.shiftbrain.com/blog/music-math-typography
 
-@use "../tools/tools-units" as t-units;
+@use "../tools/units" as t-units;
 
 $spacer-4: t-units.rem(4);
 $spacer-8: t-units.rem(8);

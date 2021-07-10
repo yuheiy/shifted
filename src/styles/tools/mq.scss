@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "../settings/settings-mq" as s-mq;
+@use "../settings/mq" as s-mq;
 
 @forward "../node_modules/sass-mq/mq" show mq with (
 	$mq-breakpoints: s-mq.$mq-breakpoints

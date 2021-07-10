@@ -20,15 +20,15 @@
 // no need to @use at this entry point
 
 // Generic
-@use "styles/generic/generic-box-sizing";
+@use "styles/generic/box-sizing";
 @use "../node_modules/normalize.css/normalize";
-@use "styles/generic/generic-hidden";
-@use "styles/generic/generic-reset";
+@use "styles/generic/hidden";
+@use "styles/generic/reset";
 
 // Elements
-@use "styles/elements/elements-page";
-@use "styles/elements/elements-embedded-content";
-@use "styles/elements/elements-forms";
+@use "styles/elements/page";
+@use "styles/elements/embedded-content";
+@use "styles/elements/forms";
 
 // Objects
 @use "styles/objects";
@@ -43,6 +43,6 @@
 @use "styles/themes";
 
 // Utilities
-@use "styles/utilities/utilities-api";
-@use "styles/utilities/utilities-visually-hidden";
-@use "styles/utilities/utilities-shame";
+@use "styles/utilities/api";
+@use "styles/utilities/visually-hidden";
+@use "styles/utilities/shame";

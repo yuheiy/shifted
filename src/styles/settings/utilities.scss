@@ -3,8 +3,8 @@
 // https://tailwindcss.com/
 
 @use "sass:map";
-@use "./settings-spacings" as s-spacings;
-@use "../tools/tools-utilities" as t-utilities;
+@use "./spacings" as s-spacings;
+@use "../tools/utilities" as t-utilities;
 
 $row-fractions: (
 	1\/2: calc(1 / 2 * 100%),
