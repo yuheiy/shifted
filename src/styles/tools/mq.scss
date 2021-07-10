@@ -6,9 +6,12 @@
 );
 
 @function breakpoint-suffix($key) {
+	$value: map.get(s-mq.$mq-breakpoints, $key);
 	// stylelint-disable length-zero-no-unit
-	@return if(map.get(s-mq.$mq-breakpoints, $key) != 0px, "\\@#{$key}", "");
+	$at-media: $value != 0px;
 	// stylelint-enable length-zero-no-unit
+
+	@return if($at-media, "\\@#{$key}", "");
 }
 
 // https://css-irl.info/detecting-hover-capable-devices/
