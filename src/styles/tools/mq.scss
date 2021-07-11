@@ -11,7 +11,11 @@
 	$at-media: $value != 0px;
 	// stylelint-enable length-zero-no-unit
 
-	@return if($at-media, "\\@#{$key}", null);
+	@if $at-media {
+		@return "\\@#{$key}";
+	}
+
+	@return null;
 }
 
 // https://css-irl.info/detecting-hover-capable-devices/
