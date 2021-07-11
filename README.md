@@ -157,7 +157,7 @@ $ npx hygen page new path/to/page
 
 [Prettier](https://prettier.io/) と [stylelint](https://stylelint.io/) を利用して、ファイルの自動整形を行います。
 
-GitHub Actions を利用して、GitHub リポジトリにプッシュするたびに当該コマンドが自動実行されます。
+GitHub リポジトリにプッシュされるたびに、GitHub Actions によって当該コマンドが自動実行されます。
 
 ## サブディレクトリでの公開
 
