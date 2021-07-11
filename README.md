@@ -140,13 +140,13 @@ $ npx hygen component new my-component --controller
 コントローラー:
 
 ```sh
-$ npx hygen controller my-controller
+$ npx hygen controller new my-controller
 ```
 
 ページ:
 
 ```sh
-$ npx hygen page path/to/page
+$ npx hygen page new path/to/page
 ```
 
 ### `npm test`
