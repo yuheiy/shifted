@@ -36,7 +36,7 @@ html(lang=metadata.lang)
 				link(rel="stylesheet", href=f.url(`/${cssPath}`))
 			script(type="module", src=f.url(`/${manifest['src/main.ts'].file}`))
 
-		if environment === 'dev'
+		if env === 'development'
 			script(type="module", src=f.url('/@vite/client'))
 			script(type="module", src=f.url('/src/main.ts'))
 
