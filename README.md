@@ -101,7 +101,11 @@ Eleventy で生成するページやそのデータファイル、その他 Elev
 
 ### `src/components` ディレクトリ
 
-サイトで利用するコンポーネントごとにファイルを配置します。
+サイトで利用するコンポーネントごとにファイルを配置します。特定のコンポーネントに固有の [Catalyst](https://github.github.io/catalyst/) コントローラーは当該ディレクトリに含めます。
+
+### `src/controllers` ディレクトリ
+
+汎用的な [Catalyst](https://github.github.io/catalyst/) コントローラーを配置します。
 
 ### `public` ディレクトリ
 
@@ -119,7 +123,11 @@ Eleventy で生成するページやそのデータファイル、その他 Elev
 
 ### `npm run build`
 
-本番向けにビルドしたファイルを `dist` ディレクトリに出力します。
+本番用にビルドしたファイルを `dist` ディレクトリに出力します。
+
+### `npm run preview`
+
+本番用にビルドしたファイルをプレビューできる静的サーバーを起動します。事前に `npm run build` を実行しておく必要があります。http://localhost:5000 から確認できます。
 
 ### `npx hygen`
 
@@ -147,6 +155,13 @@ $ npx hygen controller new my-controller
 
 ```sh
 $ npx hygen page new path/to/page
+```
+
+[Hygen](http://www.hygen.io/) をグローバルインストールすることで、入力するコマンドから `npx` を省略できます。
+
+```sh
+$ npm install --global hygen
+$ hygen component new my-component
 ```
 
 ### `npm test`
