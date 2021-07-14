@@ -5,7 +5,10 @@ module.exports = {
 	rules: [
 		{
 			name: "pug/components",
-			dependencies: ["src/components/*/*.pug"],
+			dependencies: [
+				"src/components/**/*.pug",
+				"!src/components/components.pug",
+			],
 			outputs: [
 				{
 					path: "src/components/components.pug",
@@ -15,7 +18,10 @@ module.exports = {
 		},
 		{
 			name: "scss/components",
-			dependencies: ["src/components/*/*.scss"],
+			dependencies: [
+				"src/components/**/*.scss",
+				"!src/components/components.scss",
+			],
 			outputs: [
 				{
 					path: "src/components/components.scss",
@@ -25,7 +31,10 @@ module.exports = {
 		},
 		...["settings", "tools", "objects", "scopes", "themes"].map((type) => ({
 			name: `scss/${type}`,
-			dependencies: [`src/styles/${type}/*.scss`],
+			dependencies: [
+				`src/styles/${type}/**/*.scss`,
+				`!src/styles/${type}.scss`,
+			],
 			outputs: [
 				{
 					path: `src/styles/${type}.scss`,
