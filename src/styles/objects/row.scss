@@ -11,10 +11,6 @@
 	flex-wrap: wrap;
 	margin-inline-start: calc(var(--o-row__gutter) * -1);
 
-	@include t.mq(lg) {
-		--o-row__gutter: #{s.$spacer-24};
-	}
-
 	> :where(*) {
 		width: 100%;
 		padding-inline-start: calc(var(--o-row__gutter));
