@@ -1,5 +1,6 @@
 @use "sass:math";
 @use "sass:meta";
+@use "sass:string";
 @use "../settings/core" as s-core;
 
 // Remove the unit of a length
@@ -13,5 +14,38 @@
 }
 
 @function rem($px-value) {
-	@return calc(#{$px-value} / #{strip-unit(s-core.$global-font-size)} * 1rem);
+	$ratio: math.div($px-value, strip-unit(s-core.$global-font-size));
+
+	@return $ratio * 1rem;
+}
+
+// https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+@function fluid-size(
+	$at-narrow,
+	$at-wide,
+	$viewport-width-at-narrow: rem(375),
+	$viewport-width-at-wide: rem(1440)
+) {
+	@if (math.unit($at-narrow) != "rem") {
+		@error "$at-narrow must have rem unit";
+	}
+
+	@if (math.unit($at-wide) != "rem") {
+		@error "$at-wide must have rem unit";
+	}
+
+	@if ($at-narrow == $at-wide) {
+		@error "The values of $at-narrow and $at-wide must be different";
+	}
+
+	$slope: math.div(
+		($at-wide - $at-narrow),
+		($viewport-width-at-wide - $viewport-width-at-narrow)
+	);
+	$intersection: ($viewport-width-at-narrow * -1) * $slope + $at-narrow;
+	$caller: if($at-narrow < $at-wide, min, max);
+
+	@return string.unquote(
+		"#{$caller}(#{$intersection} + #{$slope * 100vw}, #{$at-wide})"
+	);
 }
