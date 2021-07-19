@@ -4,7 +4,7 @@ let prettierOptions;
 
 async function formatHTML(content, outputPath) {
 	if (outputPath?.endsWith(".html")) {
-		if (prettierOptions === undefined) {
+		if (!prettierOptions) {
 			prettierOptions = await prettier.resolveConfig("test.html", {
 				editorconfig: true,
 			});
