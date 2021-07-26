@@ -22,8 +22,8 @@
 // Generic
 @use "styles/generic/box-sizing";
 @use "../node_modules/normalize.css/normalize";
-@use "styles/generic/hidden";
 @use "styles/generic/reset";
+@use "styles/generic/hidden";
 
 // Elements
 @use "styles/elements/page";
