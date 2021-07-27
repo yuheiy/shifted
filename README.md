@@ -38,19 +38,19 @@
 
 依存パッケージのインストール:
 
-```sh
-$ npm install
+```bash
+npm install
 ```
 
 ローカルサーバーの起動:
 
-```sh
-$ npm run dev
+```bash
+npm run dev
 ```
 
 ## ディレクトリ構成
 
-```sh
+```
 .
 ├── _templates/
 ├── dist/
@@ -135,33 +135,33 @@ $ npm run dev
 
 コンポーネント:
 
-```sh
-$ npx hygen component new my-component
+```bash
+npx hygen component new my-component
 ```
 
 コンポーネント（コントローラー含む）:
 
-```sh
-$ npx hygen component new my-component --controller
+```bash
+npx hygen component new my-component --controller
 ```
 
 コントローラー:
 
-```sh
-$ npx hygen controller new my-controller
+```bash
+npx hygen controller new my-controller
 ```
 
 ページ:
 
-```sh
-$ npx hygen page new path/to/page
+```bash
+npx hygen page new path/to/page
 ```
 
 [Hygen](http://www.hygen.io/) をグローバルインストールすることで、入力するコマンドから `npx` を省略できます。
 
-```sh
-$ npm install --global hygen
-$ hygen component new my-component
+```bash
+npm install --global hygen
+hygen component new my-component
 ```
 
 ### `npm test`
