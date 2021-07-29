@@ -15,7 +15,7 @@
 		@return "\\@#{$key}";
 	}
 
-	@return null;
+	@return "";
 }
 
 // https://css-irl.info/detecting-hover-capable-devices/

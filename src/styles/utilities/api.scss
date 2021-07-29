@@ -8,7 +8,7 @@
 	$suffix: t.breakpoint-suffix($breakpoint);
 
 	@each $key, $utility in s.$utilities {
-		@if map.get($utility, breakpoints) or $suffix == null {
+		@if map.get($utility, breakpoints) or $suffix == "" {
 			@include t.mq($breakpoint) {
 				@include t.generate-utility($utility, $suffix);
 			}
