@@ -1,7 +1,7 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { nanoid } = require("nanoid");
 const { config } = require("./config");
-const { formatHTML } = require("./src/site/transforms/format-html");
+const { formatHTML } = require("./src/site/11ty/transforms/format-html");
 
 module.exports = (eleventyConfig) => {
 	eleventyConfig.addPlugin(eleventyNavigationPlugin);
