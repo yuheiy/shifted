@@ -79,19 +79,22 @@ function overlay(classObject: CustomElement) {
 	classObject.prototype.connectedCallback = function (
 		this: HTMLElement & { close: () => void }
 	) {
-		checkKeyRefs.set(this, (event) => {
+		const checkKey = (event: KeyboardEvent) => {
 			if (event.key == "Escape") {
 				this.close();
 			}
-		});
-		document.addEventListener("keydown", checkKeyRefs.get(this), true);
+		};
+
+		document.addEventListener("keydown", checkKey, true);
+		checkKeyRefs.set(this, checkKey);
 
 		if (connect) connect.call(this);
 	};
 
 	const disconnect = classObject.prototype.disconnectedCallback;
 	classObject.prototype.disconnectedCallback = function (this: HTMLElement) {
-		document.removeEventListener("keydown", checkKeyRefs.get(this), true);
+		const checkKey = checkKeyRefs.get(this);
+		document.removeEventListener("keydown", checkKey, true);
 
 		if (disconnect) disconnect.call(this);
 	};
