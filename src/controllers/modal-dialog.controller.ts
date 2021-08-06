@@ -34,7 +34,8 @@ function restoreFocus(classObject: CustomElement) {
 
 	const connect = classObject.prototype.connectedCallback;
 	classObject.prototype.connectedCallback = function (this: HTMLElement) {
-		nodeToRestoreRefs.set(this, document.activeElement);
+		const nodeToRestore = document.activeElement;
+		nodeToRestoreRefs.set(this, nodeToRestore);
 
 		if (connect) connect.call(this);
 	};
@@ -133,7 +134,8 @@ function modal(classObject: CustomElement) {
 			element.inert = true;
 
 			if (!elementsSetToInertRefs.has(this)) {
-				elementsSetToInertRefs.set(this, new Set());
+				const elementsSetToInert = new Set<Element>();
+				elementsSetToInertRefs.set(this, elementsSetToInert);
 			}
 			const elementsSetToInert = elementsSetToInertRefs.get(this);
 			elementsSetToInert.add(element);
@@ -204,10 +206,8 @@ function transition(classObject: CustomElement) {
 					return (parseFloat(duration) + parseFloat(delay)) * 1000;
 				})
 		);
-		timeoutIdRefs.set(
-			element,
-			setTimeout(callback, timeout) as unknown as number
-		);
+		const timeoutId = setTimeout(callback, timeout) as unknown as number;
+		timeoutIdRefs.set(element, timeoutId);
 	}
 
 	function cancelNextCallback(element: HTMLElement) {
