@@ -9,8 +9,9 @@ declare global {
 }
 
 // to prevent Vite’s syntax errors, enclosed in parentheses
-if (import.meta.globEager("./{components,controllers}/**/*.controller.ts")) {
-}
+((_) => {})(
+	import.meta.globEager("./{components,controllers}/**/*.controller.ts")
+);
 
 // https://vitejs.dev/guide/env-and-mode.html#env-variables
 if (import.meta.env.DEV) {
