@@ -2,11 +2,6 @@ button:not(:disabled, [aria-disabled="true" i]) {
 	cursor: pointer;
 }
 
-// https://bugs.chromium.org/p/chromium/issues/detail?id=1148007
-.js-focus-visible select:focus:not(.focus-visible) {
-	outline: 0;
-}
-
 textarea {
 	resize: vertical;
 }
