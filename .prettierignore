@@ -1,3 +1,4 @@
 *.ejs
 _templates/
 dist/
+stats.html
