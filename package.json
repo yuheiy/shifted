@@ -4,7 +4,7 @@
 		"build": "tsc && drygen && vite build && cross-env ELEVENTY_ENV=production eleventy && rimraf dist/manifest.json",
 		"preview": "vite preview",
 		"test": "jest",
-		"format": "prettier . --write && stylelint \"**/*.scss\" --fix"
+		"format": "prettier . --write; stylelint \"**/*.scss\" --fix"
 	},
 	"dependencies": {
 		"@github/catalyst": "^1.1.3",
