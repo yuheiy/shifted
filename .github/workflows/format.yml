@@ -15,6 +15,7 @@ jobs:
           node-version: ${{ env.node_version }}
       - run: npm install
       - run: npm run format
+        continue-on-error: true
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[ci] npm run format"
