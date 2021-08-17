@@ -4,6 +4,9 @@ import { config } from "./config";
 
 export default defineConfig({
 	base: config.pathPrefix,
+	esbuild: {
+		keepNames: true,
+	},
 	plugins: [visualizer()],
 	logLevel: "warn",
 	build: {
@@ -13,7 +16,7 @@ export default defineConfig({
 		manifest: true,
 		terserOptions: {
 			// https://github.com/github/catalyst/issues/98
-			mangle: false,
+			keep_classnames: /Element$/,
 		},
 	},
 });
