@@ -4,17 +4,11 @@
 @use "../settings" as s;
 @use "../tools" as t;
 
-%o-stack {
-	display: block;
-}
-
 %o-stack-owl {
 	margin-top: var(--o-stack-spacing);
 }
 
 .o-stack {
-	@extend %o-stack;
-
 	> :where(* + *) {
 		@extend %o-stack-owl;
 
@@ -27,8 +21,6 @@
 
 	@each $key, $spacer in s.$spacers {
 		.o-stack-#{$key}#{$suffix} {
-			@extend %o-stack;
-
 			> :where(* + *) {
 				@extend %o-stack-owl;
 
