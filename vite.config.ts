@@ -4,10 +4,10 @@ import { config } from "./config";
 
 export default defineConfig({
 	base: config.pathPrefix,
+	plugins: [visualizer()],
 	esbuild: {
 		keepNames: true,
 	},
-	plugins: [visualizer()],
 	logLevel: "warn",
 	build: {
 		rollupOptions: {
