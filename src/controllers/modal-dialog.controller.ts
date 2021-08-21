@@ -122,24 +122,25 @@ function modal(classObject: CustomElement) {
 
 	const connect = classObject.prototype.connectedCallback;
 	classObject.prototype.connectedCallback = function (this: HTMLElement) {
-		Array.from(document.body.children).forEach((element: HTMLElement) => {
-			if (element === this) {
-				return;
-			}
+		let currentElement = this;
 
-			if (element.inert) {
-				return;
-			}
+		while ((currentElement = currentElement.parentElement)) {
+			for (const child of Array.from(currentElement.children)) {
+				if (child.contains(this)) continue;
+				if (!(child instanceof HTMLElement)) continue;
+				if (child.inert) continue;
 
-			element.inert = true;
+				child.inert = true;
 
-			if (!elementsSetToInertRefs.has(this)) {
-				const elementsSetToInert = new Set<Element>();
-				elementsSetToInertRefs.set(this, elementsSetToInert);
+				if (!elementsSetToInertRefs.has(this)) {
+					const elementsSetToInert = new Set<Element>();
+					elementsSetToInertRefs.set(this, elementsSetToInert);
+				}
+
+				const elementsSetToInert = elementsSetToInertRefs.get(this);
+				elementsSetToInert.add(child);
 			}
-			const elementsSetToInert = elementsSetToInertRefs.get(this);
-			elementsSetToInert.add(element);
-		});
+		}
 
 		if (connect) connect.call(this);
 	};

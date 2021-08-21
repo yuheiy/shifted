@@ -1,5 +1,7 @@
 import { controller, target } from "@github/catalyst";
 
+const containerElement = document.querySelector("#js-overlay-container");
+
 /**
  * @example
  * ```html
@@ -25,6 +27,6 @@ export class ModalDialogTriggerElement extends HTMLElement {
 
 	open() {
 		const dialogNode = this.template.content.cloneNode(true);
-		document.body.append(dialogNode);
+		containerElement.append(dialogNode);
 	}
 }
