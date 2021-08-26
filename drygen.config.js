@@ -29,18 +29,20 @@ module.exports = {
 				},
 			],
 		},
-		...["settings", "tools", "objects", "scopes", "themes"].map((type) => ({
-			name: `scss/${type}`,
-			dependencies: [
-				`src/styles/${type}/**/*.scss`,
-				`!src/styles/${type}.scss`,
-			],
-			outputs: [
-				{
-					path: `src/styles/${type}.scss`,
-					template: "src/styles/import.scss.ejs",
-				},
-			],
-		})),
+		...["settings", "tools", "vendors", "objects", "scopes", "themes"].map(
+			(type) => ({
+				name: `scss/${type}`,
+				dependencies: [
+					`src/styles/${type}/**/*.scss`,
+					`!src/styles/${type}.scss`,
+				],
+				outputs: [
+					{
+						path: `src/styles/${type}.scss`,
+						template: "src/styles/import.scss.ejs",
+					},
+				],
+			})
+		),
 	],
 };
