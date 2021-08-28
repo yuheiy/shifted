@@ -1,7 +1,9 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { nanoid } = require("nanoid");
+const prettier = require("prettier");
 const { config } = require("./config");
-const { formatHTML } = require("./src/site/11ty/transforms/format-html");
+
+let prettierOptions;
 
 module.exports = (eleventyConfig) => {
 	eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -16,7 +18,22 @@ module.exports = (eleventyConfig) => {
 			.sort((a, b) => a.inputPath.localeCompare(b.inputPath));
 	});
 
-	eleventyConfig.addTransform("formatHTML", formatHTML);
+	eleventyConfig.addTransform("formatHTML", (content, outputPath) => {
+		if (outputPath?.endsWith(".html")) {
+			if (!prettierOptions) {
+				prettierOptions = await prettier.resolveConfig("test.html", {
+					editorconfig: true,
+				});
+			}
+
+			return prettier.format(content, {
+				...prettierOptions,
+				parser: "html",
+			});
+		}
+
+		return content;
+	});
 
 	eleventyConfig.addWatchTarget("src/components/components.pug");
 
