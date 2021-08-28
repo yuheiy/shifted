@@ -132,13 +132,10 @@ function modal(classObject: CustomElement) {
 
 				child.inert = true;
 
-				if (!elementsSetToInertRefs.has(this)) {
-					const elementsSetToInert = new Set<Element>();
-					elementsSetToInertRefs.set(this, elementsSetToInert);
-				}
-
-				const elementsSetToInert = elementsSetToInertRefs.get(this);
+				const elementsSetToInert =
+					elementsSetToInertRefs.get(this) || new Set<Element>();
 				elementsSetToInert.add(child);
+				elementsSetToInertRefs.set(this, elementsSetToInert);
 			}
 		}
 
