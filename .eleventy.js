@@ -18,7 +18,7 @@ module.exports = (eleventyConfig) => {
 			.sort((a, b) => a.inputPath.localeCompare(b.inputPath));
 	});
 
-	eleventyConfig.addTransform("formatHTML", (content, outputPath) => {
+	eleventyConfig.addTransform("formatHTML", async (content, outputPath) => {
 		if (outputPath?.endsWith(".html")) {
 			if (!prettierOptions) {
 				prettierOptions = await prettier.resolveConfig("test.html", {
