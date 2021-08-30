@@ -1,5 +1,10 @@
 // https://standard.shiftbrain.com/blog/default-action-for-click-event-of-a-element
 
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
+
 window.addEventListener(
 	"click",
 	(event) => {
@@ -19,7 +24,7 @@ window.addEventListener(
 				(anchorElement.hash === "#top" && document.documentElement);
 
 			if (target) {
-				target.scrollIntoView({ behavior: "smooth", block: "start" });
+				scrollIntoView(target);
 				forceFocus(target);
 				event.preventDefault();
 			}
@@ -30,6 +35,19 @@ window.addEventListener(
 
 function isModifiedEvent(event: MouseEvent) {
 	return event.ctrlKey || event.shiftKey || event.altKey || event.metaKey;
+}
+
+function scrollIntoView(element: HTMLElement) {
+	const style = getComputedStyle(element);
+
+	gsap.to(window, {
+		duration: 0.5,
+		scrollTo: {
+			...ScrollToPlugin.getOffset(element, window),
+			offsetX: parseFloat((style as any).scrollMarginLeft),
+			offsetY: parseFloat((style as any).scrollMarginTop),
+		},
+	});
 }
 
 function forceFocus(element: HTMLElement) {
