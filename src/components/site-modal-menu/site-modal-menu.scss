@@ -1,7 +1,7 @@
 @use "../../styles/settings" as s;
 @use "../../styles/tools" as t;
 
-.c-the-site-modal-menu {
+.c-site-modal-menu {
 	position: fixed;
 	inset: 0;
 	z-index: 20;
@@ -30,6 +30,6 @@
 	}
 }
 
-.c-the-site-modal-menu__head {
+.c-site-modal-menu__head {
 	border-bottom: 1px solid hsla(0, 0%, 100%, 15%);
 }

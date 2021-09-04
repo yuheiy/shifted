@@ -40,8 +40,8 @@ html(lang=metadata.lang)
 			script(type="module", src=f.url('/@vite/client'))
 			script(type="module", src=f.url('/src/main.ts'))
 
-	+c-the-page
-		+c-the-page-head
+	+c-page
+		+c-page-head
 
 		.u-flex-1
 			block content
@@ -50,7 +50,7 @@ html(lang=metadata.lang)
 
 		+c-base-breadcrumb({ items: f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true }) })
 
-		+c-the-page-foot
+		+c-page-foot
 
 		//- https://atfzl.com/don-t-attach-tooltips-to-document-body
 		#js-overlay-container

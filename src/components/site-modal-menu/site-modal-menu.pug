@@ -1,14 +1,14 @@
-mixin c-the-site-modal-menu(props = {})
+mixin c-site-modal-menu(props = {})
 	-
 		props = Object.assign({}, props);
 
-	modal-dialog.c-the-site-modal-menu(
+	modal-dialog.c-site-modal-menu(
 		role="dialog",
 		aria-label="メニュー",
 		aria-modal="true"
 	)&attributes(attributes)
 		.o-wrapper.o-stack-040
-			.c-the-site-modal-menu__head
+			.c-site-modal-menu__head
 				.o-cluster.u-justify-content-between
 					a.u-py-012(href=f.url('/'), data-target="modal-dialog.autoFocus")= metadata.siteTitle
 					button.u-py-012(type="button", data-action="click:modal-dialog#close") 閉じる

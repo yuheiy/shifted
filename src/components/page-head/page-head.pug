@@ -1,8 +1,8 @@
-mixin c-the-page-head(props = {})
+mixin c-page-head(props = {})
 	-
 		props = Object.assign({}, props);
 
-	header.c-the-page-head&attributes(attributes)
+	header.c-page-head&attributes(attributes)
 		nav.o-wrapper
 			.o-cluster.u-justify-content-between
 				a.u-py-012(href=f.url('/'))= metadata.siteTitle
@@ -13,4 +13,4 @@ mixin c-the-page-head(props = {})
 						data-action="click:modal-dialog-trigger#open"
 					) メニュー
 					template(data-target="modal-dialog-trigger.template")
-						+c-the-site-modal-menu
+						+c-site-modal-menu
