@@ -6,7 +6,7 @@
 .o-wrapper {
 	--o-wrapper__ideal-width: calc(1280 / 1440 * 100%);
 	--o-wrapper__max-width: #{t.rem(1280)};
-	--o-wrapper__min-gutter: #{s.$spacer-16};
+	--o-wrapper__min-gutter: #{s.$spacer-016};
 
 	display: block;
 	width: var(--o-wrapper__ideal-width);

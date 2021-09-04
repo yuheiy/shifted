@@ -14,5 +14,5 @@
 		minmax(min(var(--o-grid__min-cell-width), 100%), 1fr)
 	);
 	// stylelint-enable scss/no-global-function-names
-	gap: s.$spacer-16;
+	gap: s.$spacer-016;
 }

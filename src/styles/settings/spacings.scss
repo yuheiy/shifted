@@ -1,26 +1,34 @@
-// https://standard.shiftbrain.com/blog/music-math-typography
+// https://www.carbondesignsystem.com/guidelines/spacing/overview/
 
 @use "../tools/units" as t-units;
 
-$spacer-4: t-units.rem(4);
-$spacer-8: t-units.rem(8);
-$spacer-12: t-units.rem(12);
-$spacer-16: t-units.rem(16);
-$spacer-24: t-units.rem(24);
-$spacer-40: t-units.rem(40);
-$spacer-64: t-units.rem(64);
-$spacer-104: t-units.rem(104);
-$spacer-168: t-units.rem(168);
+$spacer-002: t-units.rem(8 * 0.25);
+$spacer-004: t-units.rem(8 * 0.5);
+$spacer-008: t-units.rem(8 * 1);
+$spacer-012: t-units.rem(8 * 1.5);
+$spacer-016: t-units.rem(8 * 2);
+$spacer-024: t-units.rem(8 * 3);
+$spacer-032: t-units.rem(8 * 4);
+$spacer-040: t-units.rem(8 * 5);
+$spacer-048: t-units.rem(8 * 6);
+$spacer-064: t-units.rem(8 * 8);
+$spacer-080: t-units.rem(8 * 10);
+$spacer-096: t-units.rem(8 * 12);
+$spacer-160: t-units.rem(8 * 20);
 
 $spacers: (
 	0: 0,
-	4: $spacer-4,
-	8: $spacer-8,
-	12: $spacer-12,
-	16: $spacer-16,
-	24: $spacer-24,
-	40: $spacer-40,
-	64: $spacer-64,
-	104: $spacer-104,
-	168: $spacer-168,
+	"002": $spacer-002,
+	"004": $spacer-004,
+	"008": $spacer-008,
+	"012": $spacer-012,
+	"016": $spacer-016,
+	"024": $spacer-024,
+	"032": $spacer-032,
+	"040": $spacer-040,
+	"048": $spacer-048,
+	"064": $spacer-064,
+	"080": $spacer-080,
+	"096": $spacer-096,
+	"160": $spacer-160,
 );

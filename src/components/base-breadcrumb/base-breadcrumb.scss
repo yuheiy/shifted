@@ -12,7 +12,7 @@
 
 .c-base-breadcrumb__item::before {
 	.c-base-breadcrumb__item + & {
-		margin-right: s.$spacer-16;
+		margin-right: s.$spacer-016;
 		content: ">";
 	}
 }

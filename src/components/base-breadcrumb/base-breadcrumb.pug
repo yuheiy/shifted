@@ -8,4 +8,4 @@ mixin c-base-breadcrumb(props = {})
 				each item, index in props.items
 					- const isSelf = props.items.length - 1 === index;
 					li.c-base-breadcrumb__item
-						a.u-py-12(href=!isSelf && f.url(item.url))= item.key
+						a.u-py-012(href=!isSelf && f.url(item.url))= item.key

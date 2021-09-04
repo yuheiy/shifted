@@ -8,7 +8,7 @@
 
 	display: flex;
 	flex-wrap: wrap;
-	gap: s.$spacer-16;
+	gap: s.$spacer-016;
 
 	> :where(*) {
 		flex-basis: calc((var(--o-switcher__threshold) - 100%) * 999);

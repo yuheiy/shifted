@@ -5,7 +5,7 @@
 @use "../tools" as t;
 
 .o-row {
-	--o-row__gutter: #{s.$spacer-16};
+	--o-row__gutter: #{s.$spacer-016};
 
 	display: flex;
 	flex-wrap: wrap;

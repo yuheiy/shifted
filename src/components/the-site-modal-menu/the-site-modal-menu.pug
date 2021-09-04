@@ -7,14 +7,14 @@ mixin c-the-site-modal-menu(props = {})
 		aria-label="メニュー",
 		aria-modal="true"
 	)&attributes(attributes)
-		.o-wrapper.o-stack-40
+		.o-wrapper.o-stack-040
 			.c-the-site-modal-menu__head
 				.o-cluster.u-justify-content-between
-					a.u-py-12(href=f.url('/'), data-target="modal-dialog.autoFocus")= metadata.siteTitle
-					button.u-py-12(type="button", data-action="click:modal-dialog#close") 閉じる
+					a.u-py-012(href=f.url('/'), data-target="modal-dialog.autoFocus")= metadata.siteTitle
+					button.u-py-012(type="button", data-action="click:modal-dialog#close") 閉じる
 
 			p.u-d-flex
-				a.u-py-12(href=f.url('/services/')) サービス
+				a.u-py-012(href=f.url('/services/')) サービス
 
 			ul.o-grid
 				each page in collections.service
@@ -22,4 +22,4 @@ mixin c-the-site-modal-menu(props = {})
 						+c-service-card(page).u-height-full
 
 			p.u-d-flex
-				a.u-py-12(href=f.url('/about/')) 私たちについて
+				a.u-py-012(href=f.url('/about/')) 私たちについて

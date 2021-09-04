@@ -10,7 +10,7 @@
 
 	&.is-transition-enter {
 		opacity: 0;
-		transform: translateY(s.$spacer-16);
+		transform: translateY(s.$spacer-016);
 	}
 
 	&.is-transition-enter-active {
@@ -26,7 +26,7 @@
 	&.is-transition-leave-active {
 		opacity: 0;
 		transition: opacity 250ms ease-out, transform 250ms ease-out;
-		transform: translateY(s.$spacer-16);
+		transform: translateY(s.$spacer-016);
 	}
 }
 
