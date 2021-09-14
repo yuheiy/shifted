@@ -4,7 +4,8 @@
 		"build": "tsc && drygen && vite build && cross-env ELEVENTY_ENV=production eleventy && rimraf dist/manifest.json",
 		"preview": "vite preview",
 		"test": "jest",
-		"format": "prettier . --write; stylelint \"**/*.scss\" --fix"
+		"format": "prettier . --write; stylelint \"**/*.scss\" --fix",
+		"postinstall": "patch-package"
 	},
 	"dependencies": {
 		"@github/catalyst": "^1.1.4",
@@ -12,7 +13,7 @@
 		"focus-visible": "^5.2.0",
 		"gsap": "^3.7.1",
 		"nanoid": "^3.1.25",
-		"normalize.css": "^8.0.1",
+		"sanitize.css": "^13.0.0",
 		"wicg-inert": "^3.1.1"
 	},
 	"devDependencies": {

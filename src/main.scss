@@ -19,15 +19,15 @@
 // no need to @use at this entry point
 
 // Generic
-@use "styles/generic/box-sizing";
-@use "../node_modules/normalize.css/normalize";
+@use "../node_modules/sanitize.css/sanitize" as *;
+@use "../node_modules/sanitize.css/forms" as *;
+@use "../node_modules/sanitize.css/assets" as *;
 @use "styles/generic/reset";
 @use "styles/generic/focus";
 @use "styles/generic/hidden";
 
 // Elements
 @use "styles/elements/page";
-@use "styles/elements/embedded-content";
 @use "styles/elements/forms";
 
 // Vendors
