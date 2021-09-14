@@ -10,7 +10,7 @@ window.addEventListener(
 	(event) => {
 		const anchorElement = (
 			event.target as HTMLElement
-		).closest<HTMLAnchorElement>('a[href^="#"]');
+		).closest<HTMLAnchorElement>('a[href*="#"]');
 
 		if (!anchorElement?.hash) {
 			return;
