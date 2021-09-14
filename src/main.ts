@@ -1,3 +1,4 @@
+import "focus-options-polyfill";
 import "focus-visible";
 import "wicg-inert";
 import "./lib/smooth-scroll";

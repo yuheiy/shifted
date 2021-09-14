@@ -60,10 +60,10 @@ function autoFocus(classObject: CustomElement) {
 			throw new Error(`<${this.localName}> must contain \`autoFocus\` target`);
 		}
 
-		(this.autoFocus as HTMLElement).focus();
+		(this.autoFocus as HTMLElement).focus({ preventScroll: true });
 		if (document.activeElement !== this.autoFocus) {
 			(this.autoFocus as HTMLElement).tabIndex = -1;
-			(this.autoFocus as HTMLElement).focus();
+			(this.autoFocus as HTMLElement).focus({ preventScroll: true });
 		}
 
 		if (connect) connect.call(this);
