@@ -196,13 +196,24 @@ function transition(classObject: CustomElement) {
 	};
 
 	function onTransitionEnd(element: HTMLElement, callback: () => void) {
+		const computedStyle = getComputedStyle(element);
+		const transitionDurationList = computedStyle.transitionDuration.split(", ");
+		const transitionDelayList = computedStyle.transitionDelay.split(", ");
+
+		while (transitionDurationList.length > transitionDelayList.length) {
+			transitionDelayList.push("0s");
+		}
+
+		while (transitionDurationList.length < transitionDelayList.length) {
+			transitionDurationList.push("0s");
+		}
+
 		const timeout = Math.max(
-			...getComputedStyle(element)
-				.transition.split(", ")
-				.map((value) => {
-					const [, duration, , delay] = value.split(" ");
-					return (parseFloat(duration) + parseFloat(delay)) * 1000;
-				})
+			...transitionDurationList.map((value, i) => {
+				const duration = parseFloat(value);
+				const delay = parseFloat(transitionDelayList[i]);
+				return (duration + delay) * 1000;
+			})
 		);
 		const timeoutId = setTimeout(callback, timeout) as unknown as number;
 		timeoutIdRefs.set(element, timeoutId);
