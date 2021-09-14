@@ -1,9 +1,8 @@
 @use "sass:map";
 @use "../settings/media-queries" as s-media-queries;
 
-@forward "../node_modules/sass-mq/mq" show mq with (
-	$mq-breakpoints: s-media-queries.$mq-breakpoints
-);
+@forward "../node_modules/sass-mq/mq" show mq with
+	($mq-breakpoints: s-media-queries.$mq-breakpoints);
 
 @function breakpoint-suffix($key) {
 	$value: map.get(s-media-queries.$mq-breakpoints, $key);
