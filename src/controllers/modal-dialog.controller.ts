@@ -196,10 +196,10 @@ function transition(classObject: CustomElement) {
 	};
 
 	function onTransitionEnd(element: HTMLElement, callback: () => void) {
-		const computedStyle = getComputedStyle(element);
+		const style = getComputedStyle(element);
 		const [transitionDurationList, transitionDelayList] = (
-			["transitionDuration", "transitionDelay"] as const
-		).map((property) => computedStyle[property].split(", "));
+			["transition-duration", "transition-delay"] as const
+		).map((property) => style.getPropertyValue(property).split(", "));
 
 		while (transitionDurationList.length > transitionDelayList.length) {
 			transitionDelayList.push("0s");
