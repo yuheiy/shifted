@@ -4,6 +4,7 @@ doctype html
 html(lang=metadata.lang)
 	head
 		meta(charset=metadata.encoding)
+		meta(name="viewport", content="width=device-width, initial-scale=1")
 
 		title
 			if title
@@ -11,7 +12,15 @@ html(lang=metadata.lang)
 			else
 				= metadata.siteTitle
 
-		meta(name="viewport", content="width=device-width, initial-scale=1")
+		if manifest
+			each cssPath in manifest['src/main.ts'].css
+				link(rel="stylesheet", href=f.url(`/${cssPath}`))
+			script(type="module", src=f.url(`/${manifest['src/main.ts'].file}`))
+
+		if env === 'development'
+			script(type="module", src=f.url('/@vite/client'))
+			script(type="module", src=f.url('/src/main.ts'))
+
 		meta(name="description", content=description)
 		meta(name="format-detection", content="telephone=no")
 		meta(name="twitter:card", content="summary_large_image")
@@ -30,15 +39,6 @@ html(lang=metadata.lang)
 		link(rel="canonical", href=`${metadata.siteUrl}${f.url(page.url)}`)
 		link(rel="icon", href=f.url('/favicon.ico'))
 		link(rel="apple-touch-icon", href=f.url('/apple-touch-icon.png'))
-
-		if manifest
-			each cssPath in manifest['src/main.ts'].css
-				link(rel="stylesheet", href=f.url(`/${cssPath}`))
-			script(type="module", src=f.url(`/${manifest['src/main.ts'].file}`))
-
-		if env === 'development'
-			script(type="module", src=f.url('/@vite/client'))
-			script(type="module", src=f.url('/src/main.ts'))
 
 	+c-page
 		+c-page-head
