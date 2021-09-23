@@ -30,12 +30,6 @@
 - macOS、Windows、Linux
 - Node.js 16 以降
 
-推奨開発環境:
-
-- [Visual Studio Code](https://code.visualstudio.com/)
-  - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-  - [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
-
 依存パッケージのインストール:
 
 ```bash
