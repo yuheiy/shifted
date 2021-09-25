@@ -2,6 +2,7 @@ import "focus-options-polyfill";
 import "focus-visible";
 import "wicg-inert";
 import "./lib/smooth-scroll";
+import "./lib/stimulus-autoloader";
 import "./main.scss";
 
 declare global {
@@ -9,9 +10,6 @@ declare global {
 		inert: boolean;
 	}
 }
-
-// to prevent Vite’s syntax errors, enclosed in square brackets
-[import.meta.globEager("./{components,controllers}/**/*.controller.ts")];
 
 // https://vitejs.dev/guide/env-and-mode.html#env-variables
 if (import.meta.env.DEV) {

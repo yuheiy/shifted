@@ -1,202 +1,181 @@
-import { controller, target } from "@github/catalyst";
-import { CustomElement } from "@github/catalyst/lib/custom-element";
+import { Controller } from "@hotwired/stimulus";
 
 /**
  * @example
  * ```html
- * <body>
- *   ...
- *   <modal-dialog role="dialog" aria-label="キーワード検索" aria-modal="true">
- *     <button type="button" data-action="click:modal-dialog#close">閉じる</button>
- *     <form action="/search">
- *       <input name="q" type="search" data-target="modal-dialog.autoFocus" aria-label="キーワード">
- *       <button type="submit">検索</button>
- *     </form>
- *   </modal-dialog>
- * </body>
+ * <div role="dialog" aria-label="キーワード検索" aria-modal="true" data-controller="modal-dialog">
+ *   <button type="button" data-action="modal-dialog#close">閉じる</button>
+ *   <form action="/search">
+ *     <input name="q" type="search" data-modal-dialog-target="autoFocus" aria-label="キーワード">
+ *     <button type="submit">検索</button>
+ *   </form>
+ * </div>
  * ```
  */
-@controller
-@restoreFocus
-@autoFocus
-@overlay
-@preventScroll
-@modal
-@transition
-export class ModalDialogElement extends HTMLElement {
+export default class extends Controller {
+	static targets = ["autoFocus"];
+	autoFocusTarget: HTMLElement;
+
+	connect() {
+		useRestoreFocus(this);
+		useAutoFocus(this);
+		useOverlay(this);
+		usePreventScroll(this);
+		useModal(this);
+		useTransition(this);
+	}
+
 	close() {
-		this.remove();
+		this.element.remove();
 	}
 }
 
-function restoreFocus(classObject: CustomElement) {
-	const nodeToRestoreRefs = new WeakMap<HTMLElement, Element>();
+function useRestoreFocus(controller: Controller) {
+	const nodeToRestore = document.activeElement;
 
-	const connect = classObject.prototype.connectedCallback;
-	classObject.prototype.connectedCallback = function (this: HTMLElement) {
-		const nodeToRestore = document.activeElement;
-		nodeToRestoreRefs.set(this, nodeToRestore);
+	const controllerDisconnect = controller.disconnect.bind(controller);
+	Object.assign(controller, {
+		disconnect() {
+			Promise.resolve().then(() => (nodeToRestore as HTMLElement).focus());
 
-		if (connect) connect.call(this);
-	};
-
-	const disconnect = classObject.prototype.disconnectedCallback;
-	classObject.prototype.disconnectedCallback = function (this: HTMLElement) {
-		const nodeToRestore = nodeToRestoreRefs.get(this);
-		Promise.resolve().then(() => (nodeToRestore as HTMLElement).focus());
-
-		if (disconnect) disconnect.call(this);
-	};
+			controllerDisconnect();
+		},
+	});
 }
 
-function autoFocus(classObject: CustomElement) {
-	target(classObject.prototype, "autoFocus");
+function useAutoFocus({
+	autoFocusTarget,
+}: Controller & { autoFocusTarget: HTMLElement }) {
+	autoFocusTarget.focus({ preventScroll: true });
 
-	const connect = classObject.prototype.connectedCallback;
-	classObject.prototype.connectedCallback = function (
-		this: HTMLElement & { autoFocus?: Element }
-	) {
-		if (!this.autoFocus) {
-			throw new Error(`<${this.localName}> must contain \`autoFocus\` target`);
-		}
-
-		(this.autoFocus as HTMLElement).focus({ preventScroll: true });
-		if (document.activeElement !== this.autoFocus) {
-			(this.autoFocus as HTMLElement).tabIndex = -1;
-			(this.autoFocus as HTMLElement).focus({ preventScroll: true });
-		}
-
-		if (connect) connect.call(this);
-	};
+	if (autoFocusTarget !== document.activeElement) {
+		autoFocusTarget.tabIndex = -1;
+		autoFocusTarget.focus({ preventScroll: true });
+	}
 }
 
-function overlay(classObject: CustomElement) {
-	const checkKeyRefs = new WeakMap<
-		HTMLElement,
-		(event: KeyboardEvent) => void
-	>();
+function useOverlay(controller: Controller & { close: () => void }) {
+	document.addEventListener("keydown", checkKey, true);
 
-	const connect = classObject.prototype.connectedCallback;
-	classObject.prototype.connectedCallback = function (
-		this: HTMLElement & { close: () => void }
-	) {
-		const checkKey = (event: KeyboardEvent) => {
-			if (event.key == "Escape") {
-				this.close();
+	const controllerDisconnect = controller.disconnect.bind(controller);
+	Object.assign(controller, {
+		disconnect() {
+			document.removeEventListener("keydown", checkKey, true);
+
+			controllerDisconnect();
+		},
+	});
+
+	function checkKey(event: KeyboardEvent) {
+		if (isFormField(event.target as HTMLElement)) return;
+
+		if (event.key === "Escape") {
+			controller.close();
+		}
+	}
+
+	function isFormField(element: HTMLElement): boolean {
+		const name = element.nodeName.toLowerCase();
+		const type = (element.getAttribute("type") || "").toLowerCase();
+		return (
+			name === "select" ||
+			name === "textarea" ||
+			(name === "input" &&
+				type !== "submit" &&
+				type !== "reset" &&
+				type !== "checkbox" &&
+				type !== "radio") ||
+			element.isContentEditable
+		);
+	}
+}
+
+function usePreventScroll(controller: Controller) {
+	document.body.style.setProperty("overflow", "hidden");
+
+	const controllerDisconnect = controller.disconnect.bind(controller);
+	Object.assign(controller, {
+		disconnect() {
+			document.body.style.removeProperty("overflow");
+
+			controllerDisconnect();
+		},
+	});
+}
+
+function useModal(controller: Controller) {
+	const { element } = controller;
+
+	const elementsSetToInert = new Set<HTMLElement>();
+	let currentElement = element;
+
+	while ((currentElement = currentElement.parentElement)) {
+		for (const child of Array.from(currentElement.children)) {
+			if (child.contains(element)) continue;
+			if (!(child instanceof HTMLElement)) continue;
+			if (child.inert) continue;
+
+			child.inert = true;
+			elementsSetToInert.add(child);
+		}
+	}
+
+	const controllerDisconnect = controller.disconnect.bind(controller);
+	Object.assign(controller, {
+		disconnect() {
+			for (const element of elementsSetToInert) {
+				element.inert = false;
 			}
-		};
 
-		document.addEventListener("keydown", checkKey, true);
-		checkKeyRefs.set(this, checkKey);
-
-		if (connect) connect.call(this);
-	};
-
-	const disconnect = classObject.prototype.disconnectedCallback;
-	classObject.prototype.disconnectedCallback = function (this: HTMLElement) {
-		const checkKey = checkKeyRefs.get(this);
-		document.removeEventListener("keydown", checkKey, true);
-
-		if (disconnect) disconnect.call(this);
-	};
+			controllerDisconnect();
+		},
+	});
 }
 
-function preventScroll(classObject: CustomElement) {
-	const connect = classObject.prototype.connectedCallback;
-	classObject.prototype.connectedCallback = function (this: HTMLElement) {
-		document.body.style.overflow = "hidden";
+function useTransition(controller: Controller & { close: () => void }) {
+	const { element } = controller;
 
-		if (connect) connect.call(this);
-	};
-
-	const disconnect = classObject.prototype.disconnectedCallback;
-	classObject.prototype.disconnectedCallback = function (this: HTMLElement) {
-		document.body.style.overflow = "";
-
-		if (disconnect) disconnect.call(this);
-	};
-}
-
-function modal(classObject: CustomElement) {
-	const elementsSetToInertRefs = new WeakMap<HTMLElement, Set<Element>>();
-
-	const connect = classObject.prototype.connectedCallback;
-	classObject.prototype.connectedCallback = function (this: HTMLElement) {
-		let currentElement = this;
-
-		while ((currentElement = currentElement.parentElement)) {
-			for (const child of Array.from(currentElement.children)) {
-				if (child.contains(this)) continue;
-				if (!(child instanceof HTMLElement)) continue;
-				if (child.inert) continue;
-
-				child.inert = true;
-
-				const elementsSetToInert =
-					elementsSetToInertRefs.get(this) || new Set<Element>();
-				elementsSetToInert.add(child);
-				elementsSetToInertRefs.set(this, elementsSetToInert);
-			}
-		}
-
-		if (connect) connect.call(this);
-	};
-
-	const disconnect = classObject.prototype.disconnectedCallback;
-	classObject.prototype.disconnectedCallback = function (this: HTMLElement) {
-		const elementsSetToInert = elementsSetToInertRefs.get(this);
-		elementsSetToInert.forEach((element: HTMLElement) => {
-			element.inert = false;
-		});
-
-		if (disconnect) disconnect.call(this);
-	};
-}
-
-function transition(classObject: CustomElement) {
 	const ENTER_CLASS = "is-transition-enter";
 	const ENTER_ACTIVE_CLASS = "is-transition-enter-active";
 	const LEAVE_CLASS = "is-transition-leave";
 	const LEAVE_ACTIVE_CLASS = "is-transition-leave-active";
 
-	const timeoutIdRefs = new WeakMap<HTMLElement, number>();
+	let timeoutId = null;
 
-	const connect = classObject.prototype.connectedCallback;
-	classObject.prototype.connectedCallback = function (this: HTMLElement) {
-		// perform enter
-		this.classList.add(ENTER_CLASS);
-		forceReflow();
-		this.classList.add(ENTER_ACTIVE_CLASS);
+	// perform enter
+	element.classList.add(ENTER_CLASS);
+	forceReflow();
+	element.classList.add(ENTER_ACTIVE_CLASS);
 
-		onTransitionEnd(this, () => {
-			this.classList.remove(ENTER_CLASS);
-			this.classList.remove(ENTER_ACTIVE_CLASS);
-		});
+	onTransitionEnd(() => {
+		element.classList.remove(ENTER_CLASS);
+		element.classList.remove(ENTER_ACTIVE_CLASS);
+	});
 
-		if (connect) connect.call(this);
-	};
+	const controllerClose = controller.close.bind(controller);
+	Object.assign(controller, {
+		close() {
+			// cleanup
+			cancelNextCallback();
+			element.classList.remove(ENTER_CLASS);
+			element.classList.remove(ENTER_ACTIVE_CLASS);
 
-	const close = classObject.prototype.close;
-	classObject.prototype.close = function (this: HTMLElement) {
-		// cleanup
-		cancelNextCallback(this);
-		this.classList.remove(ENTER_CLASS);
-		this.classList.remove(ENTER_ACTIVE_CLASS);
+			// perform leave
+			element.classList.add(LEAVE_CLASS);
+			forceReflow();
+			element.classList.add(LEAVE_ACTIVE_CLASS);
 
-		// perform leave
-		this.classList.add(LEAVE_CLASS);
-		forceReflow();
-		this.classList.add(LEAVE_ACTIVE_CLASS);
+			onTransitionEnd(() => {
+				element.classList.remove(LEAVE_CLASS);
+				element.classList.remove(LEAVE_ACTIVE_CLASS);
 
-		onTransitionEnd(this, () => {
-			this.classList.remove(LEAVE_CLASS);
-			this.classList.remove(LEAVE_ACTIVE_CLASS);
-			close.call(this);
-		});
-	};
+				controllerClose();
+			});
+		},
+	});
 
-	function onTransitionEnd(element: HTMLElement, callback: () => void) {
-		const style = getComputedStyle(element);
+	function onTransitionEnd(callback: () => void) {
+		const style = getComputedStyle(controller.element);
 		const [transitionDurationList, transitionDelayList] = (
 			["transition-duration", "transition-delay"] as const
 		).map((property) => style.getPropertyValue(property).split(", "));
@@ -216,12 +195,10 @@ function transition(classObject: CustomElement) {
 				return (duration + delay) * 1000;
 			})
 		);
-		const timeoutId = setTimeout(callback, timeout) as unknown as number;
-		timeoutIdRefs.set(element, timeoutId);
+		timeoutId = setTimeout(callback, timeout) as unknown as number;
 	}
 
-	function cancelNextCallback(element: HTMLElement) {
-		const timeoutId = timeoutIdRefs.get(element);
+	function cancelNextCallback() {
 		clearTimeout(timeoutId);
 	}
 }

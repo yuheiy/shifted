@@ -8,7 +8,7 @@
 		"postinstall": "patch-package"
 	},
 	"dependencies": {
-		"@github/catalyst": "^1.1.4",
+		"@hotwired/stimulus": "^3.0.0",
 		"focus-options-polyfill": "^1.6.0",
 		"focus-visible": "^5.2.0",
 		"gsap": "^3.7.1",

@@ -6,11 +6,11 @@ mixin c-page-head(props = {})
 		nav.o-wrapper
 			.o-cluster.u-justify-content-between
 				a.u-py-012(href=f.url('/'))= metadata.siteTitle
-				modal-dialog-trigger.u-d-contents
+				.u-d-contents(data-controller="modal-dialog-trigger")
 					button.u-py-012(
 						type="button",
 						aria-haspopup="dialog",
-						data-action="click:modal-dialog-trigger#open"
+						data-action="modal-dialog-trigger#open"
 					) メニュー
-					template(data-target="modal-dialog-trigger.template")
+					template(data-modal-dialog-trigger-target="template")
 						+c-site-modal-menu

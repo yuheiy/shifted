@@ -5,13 +5,13 @@ mixin c-base-disclosure(props = {})
 			contentId: f.id(),
 		}, props);
 
-	c-base-disclosure.c-base-disclosure&attributes(attributes)
+	.c-base-disclosure(data-controller="c-base-disclosure")&attributes(attributes)
 		button.c-base-disclosure__button(
 			type="button",
 			aria-expanded=String(props.isExpanded),
 			aria-controls=props.contentId,
-			data-target="c-base-disclosure.button",
-			data-action="click:c-base-disclosure#toggle"
+			data-c-base-disclosure-target="button",
+			data-action="c-base-disclosure#toggle"
 		)
 			svg.c-base-disclosure__buttonIcon(
 				width="0.75em",
@@ -23,7 +23,7 @@ mixin c-base-disclosure(props = {})
 		.c-base-disclosure__content(
 			id=props.contentId,
 			inert=!props.isExpanded,
-			data-target="c-base-disclosure.content",
+			data-c-base-disclosure-target="content",
 			style=!props.isExpanded && { height: 0 }
 		)
 			.u-p-012

@@ -1,32 +1,32 @@
-import { controller, target } from "@github/catalyst";
+import { Controller } from "@hotwired/stimulus";
 
 const containerElement = document.querySelector("#js-overlay-container");
 
 /**
  * @example
  * ```html
- * <modal-dialog-trigger>
+ * <div data-controller="modal-dialog-trigger">
  *   <button
  *     type="button"
  *     aria-haspopup="dialog"
- *     data-action="click:modal-dialog-trigger#open"
+ *     data-action="modal-dialog-trigger#open"
  *   >
  *     さらに詳しく
  *   </button>
- *   <template data-target="modal-dialog-trigger.template">
- *     <modal-dialog>
+ *   <template data-modal-dialog-trigger-target="template">
+ *     <div data-controller="modal-dialog">
  *       ...
- *     </modal-dialog>
+ *     </div>
  *   </template>
- * </modal-dialog-trigger>
+ * </div>
  * ```
  */
-@controller
-export class ModalDialogTriggerElement extends HTMLElement {
-	@target template: HTMLTemplateElement;
+export default class extends Controller {
+	static targets = ["template"];
+	templateTarget: HTMLTemplateElement;
 
 	open() {
-		const dialogNode = this.template.content.cloneNode(true);
+		const dialogNode = this.templateTarget.content.cloneNode(true);
 		containerElement.append(dialogNode);
 	}
 }

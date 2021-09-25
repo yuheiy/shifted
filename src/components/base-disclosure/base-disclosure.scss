@@ -2,7 +2,6 @@
 @use "../../styles/tools" as t;
 
 .c-base-disclosure {
-	display: block;
 	border-radius: t.rem(4);
 	box-shadow: 0 t.rem(2) t.rem(4) hsla(0, 0%, 0%, 15%);
 }
