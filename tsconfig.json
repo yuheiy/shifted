@@ -9,8 +9,6 @@
 		/* Module Resolution Options */
 		"moduleResolution": "Node",
 		"esModuleInterop": true,
-		/* Experimental Options */
-		"experimentalDecorators": true,
 		/* Advanced Options */
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
