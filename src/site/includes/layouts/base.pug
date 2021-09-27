@@ -29,7 +29,7 @@ html(lang=metadata.lang)
 		meta(property="og:type", content="website")
 		meta(
 			property="og:image",
-			content=`${metadata.siteUrl}${f.url('/assets/ogp.png')}`
+			content=`${metadata.siteUrl}${f.url('/assets/images/ogp.png')}`
 		)
 		meta(property="og:url", content=`${metadata.siteUrl}${f.url(page.url)}`)
 		meta(property="og:description", content=description)
@@ -38,7 +38,10 @@ html(lang=metadata.lang)
 
 		link(rel="canonical", href=`${metadata.siteUrl}${f.url(page.url)}`)
 		link(rel="icon", href=f.url('/favicon.ico'))
-		link(rel="apple-touch-icon", href=f.url('/assets/apple-touch-icon.png'))
+		link(
+			rel="apple-touch-icon",
+			href=f.url('/assets/images/apple-touch-icon.png')
+		)
 
 	+c-page
 		+c-page-head
