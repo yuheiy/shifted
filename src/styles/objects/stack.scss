@@ -9,7 +9,7 @@
 }
 
 .o-stack {
-	> :where(* + *) {
+	> :where(:not([hidden]) ~ :not([hidden])) {
 		@extend %o-stack-owl;
 
 		--o-stack-spacing: initial;
@@ -21,7 +21,7 @@
 
 	@each $key, $spacer in s.$spacers {
 		.o-stack-#{$key}#{$suffix} {
-			> :where(* + *) {
+			> :where(:not([hidden]) ~ :not([hidden])) {
 				@extend %o-stack-owl;
 
 				@include t.mq($breakpoint) {
