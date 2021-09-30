@@ -91,12 +91,12 @@ function useOverlay(controller: Controller & { close: () => void }) {
 }
 
 function usePreventScroll(controller: Controller) {
-	document.body.style.setProperty("overflow", "hidden");
+	document.body.style.setProperty("overflow-y", "hidden");
 
 	const controllerDisconnect = controller.disconnect.bind(controller);
 	Object.assign(controller, {
 		disconnect() {
-			document.body.style.removeProperty("overflow");
+			document.body.style.removeProperty("overflow-y");
 
 			controllerDisconnect();
 		},
