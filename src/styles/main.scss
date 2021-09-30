@@ -19,33 +19,33 @@
 // no need to @use at this entry point
 
 // Generic
-@use "../node_modules/sanitize.css/sanitize" as *;
-@use "../node_modules/sanitize.css/forms" as *;
-@use "../node_modules/sanitize.css/assets" as *;
-@use "styles/generic/reset";
-@use "styles/generic/focus";
-@use "styles/generic/hidden";
+@use "../../node_modules/sanitize.css/sanitize" as *;
+@use "../../node_modules/sanitize.css/forms" as *;
+@use "../../node_modules/sanitize.css/assets" as *;
+@use "generic/reset";
+@use "generic/focus";
+@use "generic/hidden";
 
 // Elements
-@use "styles/elements/page";
-@use "styles/elements/forms";
+@use "elements/page";
+@use "elements/forms";
 
 // Vendors
-@use "styles/vendors";
+@use "vendors";
 
 // Objects
-@use "styles/objects";
+@use "objects";
 
 // Components
-@use "components/components";
+@use "../components/components";
 
 // Scopes
-@use "styles/scopes";
+@use "scopes";
 
 // Themes
-@use "styles/themes";
+@use "themes";
 
 // Utilities
-@use "styles/utilities/api";
-@use "styles/utilities/visually-hidden";
-@use "styles/utilities/shame";
+@use "utilities/api";
+@use "utilities/visually-hidden";
+@use "utilities/shame";

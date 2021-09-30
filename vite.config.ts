@@ -8,7 +8,7 @@ export default defineConfig({
 	logLevel: "warn",
 	build: {
 		rollupOptions: {
-			input: "src/main.ts",
+			input: "src/scripts/main.ts",
 		},
 		manifest: true,
 	},

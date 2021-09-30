@@ -13,13 +13,13 @@ html(lang=metadata.lang)
 				= metadata.siteTitle
 
 		if manifest
-			each cssPath in manifest['src/main.ts'].css
+			each cssPath in manifest['src/scripts/main.ts'].css
 				link(rel="stylesheet", href=f.url(`/${cssPath}`))
-			script(type="module", src=f.url(`/${manifest['src/main.ts'].file}`))
+			script(type="module", src=f.url(`/${manifest['src/scripts/main.ts'].file}`))
 
 		if env === 'development'
 			script(type="module", src=f.url('/@vite/client'))
-			script(type="module", src=f.url('/src/main.ts'))
+			script(type="module", src=f.url('/src/scripts/main.ts'))
 
 		meta(name="description", content=description)
 		meta(name="format-detection", content="telephone=no")

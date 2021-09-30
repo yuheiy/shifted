@@ -62,25 +62,25 @@ npm run dev
 │   │       ├── base-disclosure.pug
 │   │       └── base-disclosure.scss
 │   ├── scripts/
-│   │   └── controllers/
-│   │       └── modal-dialog.controller.ts
+│   │   ├── controllers/
+│   │   │   └── modal-dialog.controller.ts
+│   │   └── main.ts
 │   ├── site/
 │   │   ├── data/
 │   │   │   └── metadata.js
 │   │   └── pages/
 │   │       ├── index.11tydata.js
 │   │       └── index.pug
-│   ├── styles/
-│   │   ├── settings/
-│   │   ├── tools/
-│   │   ├── generic/
-│   │   ├── elements/
-│   │   ├── objects/
-│   │   ├── scopes/
-│   │   ├── themes/
-│   │   └── utilities/
-│   ├── main.scss
-│   └── main.ts
+│   └── styles/
+│       ├── settings/
+│       ├── tools/
+│       ├── generic/
+│       ├── elements/
+│       ├── objects/
+│       ├── scopes/
+│       ├── themes/
+│       ├── utilities/
+│       └── main.scss
 ├── .eleventy.js
 ├── config.js
 └── package.json

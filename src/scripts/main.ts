@@ -1,9 +1,9 @@
 import "focus-options-polyfill";
 import "focus-visible";
 import "wicg-inert";
-import "./main.scss";
-import "./scripts/lib/smooth-scroll";
-import "./scripts/lib/stimulus-autoloader";
+import "../styles/main.scss";
+import "./lib/smooth-scroll";
+import "./lib/stimulus-autoloader";
 
 declare global {
 	interface HTMLElement {
