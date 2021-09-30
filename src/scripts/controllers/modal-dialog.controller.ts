@@ -73,21 +73,21 @@ function useOverlay(controller: Controller & { close: () => void }) {
 			controller.close();
 		}
 	}
+}
 
-	function isFormField(element: HTMLElement): boolean {
-		const name = element.nodeName.toLowerCase();
-		const type = (element.getAttribute("type") || "").toLowerCase();
-		return (
-			name === "select" ||
-			name === "textarea" ||
-			(name === "input" &&
-				type !== "submit" &&
-				type !== "reset" &&
-				type !== "checkbox" &&
-				type !== "radio") ||
-			element.isContentEditable
-		);
-	}
+function isFormField(element: HTMLElement): boolean {
+	const name = element.nodeName.toLowerCase();
+	const type = (element.getAttribute("type") || "").toLowerCase();
+	return (
+		name === "select" ||
+		name === "textarea" ||
+		(name === "input" &&
+			type !== "submit" &&
+			type !== "reset" &&
+			type !== "checkbox" &&
+			type !== "radio") ||
+		element.isContentEditable
+	);
 }
 
 function usePreventScroll(controller: Controller) {
