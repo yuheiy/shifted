@@ -1,5 +1,5 @@
 ---
-to: src/controllers/<%- h.changeCase.param(name) %>.controller.ts
+to: src/scripts/controllers/<%- h.changeCase.param(name) %>.controller.ts
 ---
 import { Controller } from "@hotwired/stimulus";
 

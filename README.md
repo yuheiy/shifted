@@ -61,8 +61,9 @@ npm run dev
 │   │       ├── base-disclosure.controller.ts
 │   │       ├── base-disclosure.pug
 │   │       └── base-disclosure.scss
-│   ├── controllers/
-│   │   └── modal-dialog.controller.ts
+│   ├── scripts/
+│   │   └── controllers/
+│   │       └── modal-dialog.controller.ts
 │   ├── site/
 │   │   ├── data/
 │   │   │   └── metadata.js
@@ -97,7 +98,7 @@ npm run dev
 
 サイトで利用するコンポーネントごとにファイルを配置します。特定のコンポーネントに固有の [Catalyst](https://github.github.io/catalyst/) コントローラーは当該ディレクトリに含めます。
 
-### `src/controllers` ディレクトリ
+### `src/scripts/controllers` ディレクトリ
 
 汎用的な [Catalyst](https://github.github.io/catalyst/) コントローラーを配置します。
 

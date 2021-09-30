@@ -2,8 +2,9 @@
 
 import { Application } from "@hotwired/stimulus";
 
-const modules = import.meta.glob(
-	"../{components,controllers}/**/*.controller.ts"
+const modules = Object.assign(
+	import.meta.glob("../../components/**/*.controller.ts"),
+	import.meta.glob("../controllers/**/*.controller.ts")
 );
 
 const application = Application.start();
@@ -42,7 +43,7 @@ function loadController(name: string) {
 function controllerFilename(name: string) {
 	if (name.startsWith("c-")) {
 		name = name.replace(/^c-/, "");
-		return `../components/${name}/${name}.controller.ts`;
+		return `../../components/${name}/${name}.controller.ts`;
 	}
 
 	return `../controllers/${name}.controller.ts`;
