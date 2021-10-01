@@ -39,7 +39,7 @@
 		"vite": "^2.5.10"
 	},
 	"engines": {
-		"node": ">=16.0.0"
+		"node": "16"
 	},
 	"private": true,
 	"workspaces": [
