@@ -104,8 +104,19 @@ function usePreventScroll(controller: Controller) {
 }
 
 function useModal(controller: Controller) {
-	const { element } = controller;
+	const activateOutside = inactivateOutside(controller.element as HTMLElement);
 
+	const controllerDisconnect = controller.disconnect.bind(controller);
+	Object.assign(controller, {
+		disconnect() {
+			activateOutside();
+
+			controllerDisconnect();
+		},
+	});
+}
+
+function inactivateOutside(element: HTMLElement) {
 	const elementsSetToInert = new Set<HTMLElement>();
 	let currentElement = element;
 
@@ -120,16 +131,11 @@ function useModal(controller: Controller) {
 		}
 	}
 
-	const controllerDisconnect = controller.disconnect.bind(controller);
-	Object.assign(controller, {
-		disconnect() {
-			for (const element of elementsSetToInert) {
-				element.inert = false;
-			}
-
-			controllerDisconnect();
-		},
-	});
+	return function activateOutside() {
+		for (const element of elementsSetToInert) {
+			element.inert = false;
+		}
+	};
 }
 
 function useTransition(controller: Controller & { close: () => void }) {
