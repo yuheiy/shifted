@@ -36,7 +36,9 @@ function useRestoreFocus(controller: Controller) {
 	const controllerDisconnect = controller.disconnect.bind(controller);
 	Object.assign(controller, {
 		disconnect() {
-			Promise.resolve().then(() => (nodeToRestore as HTMLElement).focus());
+			Promise.resolve().then(() => {
+				(nodeToRestore as HTMLElement).focus({ preventScroll: true });
+			});
 
 			controllerDisconnect();
 		},
