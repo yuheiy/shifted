@@ -17,7 +17,9 @@ window.addEventListener(
 		}
 
 		if (event.button === 0 && !isModifiedEvent(event)) {
-			history.pushState(null, "", anchorElement.hash);
+			if (location.hash !== anchorElement.hash) {
+				history.pushState(null, "", anchorElement.hash);
+			}
 
 			let target = document.querySelector<HTMLElement>(anchorElement.hash);
 
