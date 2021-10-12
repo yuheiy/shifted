@@ -11,25 +11,26 @@ window.addEventListener(
 		const anchorElement = (
 			event.target as HTMLElement
 		).closest<HTMLAnchorElement>('a[href*="#"]');
+		const anchorHash = anchorElement?.hash;
 
-		if (!anchorElement?.hash) {
+		if (!anchorHash) {
 			return;
 		}
 
 		if (event.button === 0 && !isModifiedEvent(event)) {
-			if (location.hash !== anchorElement.hash) {
-				history.pushState(null, "", anchorElement.hash);
+			if (location.hash !== anchorHash) {
+				history.pushState(null, "", anchorHash);
 			}
 
-			let target = document.querySelector<HTMLElement>(anchorElement.hash);
+			let target = document.querySelector<HTMLElement>(anchorHash);
 
-			if (!target && anchorElement.hash === "#top") {
+			if (!target && anchorHash === "#top") {
 				target = document.documentElement;
 			}
 
 			if (target) {
 				scrollIntoView(target);
-				forceFocus(target);
+				forceFocus(target, { preventScroll: true });
 				event.preventDefault();
 			}
 		}
@@ -54,11 +55,11 @@ function scrollIntoView(element: HTMLElement) {
 	});
 }
 
-function forceFocus(element: HTMLElement) {
-	element.focus({ preventScroll: true });
+function forceFocus(element: HTMLElement, focusOptions: FocusOptions) {
+	element.focus(focusOptions);
 
 	if (document.activeElement !== element) {
 		element.tabIndex = -1;
-		element.focus({ preventScroll: true });
+		element.focus(focusOptions);
 	}
 }
