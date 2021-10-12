@@ -19,9 +19,11 @@ window.addEventListener(
 		if (event.button === 0 && !isModifiedEvent(event)) {
 			history.pushState(null, "", anchorElement.hash);
 
-			const target =
-				document.querySelector<HTMLElement>(anchorElement.hash) ||
-				(anchorElement.hash === "#top" && document.documentElement);
+			let target = document.querySelector<HTMLElement>(anchorElement.hash);
+
+			if (!target && anchorElement.hash === "#top") {
+				target = document.documentElement;
+			}
 
 			if (target) {
 				scrollIntoView(target);
