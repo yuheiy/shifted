@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import { forceFocus } from "../lib/dom-utils";
 
 /**
  * @example
@@ -18,11 +19,12 @@ export default class extends Controller {
 
 	connect() {
 		useRestoreFocus(this);
-		useAutoFocus(this);
 		useOverlay(this);
 		usePreventScroll(this);
 		useModal(this);
 		useTransition(this);
+
+		forceFocus(this.autoFocusTarget, { preventScroll: true });
 	}
 
 	close() {
@@ -43,17 +45,6 @@ function useRestoreFocus(controller: Controller) {
 			controllerDisconnect();
 		},
 	});
-}
-
-function useAutoFocus({
-	autoFocusTarget,
-}: Controller & { autoFocusTarget: HTMLElement }) {
-	autoFocusTarget.focus({ preventScroll: true });
-
-	if (autoFocusTarget !== document.activeElement) {
-		autoFocusTarget.tabIndex = -1;
-		autoFocusTarget.focus({ preventScroll: true });
-	}
 }
 
 function useOverlay(controller: Controller & { close: () => void }) {

@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import { forceFocus } from "./dom-utils";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -53,13 +54,4 @@ function scrollIntoView(element: HTMLElement) {
 			offsetY: parseFloat((style as any).scrollMarginTop),
 		},
 	});
-}
-
-function forceFocus(element: HTMLElement, focusOptions: FocusOptions) {
-	element.focus(focusOptions);
-
-	if (document.activeElement !== element) {
-		element.tabIndex = -1;
-		element.focus(focusOptions);
-	}
 }
