@@ -3,6 +3,5 @@ to: "<%- locals.controller ? `src/components/${h.changeCase.param(name)}/${h.cha
 ---
 import { Controller } from "@hotwired/stimulus";
 
-@controller
 export default class extends Controller {
 }
