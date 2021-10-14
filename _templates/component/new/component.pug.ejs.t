@@ -5,4 +5,4 @@ mixin c-<%- h.changeCase.param(name) %>(props = {})
 	-
 		props = Object.assign({}, props);
 
-	<%- locals.controller ? `c-${h.changeCase.param(name)}` : '' %>.c-<%- h.changeCase.param(name) %>&attributes(attributes)
+	.c-<%- h.changeCase.param(name) %><%- locals.controller ? `(data-controller="c-${h.changeCase.param(name)}")` : '' %>&attributes(attributes)
