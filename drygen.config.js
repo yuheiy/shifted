@@ -5,10 +5,7 @@ module.exports = {
 	rules: [
 		{
 			name: "pug/components",
-			dependencies: [
-				"src/components/**/*.pug",
-				"!src/components/components.pug",
-			],
+			dependencies: ["src/components/*/*.pug"],
 			outputs: [
 				{
 					path: "src/components/components.pug",
@@ -18,10 +15,7 @@ module.exports = {
 		},
 		{
 			name: "scss/components",
-			dependencies: [
-				"src/components/**/*.scss",
-				"!src/components/components.scss",
-			],
+			dependencies: ["src/components/*/*.scss"],
 			outputs: [
 				{
 					path: "src/components/components.scss",
