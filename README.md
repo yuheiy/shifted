@@ -13,7 +13,7 @@
   - レイヤリングに基づいたファイル構成の採用
   - ベースとなるコンポーネントやユーティリティを同梱
 - [TypeScript](https://www.typescriptlang.org/) の採用
-- MPA（非 SPA）向けの JavaScript コンポーネント化ライブラリとして [Catalyst](https://github.github.io/catalyst/) を採用
+- MPA（非 SPA）向けの JavaScript コンポーネント化ライブラリとして [Stimulus](https://stimulus.hotwired.dev/) を採用
 - コンポーネント指向開発のための構成
   - コンポーネント中心のディレクトリ構成
   - コンポーネントの各種ファイル自動読み込み
@@ -96,11 +96,11 @@ npm run dev
 
 ### `src/components` ディレクトリ
 
-サイトで利用するコンポーネントごとにファイルを配置します。特定のコンポーネントに固有の [Catalyst](https://github.github.io/catalyst/) コントローラーは当該ディレクトリに含めます。
+サイトで利用するコンポーネントごとにファイルを配置します。特定のコンポーネントに固有の [Stimulus](https://stimulus.hotwired.dev/) コントローラーは当該ディレクトリに含めます。
 
 ### `src/scripts/controllers` ディレクトリ
 
-汎用的な [Catalyst](https://github.github.io/catalyst/) コントローラーを配置します。
+汎用的な [Stimulus](https://stimulus.hotwired.dev/) コントローラーを配置します。
 
 ### `public` ディレクトリ
 
@@ -201,5 +201,5 @@ import.meta.env.BASE_URL; // "/my-subdir/"
 
 - [eleventy-cache-assets](https://www.11ty.dev/docs/plugins/cache/): 外部ネットワークに依存する、取得に時間がかかるデータをキャッシュするための Eleventy プラグイン
 - [\<include-fragment> element](https://github.com/github/include-fragment-element): 指定した URL から HTML 片を読み込んで、ページの特定箇所に自動で挿入できるカスタム要素。コンテンツを非同期的に読み込む必要がある場合に便利
-- [unistore](https://github.com/developit/unistore): ミニマルな状態管理ライブラリ。[Catalyst](https://github.github.io/catalyst/) のコントローラー同士で状態を共有する場合などに便利
+- [unistore](https://github.com/developit/unistore): ミニマルな状態管理ライブラリ。[Stimulus](https://stimulus.hotwired.dev/) のコントローラー同士で状態を共有する場合などに便利
 - [Mitt](https://github.com/developit/mitt): ミニマルなイベントエミッター。[Vite](https://vitejs.dev/) 環境では Node.js の [Events モジュール](https://nodejs.org/api/events.html)が利用できないため、代替として採用できる
