@@ -20,11 +20,9 @@ mixin c-base-disclosure(props = {})
 			)
 				path(d="M21 12.3923L3 22.7846L3 2L21 12.3923Z")
 			= props.summary
-		.c-base-disclosure__content(
+		.u-p-012(
 			id=props.contentId,
-			inert=!props.isExpanded,
 			data-c-base-disclosure-target="content",
-			style=!props.isExpanded && { height: 0 }
+			style=!props.isExpanded && { display: 'none' }
 		)
-			.u-p-012
-				block
+			block

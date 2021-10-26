@@ -16,11 +16,44 @@ export default class extends Controller {
 
 	set expanded(value: boolean) {
 		this.buttonTarget.setAttribute("aria-expanded", String(value));
-		this.contentTarget.inert = !value;
 
-		gsap.to(this.contentTarget, {
-			height: value ? "auto" : 0,
-			duration: value ? 0.25 : 0.2,
-		});
+		if (value) {
+			slideDown(this.contentTarget);
+		} else {
+			slideUp(this.contentTarget);
+		}
 	}
+}
+
+function slideDown(element: HTMLElement) {
+	gsap.killTweensOf(element, { height: true });
+
+	element.style.setProperty("display", "block");
+	element.style.setProperty("overflow", "hidden");
+	element.style.setProperty("height", "0");
+
+	gsap.to(element, {
+		height: "auto",
+		duration: 0.25,
+		onComplete: () => {
+			element.style.removeProperty("overflow");
+			element.style.removeProperty("height");
+		},
+	});
+}
+
+function slideUp(element: HTMLElement) {
+	gsap.killTweensOf(element, { height: true });
+
+	element.style.setProperty("overflow", "hidden");
+
+	gsap.to(element, {
+		height: 0,
+		duration: 0.2,
+		onComplete: () => {
+			element.style.setProperty("display", "none");
+			element.style.removeProperty("overflow");
+			element.style.removeProperty("height");
+		},
+	});
 }
