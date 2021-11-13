@@ -3,10 +3,10 @@
 
 .c-service-card {
 	display: block;
-	color: hsl(0, 0%, 0%);
-	background-color: hsl(0, 0%, 100%);
+	color: hsl(0deg 0% 0%);
+	background-color: hsl(0deg 0% 100%);
 	border-radius: t.rem(4);
-	box-shadow: 0 t.rem(2) t.rem(4) hsla(0, 0%, 0%, 15%);
+	box-shadow: 0 t.rem(2) t.rem(4) hsl(0deg 0% 0% / 15%);
 }
 
 .c-service-card__media {

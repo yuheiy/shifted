@@ -3,7 +3,7 @@
 
 .c-base-disclosure {
 	border-radius: t.rem(4);
-	box-shadow: 0 t.rem(2) t.rem(4) hsla(0, 0%, 0%, 15%);
+	box-shadow: 0 t.rem(2) t.rem(4) hsl(0deg 0% 0% / 15%);
 }
 
 .c-base-disclosure__button {
@@ -12,7 +12,7 @@
 	align-items: center;
 	width: 100%;
 	padding: s.$spacer-008 s.$spacer-012;
-	background-color: hsl(0, 0%, 90%);
+	background-color: hsl(0deg 0% 90%);
 	border-top-left-radius: inherit;
 	border-top-right-radius: inherit;
 }

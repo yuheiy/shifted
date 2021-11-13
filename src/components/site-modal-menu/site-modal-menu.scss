@@ -5,31 +5,31 @@
 	position: fixed;
 	inset: 0;
 	z-index: 20;
-	color: hsl(0, 0%, 100%);
-	background-color: hsl(0, 0%, 10%);
+	color: hsl(0deg 0% 100%);
+	background-color: hsl(0deg 0% 10%);
 
 	&.is-transition-enter {
-		opacity: 0;
+		opacity: 0%;
 		transform: translateY(s.$spacer-016);
 	}
 
 	&.is-transition-enter-active {
-		opacity: 1;
+		opacity: 100%;
 		transition: opacity 300ms ease-out, transform 300ms ease-out;
 		transform: none;
 	}
 
 	&.is-transition-leave {
-		opacity: 1;
+		opacity: 100%;
 	}
 
 	&.is-transition-leave-active {
-		opacity: 0;
+		opacity: 0%;
 		transition: opacity 250ms ease-out, transform 250ms ease-out;
 		transform: translateY(s.$spacer-016);
 	}
 }
 
 .c-site-modal-menu__head {
-	border-bottom: 1px solid hsla(0, 0%, 100%, 15%);
+	border-bottom: 1px solid hsl(0deg 0% 100% / 15%);
 }
