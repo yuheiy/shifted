@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "../settings/media-queries" as s-media-queries;
 
+// prettier-ignore
 @forward "../node_modules/sass-mq/mq" show mq with
 	($mq-breakpoints: s-media-queries.$mq-breakpoints);
 
