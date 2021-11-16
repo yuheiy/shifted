@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@11ty/eleventy": "^0.12.1",
 		"@11ty/eleventy-navigation": "^0.3.2",
-		"@prettier/plugin-pug": "^1.17.2",
+		"@prettier/plugin-pug": "^1.17.3",
 		"@types/jest": "^27.0.2",
 		"concurrently": "^6.4.0",
 		"cross-env": "^7.0.3",
@@ -33,7 +33,7 @@
 		"rollup-plugin-visualizer": "^5.5.2",
 		"sass": "^1.43.4",
 		"sass-mq": "^5.0.1",
-		"stylelint": "^14.0.1",
+		"stylelint": "^14.1.0",
 		"ts-jest": "^27.0.7",
 		"typescript": "^4.4.4",
 		"vite": "^2.6.14"
