@@ -1,9 +1,0 @@
-mixin c-service-card(props = {})
-	-
-		props = Object.assign({}, props);
-
-	a.c-service-card(href=f.url(props.url))&attributes(attributes)
-		.o-frame.o-frame--16x9
-			img.c-service-card__media(src=props.data.image, alt="", decoding="async")
-		.u-px-012.u-py-008
-			= props.data.title

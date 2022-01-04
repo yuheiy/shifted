@@ -8,18 +8,10 @@
 - [Vite](https://vitejs.dev/) の採用および Eleventy との連携
 - HTML のテンプレートエンジンとして [Pug](https://pugjs.org/api/getting-started.html) を採用
   - [別のテンプレートエンジン](https://www.11ty.dev/docs/languages/)との入れ替えおよび併用も可能
-- [Sass](https://sass-lang.com/) の採用
-- CSS アーキテクチャとして [ITCSS](https://speakerdeck.com/dafed/managing-css-projects-with-itcss) を採用
-  - レイヤリングに基づいたファイル構成の採用
-  - ベースとなるコンポーネントやユーティリティを同梱
+- [Tailwind CSS](https://tailwindcss.com/) の採用
 - [TypeScript](https://www.typescriptlang.org/) の採用
 - MPA（非 SPA）向けの JavaScript コンポーネント化ライブラリとして [Stimulus](https://stimulus.hotwired.dev/) を採用
-- コンポーネント指向開発のための構成
-  - コンポーネント中心のディレクトリ構成
-  - コンポーネントの各種ファイル自動読み込み
-  - [Hygen](http://www.hygen.io/) を利用したソースコードの雛形の自動生成
 - [Prettier](https://prettier.io/) の採用
-- [stylelint](https://stylelint.io/) の採用
 - [サブディレクトリでの公開](#サブディレクトリでの公開)に対応
 - Internet Explorer を除くモダンブラウザに向けた構成
 
@@ -49,18 +41,18 @@ npm run dev
 ├── _templates/
 ├── dist/
 │   ├── assets/
-│   │   ├── main.[hash].js
-│   │   └── main.[hash].css
+│   │   ├── images/
+│   │   │   └── apple-touch-icon.png
+│   │   ├── main.[hash].css
+│   │   └── main.[hash].js
 │   ├── favicon.ico
 │   └── index.html
 ├── public/
+│   ├── assets/
+│   │   └── images/
+│   │       └── apple-touch-icon.png
 │   └── favicon.ico
 ├── src/
-│   ├── components/
-│   │   └── base-disclosure/
-│   │       ├── base-disclosure.controller.ts
-│   │       ├── base-disclosure.pug
-│   │       └── base-disclosure.scss
 │   ├── scripts/
 │   │   ├── controllers/
 │   │   │   └── modal-dialog.controller.ts
@@ -68,19 +60,16 @@ npm run dev
 │   ├── site/
 │   │   ├── data/
 │   │   │   └── metadata.js
+│   │   ├── includes/
+│   │   │   ├── components/
+│   │   │   │   └── base-button.pug
+│   │   │   └── layouts/
+│   │   │       └── base.pug
 │   │   └── pages/
-│   │       ├── index.11tydata.js
-│   │       └── index.pug
+│   │       ├── index.11tydata.js
+│   │       └── index.pug
 │   └── styles/
-│       ├── settings/
-│       ├── tools/
-│       ├── generic/
-│       ├── elements/
-│       ├── objects/
-│       ├── scopes/
-│       ├── themes/
-│       ├── utilities/
-│       └── main.scss
+│       └── main.css
 ├── .eleventy.js
 ├── config.js
 └── package.json
@@ -94,13 +83,9 @@ npm run dev
 
 [Eleventy](https://www.11ty.dev/) で生成するページやそのデータファイル、その他 Eleventy に関するファイルを配置します。
 
-### `src/components` ディレクトリ
-
-サイトで利用するコンポーネントごとにファイルを配置します。特定のコンポーネントに固有の [Stimulus](https://stimulus.hotwired.dev/) コントローラーは当該ディレクトリに含めます。
-
 ### `src/scripts/controllers` ディレクトリ
 
-汎用的な [Stimulus](https://stimulus.hotwired.dev/) コントローラーを配置します。
+[Stimulus](https://stimulus.hotwired.dev/) コントローラーを配置します。
 
 ### `public` ディレクトリ
 
@@ -159,15 +144,11 @@ npm install --global hygen
 hygen component new my-component
 ```
 
-### `npm test`
-
-[Jest](https://jestjs.io/) を利用した自動テストを実行します。
-
 ### `npm run format`
 
-[Prettier](https://prettier.io/) と [stylelint](https://stylelint.io/) を利用して、ファイルの自動整形を行います。
+[Prettier](https://prettier.io/) を利用して、ファイルの自動整形を行います。
 
-GitHub リポジトリにプッシュされるたびに、GitHub Actions によって当該コマンドが自動実行されます。
+GitHub Actions によって、GitHub リポジトリにプッシュされるたびに当該コマンドが自動実行されます。
 
 ## サブディレクトリでの公開
 

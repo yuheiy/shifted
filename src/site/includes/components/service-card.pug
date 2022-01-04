@@ -1,0 +1,9 @@
+mixin service-card(props = {})
+	-
+		props = Object.assign({}, props);
+
+	a.block.text-black.bg-white.rounded-md.shadow-md(href=f.url(props.url))&attributes(attributes)
+		.aspect-w-16.aspect-h-9
+			img.object-cover.rounded-t-md(src=props.data.image, alt="", decoding="async")
+		.px-3.py-2
+			= props.data.title

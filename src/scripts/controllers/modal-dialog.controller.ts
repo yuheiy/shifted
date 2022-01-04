@@ -1,10 +1,23 @@
 import { Controller } from "@hotwired/stimulus";
+import { useTransition } from "stimulus-use";
 import { forceFocus } from "../lib/dom-utils";
 
 /**
  * @example
  * ```html
- * <div role="dialog" aria-label="キーワード検索" aria-modal="true" data-controller="modal-dialog">
+ * <div
+ *   class="opacity-0 scale-95"
+ *   role="dialog"
+ *   aria-label="キーワード検索"
+ *   aria-modal="true"
+ *   data-controller="modal-dialog"
+ *   data-transition-enter-active="transition duration-300",
+ *   data-transition-enter-from="opacity-0 scale-95",
+ *   data-transition-enter-to="opacity-100 scale-100",
+ *   data-transition-leave-active="transition duration-300",
+ *   data-transition-leave-from="opacity-100 scale-100",
+ *   data-transition-leave-to="opacity-0 scale-95"
+ *  >
  *   <button type="button" data-action="modal-dialog#close">閉じる</button>
  *   <form action="/search">
  *     <input name="q" type="search" data-modal-dialog-target="autoFocus" aria-label="キーワード">
@@ -17,17 +30,27 @@ export default class extends Controller {
 	static targets = ["autoFocus"];
 	autoFocusTarget: HTMLElement;
 
+	// extended by useTransition
+	enter: () => Promise<void>;
+	leave: () => Promise<void>;
+
 	connect() {
 		useRestoreFocus(this);
 		useOverlay(this);
 		usePreventScroll(this);
 		useModal(this);
-		useTransition(this);
+
+		useTransition(this as any, {
+			element: this.element,
+			preserveOriginalClass: false,
+		});
+		this.enter();
 
 		forceFocus(this.autoFocusTarget, { preventScroll: true });
 	}
 
-	close() {
+	async close() {
+		await (this as any).leave();
 		this.element.remove();
 	}
 }
@@ -74,11 +97,7 @@ function isFormField(element: HTMLElement): boolean {
 	return (
 		name === "select" ||
 		name === "textarea" ||
-		(name === "input" &&
-			type !== "submit" &&
-			type !== "reset" &&
-			type !== "checkbox" &&
-			type !== "radio") ||
+		(name === "input" && type !== "submit" && type !== "reset" && type !== "checkbox" && type !== "radio") ||
 		element.isContentEditable
 	);
 }
@@ -129,79 +148,4 @@ function inactivateOutside(element: HTMLElement) {
 			element.inert = false;
 		}
 	};
-}
-
-function useTransition(controller: Controller & { close: () => void }) {
-	const { element } = controller;
-
-	const ENTER_CLASS = "is-transition-enter";
-	const ENTER_ACTIVE_CLASS = "is-transition-enter-active";
-	const LEAVE_CLASS = "is-transition-leave";
-	const LEAVE_ACTIVE_CLASS = "is-transition-leave-active";
-
-	let timeoutId = null;
-
-	// perform enter
-	element.classList.add(ENTER_CLASS);
-	forceReflow();
-	element.classList.add(ENTER_ACTIVE_CLASS);
-
-	onTransitionEnd(() => {
-		element.classList.remove(ENTER_CLASS);
-		element.classList.remove(ENTER_ACTIVE_CLASS);
-	});
-
-	const controllerClose = controller.close.bind(controller);
-	Object.assign(controller, {
-		close() {
-			// cleanup
-			cancelNextCallback();
-			element.classList.remove(ENTER_CLASS);
-			element.classList.remove(ENTER_ACTIVE_CLASS);
-
-			// perform leave
-			element.classList.add(LEAVE_CLASS);
-			forceReflow();
-			element.classList.add(LEAVE_ACTIVE_CLASS);
-
-			onTransitionEnd(() => {
-				element.classList.remove(LEAVE_CLASS);
-				element.classList.remove(LEAVE_ACTIVE_CLASS);
-
-				controllerClose();
-			});
-		},
-	});
-
-	function onTransitionEnd(callback: () => void) {
-		const style = getComputedStyle(controller.element);
-		const [transitionDurationList, transitionDelayList] = (
-			["transition-duration", "transition-delay"] as const
-		).map((property) => style.getPropertyValue(property).split(", "));
-
-		while (transitionDurationList.length > transitionDelayList.length) {
-			transitionDelayList.push("0s");
-		}
-
-		while (transitionDurationList.length < transitionDelayList.length) {
-			transitionDurationList.push("0s");
-		}
-
-		const timeout = Math.max(
-			...transitionDurationList.map((value, i) => {
-				const duration = parseFloat(value);
-				const delay = parseFloat(transitionDelayList[i]);
-				return (duration + delay) * 1000;
-			})
-		);
-		timeoutId = setTimeout(callback, timeout) as unknown as number;
-	}
-
-	function cancelNextCallback() {
-		clearTimeout(timeoutId);
-	}
-}
-
-function forceReflow() {
-	document.documentElement.scrollTop;
 }

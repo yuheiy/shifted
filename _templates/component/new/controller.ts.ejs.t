@@ -1,5 +1,5 @@
 ---
-to: "<%- locals.controller ? `src/components/${h.changeCase.param(name)}/${h.changeCase.param(name)}.controller.ts` : null %>"
+to: "<%- locals.controller ? `src/scripts/controllers/${h.changeCase.param(name)}.controller.ts` : null %>"
 ---
 import { Controller } from "@hotwired/stimulus";
 

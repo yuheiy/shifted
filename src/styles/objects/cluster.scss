@@ -1,9 +1,0 @@
-// https://every-layout.dev/layouts/cluster/
-
-@use "../settings" as s;
-
-.o-cluster {
-	display: flex;
-	flex-wrap: wrap;
-	gap: s.$spacer-016;
-}

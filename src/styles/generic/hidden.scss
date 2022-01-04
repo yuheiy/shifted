@@ -1,5 +1,0 @@
-// increase the selector specificity for [hidden]
-// so that it always overrides utility classes (.u-d-block, etc.)
-[hidden][hidden] {
-	display: none !important;
-}

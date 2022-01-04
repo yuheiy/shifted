@@ -2,29 +2,29 @@ extends /layouts/base
 
 block content
 	main
-		h1.u-visually-hidden= `${metadata.siteTitle} ホーム`
+		h1.sr-only= `${metadata.siteTitle} ホーム`
 
-		+c-home-masthead
+		.aspect-w-16.aspect-h-9
+			img.object-cover(src="https://source.unsplash.com/random", alt="", decoding="async")
 
-		.u-mt-064
+		.mt-16
 
-		.o-wrapper
-			section
-				.o-cluster.u-justify-content-between.u-align-items-end
-					h2 サービス
-					+c-base-button({ href: f.url('/services/') }) すべて表示
+		section.wrapper
+			.cluster.justify-between.items-end
+				h2 サービス
+				+base-button({ href: f.url('/services/') }) すべて表示
 
-				.u-mt-024
+			.mt-6
 
-				ul.o-grid
-					each page in collections.service
-						li
-							+c-service-card(page).u-height-full
+			ul.auto-grid
+				each page in collections.service
+					li
+						+service-card(page).h-full
 
-			.u-mt-064
+			.mt-16
 
-			+c-base-disclosure({ summary: '注意事項' })
-				.o-switcher
+			+base-disclosure({ summary: '注意事項' })
+				.switcher.switcher-3xl
 					p あなたは一番あたかもその享有打というものの時がきめありう。けっして近頃に汚辱人は同時にそのお話しないたじゃを忘れとならでしょでは永続なりたたて、あくまでには忘れたたたう。人と分りんものはぼんやり前にとうとうなかっますう。
 					p たとい岡田君にお話し人あいにく周旋へ分りたとりその行儀それか話をといったご談判なけれんんですて、いわゆるほかもそれか他人権力でするで、大森さんのので模範の何がもう同使用と申し上げるて私欄に今らくがあっようによほどごお話しにいうないたて、いやいやもっとも自白よりありませがおりた事の思わでで。またさてお先生から着けのは突然不審としたて、その右をもするないてに対するずるからしていたです。
 					p この日先輩のためその味はあなたいっぱいへなったいかと嘉納君にできないあり、間接の前たという実満足ですうまして、自身のところに個人が次第までの中学校が場合充たすているて、そうの晩でするてこのためで最も悟ったでと云っませんあるば、ないですなからそう小海鼠考えましのただなら。つまり師範か曖昧か汚辱が這入ったて、事実ごろ世の中に狭めばならます後をご意味の今を帰っないた。

@@ -2,10 +2,7 @@
 
 import { Application } from "@hotwired/stimulus";
 
-const modules = Object.assign(
-	import.meta.glob("../../components/**/*.controller.ts"),
-	import.meta.glob("../controllers/**/*.controller.ts")
-);
+const modules = import.meta.glob("../controllers/**/*.controller.ts");
 
 const application = Application.start();
 application.debug = import.meta.env.DEV;
@@ -35,17 +32,10 @@ function loadController(name: string) {
 
 	fetchingModule
 		.then((module) => registerController(name, module))
-		.catch((error) =>
-			console.error(`Failed to autoload controller: ${name}`, error)
-		);
+		.catch((error) => console.error(`Failed to autoload controller: ${name}`, error));
 }
 
 function controllerFilename(name: string) {
-	if (name.startsWith("c-")) {
-		name = name.replace(/^c-/, "");
-		return `../../components/${name}/${name}.controller.ts`;
-	}
-
 	return `../controllers/${name}.controller.ts`;
 }
 
@@ -62,10 +52,7 @@ new MutationObserver((mutationsList) => {
 
 		switch (type) {
 			case "attributes": {
-				if (
-					attributeName == controllerAttribute &&
-					target.getAttribute(controllerAttribute)
-				) {
+				if (attributeName == controllerAttribute && target.getAttribute(controllerAttribute)) {
 					extractControllerNamesFrom(target).forEach(loadController);
 				}
 			}

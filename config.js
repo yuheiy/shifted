@@ -1,9 +1,5 @@
-const config = {
+module.exports = {
 	// root: `/`
 	// subdir: `/path/to/subdir/`
 	pathPrefix: "/",
-};
-
-module.exports = {
-	config,
 };

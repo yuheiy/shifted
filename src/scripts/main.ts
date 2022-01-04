@@ -1,7 +1,7 @@
 import "focus-options-polyfill";
 import "focus-visible";
 import "wicg-inert";
-import "../styles/main.scss";
+import "../styles/main.css";
 import "./lib/smooth-scroll";
 import "./lib/stimulus-autoloader";
 

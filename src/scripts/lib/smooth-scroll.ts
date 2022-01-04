@@ -9,9 +9,7 @@ gsap.registerPlugin(ScrollToPlugin);
 window.addEventListener(
 	"click",
 	(event) => {
-		const anchorElement = (
-			event.target as HTMLElement
-		).closest<HTMLAnchorElement>('a[href*="#"]');
+		const anchorElement = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="#"]');
 		const anchorHash = anchorElement?.hash;
 
 		if (!anchorHash) {

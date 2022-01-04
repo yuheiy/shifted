@@ -119,12 +119,5 @@ out
 
 # Project specific outputs
 /dist/
-/src/components/components.pug
-/src/components/components.scss
-/src/styles/settings.scss
-/src/styles/tools.scss
-/src/styles/vendors.scss
-/src/styles/objects.scss
-/src/styles/scopes.scss
-/src/styles/themes.scss
+/src/site/includes/components/.components.pug
 /stats.html

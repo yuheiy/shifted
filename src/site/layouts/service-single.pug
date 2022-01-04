@@ -1,10 +1,10 @@
 extends /layouts/base
 
 block content
-	.o-wrapper.o-stack-040.u-mt-064
+	main.wrapper.space-y-10.mt-16
 		h1= title
 
-		.o-frame.o-frame--16x9
-			img.u-width-full(src=image, alt="", decoding="async")
+		.aspect-w-16.aspect-h-9
+			img.object-cover(src=image, alt="", decoding="async")
 
-		.o-stack-024.s-prose!= content
+		.prose.space-y-6!= content

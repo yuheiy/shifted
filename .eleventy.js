@@ -1,7 +1,7 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { nanoid } = require("nanoid");
 const prettier = require("prettier");
-const { config } = require("./config");
+const config = require("./config");
 
 let prettierOptions;
 
@@ -34,8 +34,6 @@ module.exports = (eleventyConfig) => {
 
 		return content;
 	});
-
-	eleventyConfig.addWatchTarget("src/components/components.pug");
 
 	eleventyConfig.setBrowserSyncConfig({
 		server: null, // override

@@ -1,6 +1,6 @@
 import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
-import { config } from "./config";
+import config from "./config";
 
 export default defineConfig({
 	base: config.pathPrefix,

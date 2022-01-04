@@ -1,0 +1,6 @@
+.prose {
+	p {
+		max-width: theme("maxWidth.2xl");
+		line-height: theme("lineHeight.loose");
+	}
+}

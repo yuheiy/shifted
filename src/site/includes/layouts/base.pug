@@ -1,4 +1,4 @@
-include ../../../components/components
+include ../components/.components
 
 doctype html
 html(lang=metadata.lang)
@@ -15,11 +15,11 @@ html(lang=metadata.lang)
 		if manifest
 			each cssPath in manifest['src/scripts/main.ts'].css
 				link(rel="stylesheet", href=f.url(`/${cssPath}`))
-			script(type="module", src=f.url(`/${manifest['src/scripts/main.ts'].file}`))
+			script(type="module", src=f.url(`/${manifest["src/scripts/main.ts"].file}`))
 
 		if env === 'development'
-			script(type="module", src=f.url('/@vite/client'))
-			script(type="module", src=f.url('/src/scripts/main.ts'))
+			script(type="module", src=f.url("/@vite/client"))
+			script(type="module", src=f.url("/src/scripts/main.ts"))
 
 		meta(name="description", content=description)
 		meta(name="format-detection", content="telephone=no")
@@ -27,33 +27,73 @@ html(lang=metadata.lang)
 
 		meta(property="og:title", content=title || metadata.siteTitle)
 		meta(property="og:type", content="website")
-		meta(
-			property="og:image",
-			content=`${metadata.siteUrl}${f.url('/assets/images/ogp.png')}`
-		)
+		meta(property="og:image", content=`${metadata.siteUrl}${f.url('/assets/images/ogp.png')}`)
 		meta(property="og:url", content=`${metadata.siteUrl}${f.url(page.url)}`)
 		meta(property="og:description", content=description)
 		meta(property="og:site_name", content=metadata.siteTitle)
 		meta(property="og:locale", content=metadata.locale)
 
 		link(rel="canonical", href=`${metadata.siteUrl}${f.url(page.url)}`)
-		link(rel="icon", href=f.url('/favicon.ico'))
-		link(
-			rel="apple-touch-icon",
-			href=f.url('/assets/images/apple-touch-icon.png')
-		)
+		link(rel="icon", href=f.url("/favicon.ico"))
+		link(rel="apple-touch-icon", href=f.url("/assets/images/apple-touch-icon.png"))
 
-	+c-page
-		+c-page-head
+	body
+		header.sticky.top-0.right-0.bottom-0.z-10.text-white.bg-gray-900.shadow-md
+			nav.wrapper
+				.cluster.justify-between
+					a.py-3(href=f.url("/"))= metadata.siteTitle
 
-		.u-flex-1
-			block content
+					.contents(data-controller="modal-dialog-trigger")
+						button.py-3(type="button", aria-haspopup="dialog", data-action="modal-dialog-trigger#open") メニュー
 
-		.u-mt-064
+						template(data-modal-dialog-trigger-target="template")
+							.fixed.inset-0.z-20.text-white.bg-gray-900.opacity-0.scale-95.overflow-auto(
+								role="dialog",
+								aria-label="メニュー",
+								aria-modal="true",
+								data-controller="modal-dialog",
+								data-transition-enter-active="transition duration-300",
+								data-transition-enter-from="opacity-0 scale-95",
+								data-transition-enter-to="opacity-100 scale-100",
+								data-transition-leave-active="transition duration-300",
+								data-transition-leave-from="opacity-100 scale-100",
+								data-transition-leave-to="opacity-0 scale-95"
+							)&attributes(attributes)
+								.wrapper.space-y-10
+									.border-b.border-b-gray-500
+										.cluster.justify-between
+											a.py-3(href=f.url("/"), data-modal-dialog-target="autoFocus")= metadata.siteTitle
+											button.py-3(type="button", data-action="modal-dialog#close") 閉じる
+									p.flex
+										a.py-3(href=f.url("/services/")) サービス
+									ul.auto-grid
+										each page in collections.service
+											li
+												+service-card(page).u-height-full
+									p.flex
+										a.py-3(href=f.url("/about/")) 私たちについて
 
-		+c-base-breadcrumb({ items: f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true }) })
+		block content
 
-		+c-page-foot
+		.mt-16
+
+		//- https://css-tricks.com/a-clever-sticky-footer-technique/
+		.sticky.top-full
+			nav.bg-gray-50
+				.wrapper
+					ol.cluster
+						- const breadcrumbItems = f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true });
+						each item, index in breadcrumbItems
+							- const isSelf = breadcrumbItems.length - 1 === index;
+							li.flex.items-center(class=index && "before:mr-4 before:content-['>']")
+								a.py-3(href=!isSelf && f.url(item.url))= item.key
+
+			footer.text-white.bg-gray-900
+				.wrapper
+					ul.cluster
+						each item in [ ['サービス', '/services/'], ['私たちについて', '/about/'], ['ソースコード', 'https://github.com/yuheiy/shifted', true] ]
+							li(class=item[2] && "ml-auto")
+								a.block.py-3(href=f.url(item[1]))= item[0]
 
 		//- https://atfzl.com/don-t-attach-tooltips-to-document-body
 		#js-overlay-container

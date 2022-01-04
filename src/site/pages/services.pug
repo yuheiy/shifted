@@ -1,13 +1,12 @@
 extends /layouts/base
 
 block content
-	main
-		.o-wrapper.u-mt-064
-			h1= title
+	main.wrapper.mt-16
+		h1= title
 
-			.u-mt-040
+		.mt-10
 
-			ul.o-grid
-				each page in collections.service
-					li
-						+c-service-card(page).u-height-full
+		ul.auto-grid
+			each page in collections.service
+				li
+					+service-card(page).h-full

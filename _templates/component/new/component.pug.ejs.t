@@ -1,8 +1,8 @@
 ---
-to: src/components/<%- h.changeCase.param(name) %>/<%- h.changeCase.param(name) %>.pug
+to: src/site/includes/components/<%- h.changeCase.param(name) %>.pug
 ---
-mixin c-<%- h.changeCase.param(name) %>(props = {})
+mixin <%- h.changeCase.param(name) %>(props = {})
 	-
 		props = Object.assign({}, props);
 
-	.c-<%- h.changeCase.param(name) %><%- locals.controller ? `(data-controller="c-${h.changeCase.param(name)}")` : '' %>&attributes(attributes)
+	div<%- locals.controller ? `(data-controller="${h.changeCase.param(name)}")` : '' %>&attributes(attributes)

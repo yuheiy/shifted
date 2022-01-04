@@ -1,0 +1,30 @@
+mixin base-disclosure(props = {})
+	-
+		props = Object.assign({
+			isExpanded: false,
+			contentId: f.id(),
+		}, props);
+
+	.rounded-md.shadow-md.overflow-hidden(data-controller="base-disclosure")&attributes(attributes)
+		button.group.flex.gap-x-2.items-center.w-full.px-3.py-2.bg-gray-200(
+			class="rounded-t-[inherit]",
+			type="button",
+			aria-expanded=String(props.isExpanded),
+			aria-controls=props.contentId,
+			data-base-disclosure-target="button",
+			data-action="base-disclosure#toggle"
+		)
+			svg.w-3.h-3.transition-transform(
+				class="group-aria-expanded:rotate-90",
+				width="0.75em",
+				height="0.75em",
+				viewBox="0 0 24 24"
+			)
+				path(d="M21 12.3923L3 22.7846L3 2L21 12.3923Z")
+			= props.summary
+		.p-3(
+			id=props.contentId,
+			data-base-disclosure-target="content",
+			style=!props.isExpanded && { display: "none" }
+		)
+			block
