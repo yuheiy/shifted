@@ -97,7 +97,11 @@ function isFormField(element: HTMLElement): boolean {
 	return (
 		name === "select" ||
 		name === "textarea" ||
-		(name === "input" && type !== "submit" && type !== "reset" && type !== "checkbox" && type !== "radio") ||
+		(name === "input" &&
+			type !== "submit" &&
+			type !== "reset" &&
+			type !== "checkbox" &&
+			type !== "radio") ||
 		element.isContentEditable
 	);
 }
