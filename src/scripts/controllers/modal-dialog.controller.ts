@@ -50,7 +50,7 @@ export default class extends Controller {
 	}
 
 	async close() {
-		await (this as any).leave();
+		await this.leave();
 		this.element.remove();
 	}
 }
@@ -97,11 +97,7 @@ function isFormField(element: HTMLElement): boolean {
 	return (
 		name === "select" ||
 		name === "textarea" ||
-		(name === "input" &&
-			type !== "submit" &&
-			type !== "reset" &&
-			type !== "checkbox" &&
-			type !== "radio") ||
+		(name === "input" && type !== "submit" && type !== "reset" && type !== "checkbox" && type !== "radio") ||
 		element.isContentEditable
 	);
 }
