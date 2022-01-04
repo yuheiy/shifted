@@ -39,7 +39,7 @@ html(lang=metadata.lang)
 
 	body
 		header.sticky.top-0.right-0.bottom-0.z-10.text-white.bg-gray-900.shadow-md
-			nav.wrapper
+			nav.centered
 				.cluster.justify-between
 					a.py-3(href=f.url("/"))= metadata.siteTitle
 
@@ -59,7 +59,7 @@ html(lang=metadata.lang)
 								data-transition-leave-from="opacity-100 scale-100",
 								data-transition-leave-to="opacity-0 scale-95"
 							)&attributes(attributes)
-								.wrapper.space-y-10
+								.centered.space-y-10
 									.border-b.border-b-gray-500
 										.cluster.justify-between
 											a.py-3(href=f.url("/"), data-modal-dialog-target="autoFocus")= metadata.siteTitle
@@ -80,7 +80,7 @@ html(lang=metadata.lang)
 		//- https://css-tricks.com/a-clever-sticky-footer-technique/
 		.sticky.top-full
 			nav.bg-gray-50
-				.wrapper
+				.centered
 					ol.cluster
 						- const breadcrumbItems = f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true });
 						each item, index in breadcrumbItems
@@ -89,7 +89,7 @@ html(lang=metadata.lang)
 								a.py-3(href=!isSelf && f.url(item.url))= item.key
 
 			footer.text-white.bg-gray-900
-				.wrapper
+				.centered
 					ul.cluster
 						each item in [ ['サービス', '/services/'], ['私たちについて', '/about/'], ['ソースコード', 'https://github.com/yuheiy/shifted', true] ]
 							li(class=item[2] && "ml-auto")

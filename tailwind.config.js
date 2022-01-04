@@ -36,6 +36,18 @@ const autoGrid = plugin(({ addComponents, matchUtilities, theme }) => {
 	);
 });
 
+const centered = plugin(({ addComponents, theme }) => {
+	addComponents({
+		".centered": {
+			maxWidth: "80rem",
+			marginRight: "auto",
+			marginLeft: "auto",
+			paddingRight: theme("spacing.4"),
+			paddingLeft: theme("spacing.4"),
+		},
+	});
+});
+
 const cluster = plugin(({ addComponents, theme }) => {
 	addComponents({
 		".cluster": {
@@ -86,18 +98,6 @@ const switcher = plugin(({ addComponents, matchUtilities, theme }) => {
 	);
 });
 
-const wrapper = plugin(({ addComponents, theme }) => {
-	addComponents({
-		".wrapper": {
-			maxWidth: "80rem",
-			marginRight: "auto",
-			marginLeft: "auto",
-			paddingRight: theme("spacing.4"),
-			paddingLeft: theme("spacing.4"),
-		},
-	});
-});
-
 module.exports = {
 	content: ["./src/**/*.{pug,ts}"],
 	theme: {
@@ -108,8 +108,8 @@ module.exports = {
 		require("@tailwindcss/line-clamp"),
 		require("tailwindcss-aria-attributes"),
 		autoGrid,
+		centered,
 		cluster,
 		switcher,
-		wrapper,
 	],
 };
