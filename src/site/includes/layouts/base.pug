@@ -66,7 +66,7 @@ html(lang=metadata.lang)
 											button.py-3(type="button", data-action="modal-dialog#close") 閉じる
 									p.flex
 										a.py-3(href=f.url("/services/")) サービス
-									ul.auto-grid
+									ul.auto-grid-sm
 										each page in collections.service
 											li
 												+service-card(page).u-height-full

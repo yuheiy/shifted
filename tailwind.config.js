@@ -1,102 +1,135 @@
 const plugin = require("tailwindcss/plugin");
 
-const autoGrid = plugin(({ addComponents, matchUtilities, theme }) => {
-	addComponents({
-		".auto-grid": {
-			"--tw-auto-grid-cell": "24rem",
-			display: "grid",
-			gridTemplateColumns: "repeat(auto-fill, minmax(min(var(--tw-auto-grid-cell), 100%), 1fr))",
-			gap: theme("spacing.4"),
-		},
-	});
+const autoGrid = plugin(
+	function ({ matchComponents, theme }) {
+		const values = theme("autoGrid.cell");
 
-	matchUtilities(
-		{
-			"auto-grid": (value) => ({
-				"--tw-auto-grid-cell": value,
-			}),
-		},
-		{
-			values: {
-				"3xs": "16rem",
-				"2xs": "18rem",
-				xs: "20rem",
-				sm: "24rem",
-				md: "28rem",
-				lg: "32rem",
-				xl: "36rem",
-				"2xl": "42rem",
-				"3xl": "48rem",
-				"4xl": "56rem",
-				"5xl": "64rem",
-				"6xl": "72rem",
-				"7xl": "80rem",
+		matchComponents(
+			{
+				"auto-grid": (value) => ({
+					"--tw-auto-grid-cell": value,
+					display: "grid",
+					gridTemplateColumns: "repeat(auto-fill, minmax(min(var(--tw-auto-grid-cell), 100%), 1fr))",
+					gap: theme("autoGrid.spacing"),
+				}),
 			},
-		}
-	);
-});
-
-const centered = plugin(({ addComponents, theme }) => {
-	addComponents({
-		".centered": {
-			maxWidth: "80rem",
-			marginRight: "auto",
-			marginLeft: "auto",
-			paddingRight: theme("spacing.4"),
-			paddingLeft: theme("spacing.4"),
-		},
-	});
-});
-
-const cluster = plugin(({ addComponents, theme }) => {
-	addComponents({
-		".cluster": {
-			display: "flex",
-			flexWrap: "wrap",
-			gap: theme("spacing.4"),
-		},
-	});
-});
-
-const switcher = plugin(({ addComponents, matchUtilities, theme }) => {
-	addComponents({
-		".switcher": {
-			"--tw-switcher-threshold": "32rem",
-			display: "flex",
-			flexWrap: "wrap",
-			gap: theme("spacing.4"),
-			"& > :where(*)": {
-				flexBasis: "calc((var(--tw-switcher-threshold) - 100%) * 999)",
-				flexGrow: 1,
+			{ values }
+		);
+	},
+	{
+		theme: {
+			autoGrid: {
+				cell: {
+					"3xs": "16rem",
+					"2xs": "18rem",
+					xs: "20rem",
+					sm: "24rem",
+					md: "28rem",
+					lg: "32rem",
+					xl: "36rem",
+					"2xl": "42rem",
+					"3xl": "48rem",
+					"4xl": "56rem",
+					"5xl": "64rem",
+					"6xl": "72rem",
+					"7xl": "80rem",
+				},
+				spacing: "1rem",
 			},
 		},
-	});
-
-	matchUtilities(
-		{
-			switcher: (value) => ({
-				"--tw-switcher-threshold": value,
-			}),
+		variants: {
+			autoGrid: ["responsive"],
 		},
-		{
-			values: {
-				"3xs": "16rem",
-				"2xs": "18rem",
-				xs: "20rem",
-				sm: "24rem",
-				md: "28rem",
-				lg: "32rem",
-				xl: "36rem",
-				"2xl": "42rem",
-				"3xl": "48rem",
-				"4xl": "56rem",
-				"5xl": "64rem",
-				"6xl": "72rem",
-				"7xl": "80rem",
+	}
+);
+
+const centered = plugin(
+	function ({ addComponents, theme }) {
+		addComponents({
+			".centered": {
+				maxWidth: theme("centered.maxWidth"),
+				marginRight: "auto",
+				marginLeft: "auto",
+				paddingRight: theme("centered.spacing"),
+				paddingLeft: theme("centered.spacing"),
 			},
-		}
-	);
-});
+		});
+	},
+	{
+		theme: {
+			centered: {
+				maxWidth: "80rem",
+				spacing: "1rem",
+			},
+		},
+	}
+);
+
+const cluster = plugin(
+	function ({ addComponents, theme }) {
+		addComponents({
+			".cluster": {
+				display: "flex",
+				flexWrap: "wrap",
+				gap: theme("cluster.spacing"),
+			},
+		});
+	},
+	{
+		theme: {
+			cluster: {
+				spacing: "1rem",
+			},
+		},
+	}
+);
+
+const switcher = plugin(
+	function ({ matchComponents, theme }) {
+		const values = theme("switcher.threshold");
+
+		matchComponents(
+			{
+				switcher: (value) => ({
+					"--tw-switcher-threshold": value,
+					display: "flex",
+					flexWrap: "wrap",
+					gap: theme("switcher.spacing"),
+					"& > :where(*)": {
+						flexBasis: "calc((var(--tw-switcher-threshold) - 100%) * 999)",
+						flexGrow: 1,
+					},
+				}),
+			},
+			{ values }
+		);
+	},
+	{
+		theme: {
+			switcher: {
+				threshold: {
+					"3xs": "16rem",
+					"2xs": "18rem",
+					xs: "20rem",
+					sm: "24rem",
+					md: "28rem",
+					lg: "32rem",
+					xl: "36rem",
+					"2xl": "42rem",
+					"3xl": "48rem",
+					"4xl": "56rem",
+					"5xl": "64rem",
+					"6xl": "72rem",
+					"7xl": "80rem",
+				},
+				spacing: "1rem",
+			},
+		},
+		variants: {
+			switcher: ["responsive"],
+		},
+	}
+);
 
 module.exports = {
 	content: ["./src/**/*.{pug,ts}"],
