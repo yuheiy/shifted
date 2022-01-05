@@ -9,7 +9,8 @@ const autoGrid = plugin(
 				"auto-grid": (value) => ({
 					"--tw-auto-grid-cell": value,
 					display: "grid",
-					gridTemplateColumns: "repeat(auto-fill, minmax(min(var(--tw-auto-grid-cell), 100%), 1fr))",
+					gridTemplateColumns:
+						"repeat(auto-fill, minmax(min(var(--tw-auto-grid-cell), 100%), 1fr))",
 					gap: theme("autoGrid.spacing"),
 				}),
 			},
