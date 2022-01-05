@@ -133,6 +133,47 @@ const switcher = plugin(
 	}
 );
 
+const withSidebar = plugin(
+	function ({ addComponents, theme }) {
+		const baseStyles = {
+			display: "flex",
+			flexWrap: "wrap",
+			gap: theme("withSidebar.spacing"),
+		};
+
+		const sidebarStyles = {
+			flexGrow: 1,
+		};
+
+		const contentStyles = {
+			flexBasis: 0,
+			flexGrow: 999,
+			minWidth: theme("withSidebar.contentMinWidth"),
+		};
+
+		addComponents({
+			".with-sidebar-left": {
+				...baseStyles,
+				"> :where(:first-child)": sidebarStyles,
+				"> :where(:last-child)": contentStyles,
+			},
+			".with-sidebar-right": {
+				...baseStyles,
+				"> :where(:first-child)": contentStyles,
+				"> :where(:last-child)": sidebarStyles,
+			},
+		});
+	},
+	{
+		theme: {
+			withSidebar: {
+				contentMinWidth: "50%",
+				spacing: "1rem",
+			},
+		},
+	}
+);
+
 module.exports = {
 	content: ["./src/**/*.{pug,ts}"],
 	theme: {
@@ -146,5 +187,6 @@ module.exports = {
 		centered,
 		cluster,
 		switcher,
+		withSidebar,
 	],
 };
