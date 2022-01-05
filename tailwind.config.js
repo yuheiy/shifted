@@ -97,7 +97,7 @@ const switcher = plugin(
 					display: "flex",
 					flexWrap: "wrap",
 					gap: theme("switcher.spacing"),
-					"& > :where(*)": {
+					"> :where(*)": {
 						flexBasis: "calc((var(--tw-switcher-threshold) - 100%) * 999)",
 						flexGrow: 1,
 					},
