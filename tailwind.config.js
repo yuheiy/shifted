@@ -48,6 +48,7 @@ const centered = plugin(
 	function ({ addComponents, theme }) {
 		addComponents({
 			".centered": {
+				boxSizing: "content-box",
 				maxWidth: theme("centered.maxWidth"),
 				marginRight: "auto",
 				marginLeft: "auto",
