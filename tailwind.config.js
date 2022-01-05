@@ -180,9 +180,9 @@ module.exports = {
 		extend: {},
 	},
 	plugins: [
+		require("tailwindcss-aria-attributes"),
 		require("@tailwindcss/aspect-ratio"),
 		require("@tailwindcss/line-clamp"),
-		require("tailwindcss-aria-attributes"),
 		autoGrid,
 		centered,
 		cluster,
