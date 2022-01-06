@@ -175,7 +175,7 @@ const withSidebar = plugin(
 );
 
 module.exports = {
-	content: ["./src/**/*.{pug,ts}"],
+	content: ["./src/**/*.{pug,md,js,ts}"],
 	theme: {
 		extend: {},
 	},
