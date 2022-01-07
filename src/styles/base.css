@@ -12,3 +12,8 @@ body {
 :focus:not(:focus-visible) {
 	outline: none;
 }
+
+img,
+video {
+	object-fit: cover;
+}
