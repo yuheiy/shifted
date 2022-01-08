@@ -4,7 +4,7 @@
 module.exports = {
 	rules: [
 		{
-			name: "pug/components",
+			name: "components",
 			dependencies: [
 				"src/site/includes/components/*.pug",
 				"!src/site/includes/components/.components.pug",
