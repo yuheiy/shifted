@@ -24,7 +24,6 @@
 		"concurrently": "^7.0.0",
 		"cross-env": "^7.0.3",
 		"drygen": "^0.0.4",
-		"postcss": "^8.4.5",
 		"postcss-hover-media-feature": "^1.0.1",
 		"postcss-import": "^14.0.2",
 		"prettier": "^2.5.1",
