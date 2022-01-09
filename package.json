@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"dev": "rimraf dist/ && concurrently --raw \"vite\" \"eleventy --serve\" \"drygen --watch\"",
+		"dev": "rimraf dist/ && concurrently --raw \"vite\" \"ELEVENTY_ENV=development eleventy --serve\" \"drygen --watch\"",
 		"build": "tsc && drygen && vite build && cross-env ELEVENTY_ENV=production eleventy && rimraf dist/manifest.json",
 		"preview": "vite preview",
 		"format": "prettier . --write"
