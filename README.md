@@ -180,7 +180,6 @@ import.meta.env.BASE_URL; // "/my-subdir/"
 
 ## 推奨ライブラリ
 
+- [eleventy-img](https://www.11ty.dev/docs/plugins/image/): 指定した画像を複数のサイズと形式で出力する Eleventy プラグイン
 - [eleventy-cache-assets](https://www.11ty.dev/docs/plugins/cache/): 外部ネットワークに依存する、取得に時間がかかるデータをキャッシュするための Eleventy プラグイン
-- [\<include-fragment> element](https://github.com/github/include-fragment-element): 指定した URL から HTML 片を読み込んで、ページの特定箇所に自動で挿入できるカスタム要素。コンテンツを非同期的に読み込む必要がある場合に便利
-- [unistore](https://github.com/developit/unistore): ミニマルな状態管理ライブラリ。[Stimulus](https://stimulus.hotwired.dev/) のコントローラー同士で状態を共有する場合などに便利
-- [Mitt](https://github.com/developit/mitt): ミニマルなイベントエミッター。[Vite](https://vitejs.dev/) 環境では Node.js の [Events モジュール](https://nodejs.org/api/events.html)が利用できないため、代替として採用できる
+- [Stimulus-Conductor](https://github.com/adrienpoly/stimulus-conductor): Stimulus コントローラーの親子関係を管理するためのコントローラー
