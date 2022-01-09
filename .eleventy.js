@@ -10,6 +10,9 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.setUseGitIgnore(false);
 
+	// will be avaible in 1.0.0
+	// eleventyConfig.addGlobalData("environment", process.env.ELEVENTY_ENV);
+
 	eleventyConfig.addFilter("uuid", randomUUID);
 
 	eleventyConfig.addCollection("service", (collection) => {
@@ -44,8 +47,8 @@ module.exports = (eleventyConfig) => {
 				dir: "dist",
 			},
 		],
-		ui: false,
-		ghostMode: false,
+		ui: false, // will be removeale in 1.0.0
+		ghostMode: false, // will be removeale in 1.0.0
 	});
 
 	// https://github.com/11ty/eleventy/issues/1523#issuecomment-733419587
