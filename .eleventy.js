@@ -1,5 +1,5 @@
+const { randomUUID } = require("crypto");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-const { nanoid } = require("nanoid");
 const prettier = require("prettier");
 const config = require("./config");
 
@@ -10,7 +10,7 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.setUseGitIgnore(false);
 
-	eleventyConfig.addFilter("id", nanoid);
+	eleventyConfig.addFilter("uuid", randomUUID);
 
 	eleventyConfig.addCollection("service", (collection) => {
 		return collection

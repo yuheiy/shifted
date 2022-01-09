@@ -10,7 +10,6 @@
 		"focus-options-polyfill": "^1.6.0",
 		"focus-visible": "^5.2.0",
 		"gsap": "^3.9.1",
-		"nanoid": "^3.1.30",
 		"stimulus-use": "^0.41.0",
 		"wicg-inert": "^3.1.1"
 	},
