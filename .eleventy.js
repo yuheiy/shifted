@@ -10,9 +10,6 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.setUseGitIgnore(false);
 
-	// will be avaible in 1.0.0
-	// eleventyConfig.addGlobalData("environment", process.env.ELEVENTY_ENV);
-
 	eleventyConfig.addFilter("uuid", randomUUID);
 
 	eleventyConfig.addCollection("service", (collection) => {
