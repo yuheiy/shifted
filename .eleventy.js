@@ -1,5 +1,6 @@
 const { randomUUID } = require("crypto");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const httpProxy = require("http-proxy");
 const prettier = require("prettier");
 const config = require("./config");
 
@@ -36,16 +37,15 @@ module.exports = (eleventyConfig) => {
 	});
 
 	eleventyConfig.setBrowserSyncConfig({
-		server: null, // override
-		proxy: "localhost:3000",
-		serveStatic: [
-			{
-				route: config.pathPrefix.slice(0, -1),
-				dir: "dist",
+		callbacks: {
+			ready: function (_err, browserSync) {
+				const proxy = httpProxy.createProxyServer();
+
+				browserSync.addMiddleware("*", (req, res) => {
+					proxy.web(req, res, { target: "http://localhost:3000" });
+				});
 			},
-		],
-		ui: false, // will be removeale in 1.0.0
-		ghostMode: false, // will be removeale in 1.0.0
+		},
 	});
 
 	// https://github.com/11ty/eleventy/issues/1523#issuecomment-733419587
