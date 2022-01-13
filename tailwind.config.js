@@ -2,15 +2,13 @@ const plugin = require("tailwindcss/plugin");
 
 const autoGrid = plugin(
 	function ({ matchComponents, theme }) {
-		const values = theme("autoGrid.cell");
+		const values = theme("autoGrid.min");
 
 		matchComponents(
 			{
 				"auto-grid": (value) => ({
-					"--tw-auto-grid-cell": value,
 					display: "grid",
-					gridTemplateColumns:
-						"repeat(auto-fill, minmax(min(var(--tw-auto-grid-cell), 100%), 1fr))",
+					gridTemplateColumns: `repeat(auto-fill, minmax(min(${value}, 100%), 1fr))`,
 					gap: theme("autoGrid.spacing"),
 				}),
 			},
@@ -20,7 +18,7 @@ const autoGrid = plugin(
 	{
 		theme: {
 			autoGrid: {
-				cell: {
+				min: {
 					"3xs": "16rem",
 					"2xs": "18rem",
 					xs: "20rem",
@@ -49,19 +47,19 @@ const centered = plugin(
 		addComponents({
 			".centered": {
 				boxSizing: "content-box",
-				maxWidth: theme("centered.maxWidth"),
+				maxWidth: theme("centered.max"),
 				marginRight: "auto",
 				marginLeft: "auto",
-				paddingRight: theme("centered.spacing"),
-				paddingLeft: theme("centered.spacing"),
+				paddingRight: theme("centered.gutter"),
+				paddingLeft: theme("centered.gutter"),
 			},
 		});
 	},
 	{
 		theme: {
 			centered: {
-				maxWidth: "80rem",
-				spacing: "1rem",
+				max: "80rem",
+				gutter: "1rem",
 			},
 		},
 	}
@@ -93,12 +91,11 @@ const switcher = plugin(
 		matchComponents(
 			{
 				switcher: (value) => ({
-					"--tw-switcher-threshold": value,
 					display: "flex",
 					flexWrap: "wrap",
 					gap: theme("switcher.spacing"),
 					"> :where(*)": {
-						flexBasis: "calc((var(--tw-switcher-threshold) - 100%) * 999)",
+						flexBasis: `calc((${value} - 100%) * 999)`,
 						flexGrow: 1,
 					},
 				}),
@@ -148,7 +145,7 @@ const withSidebar = plugin(
 		const contentStyles = {
 			flexBasis: 0,
 			flexGrow: 999,
-			minWidth: theme("withSidebar.contentMinWidth"),
+			minWidth: theme("withSidebar.contentMin"),
 		};
 
 		addComponents({
@@ -167,7 +164,7 @@ const withSidebar = plugin(
 	{
 		theme: {
 			withSidebar: {
-				contentMinWidth: "50%",
+				contentMin: "50%",
 				spacing: "1rem",
 			},
 		},
