@@ -21,7 +21,8 @@ html(lang=metadata.lang)
 			script(type="module", src=f.url("/@vite/client"))
 			script(type="module", src=f.url("/src/scripts/main.ts"))
 
-		meta(name="description", content=description)
+		if description
+			meta(name="description", content=description)
 		meta(name="format-detection", content="telephone=no")
 		meta(name="twitter:card", content="summary_large_image")
 
@@ -29,7 +30,8 @@ html(lang=metadata.lang)
 		meta(property="og:type", content="website")
 		meta(property="og:image", content=`${metadata.siteUrl}${f.url('/assets/images/ogp.png')}`)
 		meta(property="og:url", content=`${metadata.siteUrl}${f.url(page.url)}`)
-		meta(property="og:description", content=description)
+		if description
+			meta(property="og:description", content=description)
 		meta(property="og:site_name", content=metadata.siteTitle)
 		meta(property="og:locale", content=metadata.locale)
 
@@ -79,14 +81,15 @@ html(lang=metadata.lang)
 
 		//- https://css-tricks.com/a-clever-sticky-footer-technique/
 		.sticky.top-full
-			nav.bg-gray-50
-				.centered
-					ol.cluster
-						- const breadcrumbItems = f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true });
-						each item, index in breadcrumbItems
-							- const isSelf = breadcrumbItems.length - 1 === index;
-							li.flex.items-center(class=index && "before:mr-4 before:content-['>']")
-								a.py-3(href=!isSelf && f.url(item.url))= item.key
+			if eleventyNavigation
+				nav.bg-gray-50
+					.centered
+						ol.cluster
+							- const breadcrumbItems = f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true });
+							each item, index in breadcrumbItems
+								- const isSelf = breadcrumbItems.length - 1 === index;
+								li.flex.items-center(class=index && "before:mr-4 before:content-['>']")
+									a.py-3(href=!isSelf && f.url(item.url))= item.key
 
 			footer.text-white.bg-gray-900
 				.centered
