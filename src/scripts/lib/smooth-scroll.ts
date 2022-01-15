@@ -42,10 +42,11 @@ function isModifiedEvent(event: MouseEvent) {
 }
 
 function scrollIntoView(element: HTMLElement) {
+	const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion)").matches;
 	const style = getComputedStyle(element);
 
 	gsap.to(window, {
-		duration: 0.5,
+		duration: shouldReduceMotion ? 0 : 0.5,
 		scrollTo: {
 			...ScrollToPlugin.getOffset(element, window),
 			offsetX: parseFloat((style as any).scrollMarginLeft),
