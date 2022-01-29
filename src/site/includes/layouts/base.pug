@@ -46,7 +46,7 @@ html(lang=metadata.lang)
 					a.py-3(href=f.url("/"))= metadata.siteTitle
 
 					.contents(data-controller="modal-dialog-trigger")
-						button.py-3(type="button", aria-haspopup="dialog", data-action="modal-dialog-trigger#open") メニュー
+						button.py-3(type="button", data-action="modal-dialog-trigger#open") メニュー
 
 						template(data-modal-dialog-trigger-target="template")
 							.fixed.inset-0.z-20.text-white.bg-gray-900.opacity-0.scale-95.overflow-auto(

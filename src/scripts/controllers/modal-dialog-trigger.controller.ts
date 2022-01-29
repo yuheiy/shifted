@@ -6,11 +6,7 @@ const containerElement = document.querySelector("#js-overlay-container");
  * @example
  * ```html
  * <div data-controller="modal-dialog-trigger">
- *   <button
- *     type="button"
- *     aria-haspopup="dialog"
- *     data-action="modal-dialog-trigger#open"
- *   >
+ *   <button type="button" data-action="modal-dialog-trigger#open">
  *     さらに詳しく
  *   </button>
  *   <template data-modal-dialog-trigger-target="template">
