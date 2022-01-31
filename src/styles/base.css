@@ -1,3 +1,9 @@
+html {
+	text-underline-position: under;
+	line-break: normal;
+	overflow-wrap: break-word;
+}
+
 /* https://css-tricks.com/a-clever-sticky-footer-technique/ */
 html,
 body {
