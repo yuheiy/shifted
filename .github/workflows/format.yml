@@ -2,9 +2,6 @@ name: Format Code
 
 on: push
 
-env:
-    node_version: 16
-
 jobs:
     format:
         runs-on: ubuntu-latest
@@ -12,7 +9,7 @@ jobs:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
               with:
-                  node-version: ${{ env.node_version }}
+                  node-version-file: ".nvmrc"
             - run: npm install
             - run: npm run format
               continue-on-error: true
