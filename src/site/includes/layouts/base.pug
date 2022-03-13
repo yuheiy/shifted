@@ -5,6 +5,7 @@ html(lang=metadata.lang)
 	head
 		meta(charset=metadata.encoding)
 		meta(name="viewport", content="width=device-width, initial-scale=1")
+		meta(name="format-detection", content="telephone=no")
 
 		title
 			if title
@@ -23,7 +24,6 @@ html(lang=metadata.lang)
 
 		if description
 			meta(name="description", content=description)
-		meta(name="format-detection", content="telephone=no")
 		meta(name="twitter:card", content="summary_large_image")
 
 		meta(property="og:title", content=title || metadata.siteTitle)
