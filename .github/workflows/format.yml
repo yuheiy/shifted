@@ -12,7 +12,8 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
-            - uses: actions/setup-node@v2
+            - name: Setup node
+              uses: actions/setup-node@v2
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -20,6 +21,8 @@ jobs:
             - run: npm install
 
             - run: npm run format
-            - uses: stefanzweifel/git-auto-commit-action@v4
+
+            - name: Commit changes
+              uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: "[ci] npm run format"
