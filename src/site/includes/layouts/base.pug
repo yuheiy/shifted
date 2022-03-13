@@ -39,8 +39,8 @@ html(lang=metadata.lang)
 		link(rel="icon", href=f.url("/favicon.ico"))
 		link(rel="apple-touch-icon", href=f.url("/assets/images/apple-touch-icon.png"))
 
-	body
-		header.sticky.top-0.right-0.bottom-0.z-10.text-white.bg-gray-900.shadow-md
+	body.pt-12
+		header.fixed.top-0.inset-x-0.z-10.text-white.bg-gray-900.shadow-md
 			nav.centered
 				.cluster.justify-between
 					a.py-3(href=f.url("/"))= metadata.siteTitle
