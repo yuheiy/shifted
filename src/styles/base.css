@@ -1,6 +1,7 @@
 html {
-	text-underline-position: under;
+	hyphens: auto;
 	line-break: normal;
+	text-underline-position: under;
 	overflow-wrap: break-word;
 }
 
@@ -18,4 +19,18 @@ body {
 img,
 video {
 	object-fit: cover;
+}
+
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font: inherit;
+	letter-spacing: inherit;
 }
