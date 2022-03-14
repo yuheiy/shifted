@@ -11,7 +11,7 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.setUseGitIgnore(false);
 
-	eleventyConfig.addFilter("uuid", randomUUID);
+	eleventyConfig.addFilter("id", randomUUID);
 
 	eleventyConfig.addCollection("service", (collection) => {
 		return collection

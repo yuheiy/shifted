@@ -2,7 +2,7 @@ mixin base-disclosure(props = {})
 	-
 		props = Object.assign({
 			isExpanded: false,
-			contentId: f.uuid(),
+			contentId: f.id(),
 		}, props);
 
 	.rounded-md.shadow-md.overflow-hidden(data-controller="base-disclosure")&attributes(attributes)
