@@ -34,3 +34,7 @@ textarea {
 	font: inherit;
 	letter-spacing: inherit;
 }
+
+select {
+	appearance: none;
+}
