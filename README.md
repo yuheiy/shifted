@@ -181,5 +181,4 @@ import.meta.env.BASE_URL; // "/my-subdir/"
 ## 推奨ライブラリ
 
 - [eleventy-img](https://www.11ty.dev/docs/plugins/image/): 指定した画像を複数のサイズと形式で出力する Eleventy プラグイン
-- [eleventy-cache-assets](https://www.11ty.dev/docs/plugins/cache/): 外部ネットワークに依存する、取得に時間がかかるデータをキャッシュするための Eleventy プラグイン
-- [Stimulus-Conductor](https://github.com/adrienpoly/stimulus-conductor): Stimulus コントローラーの親子関係を管理するためのコントローラー
+- [eleventy-fetch](https://www.11ty.dev/docs/plugins/fetch/): 外部ネットワークに依存する、取得に時間がかかるデータをキャッシュするための Eleventy プラグイン

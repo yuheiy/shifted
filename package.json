@@ -16,10 +16,10 @@
 	"devDependencies": {
 		"@11ty/eleventy": "^1.0.0",
 		"@11ty/eleventy-navigation": "^0.3.2",
-		"@prettier/plugin-pug": "^1.19.2",
+		"@prettier/plugin-pug": "^1.19.3",
 		"@tailwindcss/aspect-ratio": "^0.4.0",
 		"@wordpress/browserslist-config": "^4.1.2",
-		"autoprefixer": "^10.4.2",
+		"autoprefixer": "^10.4.3",
 		"concurrently": "^7.0.0",
 		"cross-env": "^7.0.3",
 		"drygen": "^0.0.5",
