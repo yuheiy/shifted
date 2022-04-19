@@ -31,7 +31,7 @@ block content
 			ol.mt-8.divide-y
 				each page in Array.from(collections.blog).reverse()
 					li
-						a.flex.justify-between.items-center.py-3(href=f.url(page.url))
+						a.flex.justify-between.items-center.gap-x-6.py-3(href=f.url(page.url))
 							span= page.data.title
 							time.text-sm(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
 
