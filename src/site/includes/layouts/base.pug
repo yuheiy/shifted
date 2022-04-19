@@ -4,7 +4,7 @@ doctype html
 html(lang=metadata.lang)
 	head
 		meta(charset=metadata.encoding)
-		meta(name="viewport", content="width=device-width, initial-scale=1")
+		meta(name="viewport", content="width=device-width")
 		meta(name="format-detection", content="telephone=no")
 
 		title
@@ -39,64 +39,43 @@ html(lang=metadata.lang)
 		link(rel="icon", href=f.url("/favicon.ico"))
 		link(rel="apple-touch-icon", href=f.url("/assets/images/apple-touch-icon.png"))
 
-	body.pt-12
-		header.fixed.top-0.inset-x-0.z-10.text-white.bg-gray-900.shadow-md
-			nav.centered
-				.cluster.justify-between
-					a.py-3(href=f.url("/"))= metadata.siteTitle
-
-					.contents(data-controller="modal-dialog-trigger")
-						button.py-3(type="button", data-action="modal-dialog-trigger#open") メニュー
-
-						template(data-modal-dialog-trigger-target="template")
-							.fixed.inset-0.z-20.text-white.bg-gray-900.opacity-0.scale-95.overflow-auto(
+	body.text-slate-500.bg-white
+		header.fixed.top-0.inset-x-0.z-10.text-sm.font-bold.bg-white.border-b.border-slate-300(
+			x-data,
+			x-init="new ResizeObserver(([entry]) => document.body.style.paddingTop = `${entry.contentRect.height}px`).observe($el)"
+		)
+			nav.container.flex.gap-x-6.justify-between
+				a.py-3(href=f.url("/"))= metadata.siteTitle
+				.contents(x-data="dialog")
+					button.py-3(type="button", @click="isOpen = true") メニュー
+					template(x-teleport="#js-overlay-container")
+						div
+							.fixed.inset-0.z-20(class="bg-black/50", x-show="isOpen", x-transition.opacity)
+							.fixed.inset-0.right-16.z-20.max-w-2xl.py-5.bg-white(
 								role="dialog",
 								aria-label="メニュー",
-								aria-modal="true",
-								data-controller="modal-dialog",
-								data-transition-enter-active="transition duration-300",
-								data-transition-enter-from="opacity-0 scale-95",
-								data-transition-enter-to="opacity-100 scale-100",
-								data-transition-leave-active="transition duration-300",
-								data-transition-leave-from="opacity-100 scale-100",
-								data-transition-leave-to="opacity-0 scale-95"
-							)&attributes(attributes)
-								.centered.space-y-10
-									.border-b.border-b-gray-500
-										.cluster.justify-between
-											a.py-3(href=f.url("/"), data-modal-dialog-target="autoFocus")= metadata.siteTitle
-											button.py-3(type="button", data-action="modal-dialog#close") 閉じる
-									p.flex
-										a.py-3(href=f.url("/services/")) サービス
-									ul.auto-grid-sm
-										each page in collections.service
-											li
-												+service-card(page).u-height-full
-									p.flex
-										a.py-3(href=f.url("/about/")) 私たちについて
+								x-bind="root",
+								x-show="isOpen",
+								x-transition:enter="transition duration-200",
+								x-transition:enter-start="-translate-x-full",
+								x-transition:enter-end="translate-x-0",
+								x-transition:leave="transition duration-200",
+								x-transition:leave-start="translate-x-0",
+								x-transition:leave-end="-translate-x-full",
+								@click.outside="isOpen = false"
+							)
+								ul.divide-y
+									each page, index in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
+										li
+											a.block.px-5.py-3(href=page[1], x-bind=index === 0 && "autoFocus")= page[0]
 
 		block content
 
-		.mt-16
-
-		//- https://css-tricks.com/a-clever-sticky-footer-technique/
-		.sticky.top-full
-			if eleventyNavigation
-				nav.bg-gray-50
-					.centered
-						ol.cluster
-							- const breadcrumbItems = f.eleventyNavigationBreadcrumb(collections.all, eleventyNavigation.key, { includeSelf: true });
-							each item, index in breadcrumbItems
-								- const isSelf = breadcrumbItems.length - 1 === index;
-								li.flex.items-center(class=index && "before:mr-4 before:content-['>']")
-									a.py-3(href=!isSelf && f.url(item.url))= item.key
-
-			footer.text-white.bg-gray-900
-				.centered
-					ul.cluster
-						each item in [ ['サービス', '/services/'], ['私たちについて', '/about/'], ['ソースコード', 'https://github.com/yuheiy/shifted', true] ]
-							li(class=item[2] && "ml-auto")
-								a.block.py-3(href=f.url(item[1]))= item[0]
+		footer.sticky.top-full.mt-20.text-sm.bg-slate-100
+			ul.container.flex.gap-x-6
+				each page in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
+					li
+						a.block.py-3(href=page[1])= page[0]
 
 		//- https://atfzl.com/don-t-attach-tooltips-to-document-body
 		#js-overlay-container

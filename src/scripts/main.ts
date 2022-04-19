@@ -1,9 +1,10 @@
+import "../styles/main.css";
 import "focus-options-polyfill";
 import "focus-visible";
 import "wicg-inert";
-import "../styles/main.css";
-import "./lib/smooth-scroll";
-import "./lib/stimulus-autoloader";
+import "./stores";
+import Alpine from "alpinejs";
+import components from "./components";
 
 declare global {
 	interface HTMLElement {
@@ -19,3 +20,8 @@ if (import.meta.env.DEV) {
 		DEV: import.meta.env.DEV,
 	});
 }
+
+Alpine.plugin(components);
+
+(window as any).Alpine = Alpine;
+Alpine.start();

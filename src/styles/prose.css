@@ -1,7 +1,3 @@
 .prose {
-	@apply text-base leading-loose;
-
-	p {
-		@apply max-w-2xl;
-	}
+	@apply space-y-6 text-base leading-relaxed;
 }

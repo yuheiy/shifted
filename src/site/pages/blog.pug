@@ -1,0 +1,14 @@
+extends /layouts/base
+
+block content
+	main
+		.container.flex.justify-center.items-center.flex-col.gap-y-6.py-16
+			p.text-5xl.text-slate-700.font-bold= title
+
+		.container.max-w-4xl
+			ol.divide-y
+				each page in Array.from(collections.blog).reverse()
+					li
+						a.flex.justify-between.items-center.py-3(href=f.url(page.url))
+							span= page.data.title
+							time.text-sm(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })

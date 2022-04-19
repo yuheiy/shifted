@@ -38,3 +38,7 @@ textarea {
 select {
 	appearance: none;
 }
+
+[x-cloak] {
+	display: none !important;
+}

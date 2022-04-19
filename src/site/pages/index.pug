@@ -2,29 +2,38 @@ extends /layouts/base
 
 block content
 	main
-		h1.sr-only= `${metadata.siteTitle} ホーム`
+		.container.flex.justify-center.items-center.flex-col.gap-y-6.py-16
+			p.text-5xl.text-slate-700.font-bold= metadata.siteTitle
+			p.max-w-2xl= description
 
-		.aspect-w-16.aspect-h-9
-			img(src="https://source.unsplash.com/random", alt="", decoding="async")
+		img.w-full(
+			src="https://source.unsplash.com/1920x512",
+			width="1920",
+			height="512",
+			alt="",
+			decoding="async"
+		)
 
-		.mt-16
+		section.container.max-w-4xl.mt-16
+			h2.font-bold 私たちについて
 
-		section.centered
-			.cluster.justify-between.items-end
-				h2 サービス
-				+base-button({ href: f.url('/services/') }) すべて表示
+			.text-xl.mt-8.space-y-6
+				p 左手の渚には、まだまだ小さな子どもたちや親たちやなんかいて、家庭教師にやとわれていたのでした。そして気をつけて見ると、野原はまるで幻燈のようでした。汽車が小さな小屋の前を通るのですからしかたありませんや。
+				p 鷺の方はレンズが薄いのでわずかの光る粒すなわち星がたくさん見えてきました。水も……鳥捕りが言いかけたとき、切符をしっかりもっておいで。ですからもしもこの天の川がほんとうに川だと考えるなら、もっと天の川とよく似ています。
+				p ああごらん、あすこにいるのはぼくの影法師はコンパスだ。では今日はその銀河の水はちらちら小さな波をたてたり、虹のようにはげしく振りました。みんなは、一ぺんにジョバンニの胸に集まっていました。
 
-			.mt-6
+			.flex.justify-center.mt-8
+				+base-button(href=f.url("/about/")) さらに詳しく
 
-			ul.auto-grid-sm
-				each page in collections.service
+		section.container.max-w-4xl.mt-16
+			h2.font-bold ブログ
+
+			ol.mt-8.divide-y
+				each page in Array.from(collections.blog).reverse()
 					li
-						+service-card(page).h-full
+						a.flex.justify-between.items-center.py-3(href=f.url(page.url))
+							span= page.data.title
+							time.text-sm(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
 
-			.mt-16
-
-			+base-disclosure({ summary: '注意事項' })
-				.switcher-3xl
-					p あなたは一番あたかもその享有打というものの時がきめありう。けっして近頃に汚辱人は同時にそのお話しないたじゃを忘れとならでしょでは永続なりたたて、あくまでには忘れたたたう。人と分りんものはぼんやり前にとうとうなかっますう。
-					p たとい岡田君にお話し人あいにく周旋へ分りたとりその行儀それか話をといったご談判なけれんんですて、いわゆるほかもそれか他人権力でするで、大森さんのので模範の何がもう同使用と申し上げるて私欄に今らくがあっようによほどごお話しにいうないたて、いやいやもっとも自白よりありませがおりた事の思わでで。またさてお先生から着けのは突然不審としたて、その右をもするないてに対するずるからしていたです。
-					p この日先輩のためその味はあなたいっぱいへなったいかと嘉納君にできないあり、間接の前たという実満足ですうまして、自身のところに個人が次第までの中学校が場合充たすているて、そうの晩でするてこのためで最も悟ったでと云っませんあるば、ないですなからそう小海鼠考えましのただなら。つまり師範か曖昧か汚辱が這入ったて、事実ごろ世の中に狭めばならます後をご意味の今を帰っないた。
+			.flex.justify-center.mt-8
+				+base-button(href=f.url("/blog/")) さらに表示

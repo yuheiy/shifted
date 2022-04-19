@@ -1,9 +1,3 @@
-mixin base-button(props = {})
-	-
-		props = Object.assign({}, props);
-
-	a.inline-flex.px-3.py-1.text-white.align-middle.bg-sky-600.rounded-md.shadow-sm.transition(
-		class="hover:bg-sky-700",
-		href=props.href
-	)&attributes(attributes)
+mixin base-button
+	a.inline-flex.align-middle.border.border-slate-300.px-3.py-2.text-sm.rounded-sm&attributes(attributes)
 		block

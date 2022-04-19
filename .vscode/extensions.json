@@ -1,3 +1,9 @@
 {
-	"recommendations": ["esbenp.prettier-vscode", "bradlc.vscode-tailwindcss", "csstools.postcss"]
+	"recommendations": [
+		"editorconfig.editorconfig",
+		"esbenp.prettier-vscode",
+		"bradlc.vscode-tailwindcss",
+		"csstools.postcss",
+		"adrianwilczynski.alpine-js-intellisense"
+	]
 }

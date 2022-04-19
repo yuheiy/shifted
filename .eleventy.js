@@ -1,5 +1,3 @@
-const { randomUUID } = require("crypto");
-const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const httpProxy = require("http-proxy");
 const prettier = require("prettier");
 const config = require("./config");
@@ -7,16 +5,10 @@ const config = require("./config");
 let prettierOptions;
 
 module.exports = (eleventyConfig) => {
-	eleventyConfig.addPlugin(eleventyNavigationPlugin);
-
 	eleventyConfig.setUseGitIgnore(false);
 
-	eleventyConfig.addFilter("id", randomUUID);
-
-	eleventyConfig.addCollection("service", (collection) => {
-		return collection
-			.getFilteredByGlob("src/site/pages/services/*.md")
-			.sort((a, b) => a.inputPath.localeCompare(b.inputPath));
+	eleventyConfig.addCollection("blog", (collection) => {
+		return collection.getFilteredByGlob("src/site/pages/blog/*.md");
 	});
 
 	eleventyConfig.addTransform("formatHTML", async (content, outputPath) => {

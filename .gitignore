@@ -2,5 +2,7 @@ node_modules/
 npm-debug.log*
 
 /dist/
+/src/scripts/components/index.ts
+/src/scripts/stores/index.ts
 /src/site/includes/components/.components.pug
 /stats.html

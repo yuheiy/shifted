@@ -1,180 +1,49 @@
 const plugin = require("tailwindcss/plugin");
 
-const autoGrid = plugin(
-	function ({ matchComponents, theme }) {
-		const values = theme("autoGrid.min");
+const rem = (px) => `${px / 16}rem`;
 
-		matchComponents(
-			{
-				"auto-grid": (value) => ({
-					display: "grid",
-					gridTemplateColumns: `repeat(auto-fill, minmax(min(${value}, 100%), 1fr))`,
-					gap: theme("autoGrid.spacing"),
-				}),
-			},
-			{ values }
-		);
-	},
-	{
-		theme: {
-			autoGrid: {
-				min: {
-					"3xs": "16rem",
-					"2xs": "18rem",
-					xs: "20rem",
-					sm: "24rem",
-					md: "28rem",
-					lg: "32rem",
-					xl: "36rem",
-					"2xl": "42rem",
-					"3xl": "48rem",
-					"4xl": "56rem",
-					"5xl": "64rem",
-					"6xl": "72rem",
-					"7xl": "80rem",
-				},
-				spacing: "1rem",
-			},
+// https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/
+const getFluidSize = (minSize, maxSize, minWidth = 640, maxWidth = 1280) => {
+	const v = (100 * (maxSize - minSize)) / (maxWidth - minWidth);
+	const r = (minWidth * maxSize - maxWidth * minSize) / (minWidth - maxWidth);
+
+	return `clamp(${rem(minSize)}, ${v.toPrecision(3)}vw + ${rem(r.toPrecision(3))}, ${rem(
+		maxSize
+	)})`;
+};
+
+const fluidText = plugin(function ({ matchUtilities }) {
+	matchUtilities({
+		"fluid-text": (value) => {
+			const [minSize, maxSize] = value.split(",").map((v) => {
+				const matched = /^(\d+)px$/.exec(v);
+				if (!matched) {
+					throw new Error(`"${v}" is not a valid value`);
+				}
+				return Number(matched[1]);
+			});
+
+			return {
+				"font-size": getFluidSize(minSize, maxSize),
+			};
 		},
-		variants: {
-			autoGrid: ["responsive"],
+	});
+});
+
+const container = plugin(function ({ addComponents }) {
+	addComponents({
+		".container": {
+			boxSizing: "content-box",
+			maxWidth: "80rem",
+			marginRight: "auto",
+			marginLeft: "auto",
+			paddingRight: "1.25rem",
+			paddingLeft: "1.25rem",
 		},
-	}
-);
-
-const centered = plugin(
-	function ({ addComponents, theme }) {
-		addComponents({
-			".centered": {
-				boxSizing: "content-box",
-				maxWidth: theme("centered.max"),
-				marginRight: "auto",
-				marginLeft: "auto",
-				paddingRight: theme("centered.gutter"),
-				paddingLeft: theme("centered.gutter"),
-			},
-		});
-	},
-	{
-		theme: {
-			centered: {
-				max: "80rem",
-				gutter: "1rem",
-			},
-		},
-	}
-);
-
-const cluster = plugin(
-	function ({ addComponents, theme }) {
-		addComponents({
-			".cluster": {
-				display: "flex",
-				flexWrap: "wrap",
-				gap: theme("cluster.spacing"),
-			},
-		});
-	},
-	{
-		theme: {
-			cluster: {
-				spacing: "1rem",
-			},
-		},
-	}
-);
-
-const switcher = plugin(
-	function ({ matchComponents, theme }) {
-		const values = theme("switcher.threshold");
-
-		matchComponents(
-			{
-				switcher: (value) => ({
-					display: "flex",
-					flexWrap: "wrap",
-					gap: theme("switcher.spacing"),
-					"> :where(*)": {
-						flexBasis: `calc((${value} - 100%) * 999)`,
-						flexGrow: 1,
-					},
-				}),
-			},
-			{ values }
-		);
-	},
-	{
-		theme: {
-			switcher: {
-				threshold: {
-					"3xs": "16rem",
-					"2xs": "18rem",
-					xs: "20rem",
-					sm: "24rem",
-					md: "28rem",
-					lg: "32rem",
-					xl: "36rem",
-					"2xl": "42rem",
-					"3xl": "48rem",
-					"4xl": "56rem",
-					"5xl": "64rem",
-					"6xl": "72rem",
-					"7xl": "80rem",
-				},
-				spacing: "1rem",
-			},
-		},
-		variants: {
-			switcher: ["responsive"],
-		},
-	}
-);
-
-const withSidebar = plugin(
-	function ({ addComponents, theme }) {
-		const baseStyles = {
-			display: "flex",
-			flexWrap: "wrap",
-			gap: theme("withSidebar.spacing"),
-		};
-
-		const sidebarStyles = {
-			flexGrow: 1,
-		};
-
-		const contentStyles = {
-			flexBasis: 0,
-			flexGrow: 999,
-			minWidth: theme("withSidebar.contentMin"),
-		};
-
-		addComponents({
-			".with-sidebar-left": {
-				...baseStyles,
-				"> :where(:first-child)": sidebarStyles,
-				"> :where(:last-child)": contentStyles,
-			},
-			".with-sidebar-right": {
-				...baseStyles,
-				"> :where(:first-child)": contentStyles,
-				"> :where(:last-child)": sidebarStyles,
-			},
-		});
-	},
-	{
-		theme: {
-			withSidebar: {
-				contentMin: "50%",
-				spacing: "1rem",
-			},
-		},
-	}
-);
+	});
+});
 
 module.exports = {
-	autoGrid,
-	centered,
-	cluster,
-	switcher,
-	withSidebar,
+	fluidText,
+	container,
 };

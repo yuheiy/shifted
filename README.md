@@ -10,7 +10,7 @@
   - [別のテンプレートエンジン](https://www.11ty.dev/docs/languages/)との入れ替えおよび併用も可能
 - [Tailwind CSS](https://tailwindcss.com/) の採用
 - [TypeScript](https://www.typescriptlang.org/) の採用
-- MPA（非 SPA）向けの JavaScript コンポーネント化ライブラリとして [Stimulus](https://stimulus.hotwired.dev/) を採用
+- MPA（非 SPA）向けの JavaScript フレームワークとして [Alpine.js](https://alpinejs.dev/) を採用
 - [Prettier](https://prettier.io/) の採用
 - [サブディレクトリでの公開](#サブディレクトリでの公開)に対応
 - Internet Explorer を除くモダンブラウザに向けた構成
@@ -54,8 +54,8 @@ npm run dev
 │   └── favicon.ico
 ├── src/
 │   ├── scripts/
-│   │   ├── controllers/
-│   │   │   └── modal-dialog.controller.ts
+│   │   ├── components/
+│   │   │   └── dialog.ts
 │   │   └── main.ts
 │   ├── site/
 │   │   ├── data/
@@ -83,9 +83,13 @@ npm run dev
 
 [Eleventy](https://www.11ty.dev/) で生成するページやそのデータファイル、その他 Eleventy に関するファイルを配置します。
 
-### `src/scripts/controllers` ディレクトリ
+### `src/scripts/components` ディレクトリ
 
-[Stimulus](https://stimulus.hotwired.dev/) コントローラーを配置します。
+[Alpine.js](https://alpinejs.dev/) のコンポーネントを配置します。
+
+### `src/scripts/stores` ディレクトリ
+
+[Alpine.js](https://alpinejs.dev/) の Store を配置します。
 
 ### `public` ディレクトリ
 
@@ -117,18 +121,6 @@ npm run dev
 
 ```bash
 npx hygen component new my-component
-```
-
-コンポーネント（コントローラー含む）:
-
-```bash
-npx hygen component new my-component --controller
-```
-
-コントローラー:
-
-```bash
-npx hygen controller new my-controller
 ```
 
 ページ:
