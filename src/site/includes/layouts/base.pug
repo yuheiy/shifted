@@ -51,17 +51,17 @@ html(lang=metadata.lang)
 					template(x-teleport="#js-overlay-container")
 						div
 							.fixed.inset-0.z-20(class="bg-black/50", x-show="isOpen", x-transition.opacity)
-							.fixed.inset-0.right-16.z-20.max-w-2xl.py-5.bg-white(
+							.fixed.inset-0.left-16.z-20.max-w-2xl.ml-auto.py-5.bg-white(
 								role="dialog",
 								aria-label="メニュー",
 								x-bind="root",
 								x-show="isOpen",
 								x-transition:enter="transition duration-200",
-								x-transition:enter-start="-translate-x-full",
+								x-transition:enter-start="translate-x-full",
 								x-transition:enter-end="translate-x-0",
 								x-transition:leave="transition duration-200",
 								x-transition:leave-start="translate-x-0",
-								x-transition:leave-end="-translate-x-full",
+								x-transition:leave-end="translate-x-full",
 								@click.outside="isOpen = false"
 							)
 								ul.divide-y
