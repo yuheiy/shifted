@@ -3,12 +3,12 @@ extends /layouts/base
 block content
 	main.container.max-w-xl
 		article
-			header.mt-16
-				h1.text-xl.font-bold= title
+			header
+				h1.mt-16.text-xl.font-bold= title
 				p.mt-2
-					time.text-sm(datetime=page.date)= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
+					time.text-sm(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
 
-			.border-t.mt-8.mb-12
+			.mt-8.mb-12.border-t
 
-			.prose.text-slate-700
+			.prose
 				!= content
