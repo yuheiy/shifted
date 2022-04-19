@@ -44,30 +44,29 @@ html(lang=metadata.lang)
 			x-data,
 			x-init="new ResizeObserver(([entry]) => document.body.style.paddingTop = `${entry.contentRect.height}px`).observe($el)"
 		)
-			nav.container.flex.gap-x-6.justify-between
+			nav.container.flex.gap-x-6.justify-between(x-data="dialog")
 				a.py-3(href=f.url("/"))= metadata.siteTitle
-				.contents(x-data="dialog")
-					button.py-3(type="button", @click="isOpen = true") メニュー
-					template(x-teleport="#js-overlay-container")
-						div
-							.fixed.inset-0.z-20(class="bg-black/50", x-show="isOpen", x-transition.opacity)
-							.fixed.inset-0.left-16.z-20.max-w-2xl.ml-auto.py-5.bg-white(
-								role="dialog",
-								aria-label="メニュー",
-								x-bind="root",
-								x-show="isOpen",
-								x-transition:enter="transition duration-200",
-								x-transition:enter-start="translate-x-full",
-								x-transition:enter-end="translate-x-0",
-								x-transition:leave="transition duration-200",
-								x-transition:leave-start="translate-x-0",
-								x-transition:leave-end="translate-x-full",
-								@click.outside="isOpen = false"
-							)
-								ul.divide-y
-									each page, index in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
-										li
-											a.block.px-5.py-3(href=page[1], x-bind=index === 0 && "autoFocus")= page[0]
+				button.py-3(type="button", @click="isOpen = true") メニュー
+				template(x-teleport="#js-overlay-container")
+					div
+						.fixed.inset-0.z-20(class="bg-black/50", x-show="isOpen", x-transition.opacity)
+						.fixed.inset-0.left-16.z-20.max-w-2xl.ml-auto.py-5.bg-white(
+							role="dialog",
+							aria-label="メニュー",
+							x-bind="root",
+							x-show="isOpen",
+							x-transition:enter="transition duration-200",
+							x-transition:enter-start="translate-x-full",
+							x-transition:enter-end="translate-x-0",
+							x-transition:leave="transition duration-200",
+							x-transition:leave-start="translate-x-0",
+							x-transition:leave-end="translate-x-full",
+							@click.outside="isOpen = false"
+						)
+							ul.divide-y
+								each page, index in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
+									li
+										a.block.px-5.py-3(href=page[1], x-bind=index === 0 && "autoFocus")= page[0]
 
 		block content
 
