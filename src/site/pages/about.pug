@@ -2,8 +2,7 @@ extends /layouts/base
 
 block content
 	main
-		.container.flex.items-center.flex-col.gap-y-6.py-16
-			h1.text-5xl.text-slate-700.font-bold= title
+		+page-header({ title })
 
 		img.w-full(
 			src="https://source.unsplash.com/1920x512",
