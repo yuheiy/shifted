@@ -2,9 +2,9 @@ import "../styles/main.css";
 import "focus-options-polyfill";
 import "focus-visible";
 import "wicg-inert";
-import "./stores";
 import Alpine from "alpinejs";
 import components from "./components";
+import stores from "./stores";
 
 declare global {
 	interface HTMLElement {
@@ -22,6 +22,7 @@ if (import.meta.env.DEV) {
 }
 
 Alpine.plugin(components);
+Alpine.plugin(stores);
 
 (window as any).Alpine = Alpine;
 Alpine.start();

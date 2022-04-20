@@ -1,3 +1,9 @@
 <% dependencies.forEach((dep) => { -%>
-import "./<%- relative(replaceExt(dep.path, "")) %>";
+import <%- camelCase(dep.name) %> from "./<%- relative(replaceExt(dep.path, "")) %>";
 <% }); -%>
+
+export default function (Alpine) {
+<% dependencies.forEach((dep) => { -%>
+	Alpine.store("<%- camelCase(dep.name) %>", <%- camelCase(dep.name) %>());
+<% }); -%>
+}
