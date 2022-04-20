@@ -4,10 +4,9 @@ block content
 	main
 		+page-header({ title })
 
-		img.w-full(
-			src="https://source.unsplash.com/1920x512",
-			width="1920",
-			height="512",
+		img.w-full.object-cover(
+			class="aspect-[3/1]",
+			src="https://source.unsplash.com/random",
 			alt="",
 			decoding="async"
 		)
