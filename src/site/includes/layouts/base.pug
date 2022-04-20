@@ -45,14 +45,14 @@ html(lang=metadata.lang)
 			x-data,
 			x-init="new ResizeObserver(([entry]) => document.documentElement.style.setProperty('--height-site-head', `${entry.contentRect.height}px`)).observe($el)"
 		)
-			nav(class="container flex gap-x-6 justify-between", x-data="dialog", x-id="['menu-trigger']")
+			div(class="container flex gap-x-6 justify-between", x-data="dialog", x-id="['menu-trigger']")
 				a(class="py-3", href=f.url("/"))= metadata.siteTitle
 				button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true") メニュー
 				template(x-teleport="#js-overlay-container")
 					div
 						div(class="fixed inset-0 z-20 bg-black/50", x-show="isOpen", x-transition.opacity)
 						div(
-							class="fixed inset-0 left-16 z-20 max-w-2xl ml-auto py-5 bg-white",
+							class="fixed inset-0 left-16 z-20 overflow-auto max-w-2xl ml-auto py-5 bg-white",
 							role="dialog",
 							:aria-labelledby="$id('menu-trigger')",
 							x-bind="root",
@@ -72,11 +72,12 @@ html(lang=metadata.lang)
 
 		block content
 
-		footer(class="sticky top-full mt-20 text-sm bg-slate-100")
-			ul(class="container flex gap-x-6")
-				each page in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
-					li
-						a(class="block py-3", href=page[1])= page[0]
+		footer(class="sticky top-full mt-20 py-2 text-sm bg-slate-100")
+			nav
+				ul(class="container flex gap-x-6")
+					each page in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
+						li
+							a(class="block py-3", href=page[1])= page[0]
 
 		//- https://atfzl.com/don-t-attach-tooltips-to-document-body
 		div#js-overlay-container
