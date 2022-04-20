@@ -45,16 +45,16 @@ html(lang=metadata.lang)
 			x-data,
 			x-init="new ResizeObserver(([entry]) => document.documentElement.style.setProperty('--height-site-head', `${entry.contentRect.height}px`)).observe($el)"
 		)
-			nav(class="container flex gap-x-6 justify-between", x-data="dialog")
+			nav(class="container flex gap-x-6 justify-between", x-data="dialog", x-id="['menu-trigger']")
 				a(class="py-3", href=f.url("/"))= metadata.siteTitle
-				button(class="py-3", type="button", @click="isOpen = true") メニュー
+				button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true") メニュー
 				template(x-teleport="#js-overlay-container")
 					div
 						div(class="fixed inset-0 z-20 bg-black/50", x-show="isOpen", x-transition.opacity)
 						div(
 							class="fixed inset-0 left-16 z-20 max-w-2xl ml-auto py-5 bg-white",
 							role="dialog",
-							aria-label="メニュー",
+							:aria-labelledby="$id('menu-trigger')",
 							x-bind="root",
 							x-show="isOpen",
 							x-transition:enter="transition duration-200",
