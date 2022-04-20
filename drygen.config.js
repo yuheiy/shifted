@@ -4,7 +4,7 @@
 module.exports = {
 	rules: [
 		{
-			name: "pug/components",
+			name: "components/.components.pug",
 			dependencies: [
 				"src/site/includes/components/*.pug",
 				"!src/site/includes/components/.components.pug",
@@ -17,7 +17,7 @@ module.exports = {
 			],
 		},
 		{
-			name: "ts/components",
+			name: "components/index.ts",
 			dependencies: ["src/scripts/components/*.ts", "!src/scripts/components/index.ts"],
 			outputs: [
 				{
@@ -27,7 +27,7 @@ module.exports = {
 			],
 		},
 		{
-			name: "ts/stores",
+			name: "stores/index.ts",
 			dependencies: ["src/scripts/stores/*.ts", "!src/scripts/stores/index.ts"],
 			outputs: [
 				{
