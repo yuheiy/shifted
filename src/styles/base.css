@@ -5,6 +5,10 @@ html {
 	overflow-wrap: break-word;
 }
 
+body {
+	padding-top: var(--height-site-head);
+}
+
 /* https://css-tricks.com/a-clever-sticky-footer-technique/ */
 html,
 body {
