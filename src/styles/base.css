@@ -20,11 +20,6 @@ body {
 	outline: none;
 }
 
-img,
-video {
-	object-fit: cover;
-}
-
 svg {
 	max-width: 100%;
 	height: auto;
