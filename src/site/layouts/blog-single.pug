@@ -1,14 +1,14 @@
 extends /layouts/base
 
 block content
-	main.container.max-w-xl
+	main(class="container max-w-xl")
 		article
 			header
-				h1.mt-16.text-xl.font-bold= title
-				p.mt-2
-					time.text-sm(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
+				h1(class="mt-16 text-xl font-bold")= title
+				p(class="mt-2 text-sm")
+					time(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
 
-			.mt-8.mb-12.border-t
+			div(class="mt-8 mb-12 border-t")
 
-			.prose
+			div(class="prose")
 				!= content

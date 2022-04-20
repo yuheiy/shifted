@@ -4,10 +4,10 @@ block content
 	main
 		+page-header({ title })
 
-		.container.max-w-4xl
-			ol.divide-y
+		div(class="container max-w-4xl")
+			ol(class="divide-y")
 				each page in Array.from(collections.blog).reverse()
 					li
-						a.flex.justify-between.items-center.gap-x-6.py-3(href=f.url(page.url))
-							span= page.data.title
-							time.text-sm(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
+						a(class="flex justify-between items-center gap-x-6 py-3", href=f.url(page.url))
+							= page.data.title
+							time(class="text-sm", datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })

@@ -1,5 +1,7 @@
 {
 	"printWidth": 100,
+	"pugClassNotation": "attribute",
+	"pugExplicitDiv": true,
 	"order": "smacss",
 	"keepOverrides": false
 }

@@ -2,7 +2,7 @@ mixin page-header(props = {})
 	-
 		props = Object.assign({}, props);
 
-	.py-16._&attributes(attributes)
-		h1.container.w-fit.text-5xl.text-slate-700.font-bold= props.title
+	div(class="py-16")&attributes(attributes)
+		h1(class="container w-fit text-5xl text-slate-700 font-bold")= props.title
 		if props.description
-			p.container.w-fit.max-w-2xl.mt-6= props.description
+			p(class="container w-fit max-w-2xl mt-6")= props.description

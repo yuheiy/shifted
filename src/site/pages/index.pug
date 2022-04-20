@@ -4,33 +4,33 @@ block content
 	main
 		+page-header({ title: metadata.siteTitle, description })
 
-		img.w-full.object-cover(
-			class="aspect-[3/1]",
+		img(
+			class="w-full object-cover aspect-[3/1]",
 			src="https://source.unsplash.com/random",
 			alt="",
 			decoding="async"
 		)
 
-		section.container.max-w-4xl.mt-16
-			h2.font-bold 私たちについて
+		section(class="container max-w-4xl mt-16")
+			h2(class="font-bold") 私たちについて
 
-			.mt-8.space-y-6.text-xl
+			div(class="mt-8 space-y-6 text-xl")
 				p 左手の渚には、まだまだ小さな子どもたちや親たちやなんかいて、家庭教師にやとわれていたのでした。そして気をつけて見ると、野原はまるで幻燈のようでした。汽車が小さな小屋の前を通るのですからしかたありませんや。
 				p 鷺の方はレンズが薄いのでわずかの光る粒すなわち星がたくさん見えてきました。水も……鳥捕りが言いかけたとき、切符をしっかりもっておいで。ですからもしもこの天の川がほんとうに川だと考えるなら、もっと天の川とよく似ています。
 				p ああごらん、あすこにいるのはぼくの影法師はコンパスだ。では今日はその銀河の水はちらちら小さな波をたてたり、虹のようにはげしく振りました。みんなは、一ぺんにジョバンニの胸に集まっていました。
 
-			.flex.justify-center.mt-8
+			div(class="flex justify-center mt-8")
 				+base-button(href=f.url("/about/")) さらに詳しく
 
-		section.container.max-w-4xl.mt-16
-			h2.font-bold ブログ
+		section(class="container max-w-4xl mt-16")
+			h2(class="font-bold") ブログ
 
-			ol.mt-8.divide-y
+			ol(class="mt-8 divide-y")
 				each page in Array.from(collections.blog).reverse()
 					li
-						a.flex.justify-between.items-center.gap-x-6.py-3(href=f.url(page.url))
-							span= page.data.title
-							time.text-sm(datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
+						a(class="flex justify-between items-center gap-x-6 py-3", href=f.url(page.url))
+							= page.data.title
+							time(class="text-sm", datetime=page.date.toISOString())= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
 
-			.flex.justify-center.mt-8
+			div(class="flex justify-center mt-8")
 				+base-button(href=f.url("/blog/")) さらに表示
