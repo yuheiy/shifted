@@ -43,7 +43,11 @@ html(lang=metadata.lang)
 		header(
 			class="fixed top-0 inset-x-0 z-10 text-sm font-bold bg-white border-b border-slate-300",
 			x-data,
-			x-init="new ResizeObserver(([entry]) => document.documentElement.style.setProperty('--height-site-head', `${entry.contentRect.height}px`)).observe($el)"
+			x-init=`
+				new ResizeObserver(([entry]) => {
+					document.documentElement.style.setProperty('--height-site-head', \`\${entry.contentRect.height}px\`);
+				}).observe($el);
+			`
 		)
 			div(class="container flex gap-x-6 justify-between", x-data="dialog", x-id="['menu-trigger']")
 				a(class="py-3", href=f.url("/"))= metadata.siteTitle
