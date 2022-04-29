@@ -1,5 +1,10 @@
 include ../components/.components
 
+-
+	const documentTitleParts = title
+		? [title, metadata.siteTitle]
+		: [metadata.siteTitle, metadata.tagline];
+
 doctype html
 html(lang=metadata.lang)
 	head
@@ -7,11 +12,7 @@ html(lang=metadata.lang)
 		meta(name="viewport", content="width=device-width")
 		meta(name="format-detection", content="telephone=no")
 
-		title
-			if title
-				= `${title} — ${metadata.siteTitle}`
-			else
-				= metadata.siteTitle
+		title!= documentTitleParts.join(" &#8211; ")
 
 		if manifest
 			each cssPath in manifest['src/scripts/main.ts'].css
@@ -22,16 +23,14 @@ html(lang=metadata.lang)
 			script(type="module", src=f.url("/@vite/client"))
 			script(type="module", src=f.url("/src/scripts/main.ts"))
 
-		if description
-			meta(name="description", content=description)
+		meta(name="description", content=description || metadata.tagline)
 		meta(name="twitter:card", content="summary_large_image")
 
-		meta(property="og:title", content=title || metadata.siteTitle)
+		meta(property="og:title", content=title || metadata.tagline)
 		meta(property="og:type", content="website")
 		meta(property="og:image", content=`${metadata.siteUrl}${f.url('/assets/images/ogp.png')}`)
 		meta(property="og:url", content=`${metadata.siteUrl}${f.url(page.url)}`)
-		if description
-			meta(property="og:description", content=description)
+		meta(property="og:description", content=description || metadata.tagline)
 		meta(property="og:site_name", content=metadata.siteTitle)
 		meta(property="og:locale", content=metadata.locale)
 

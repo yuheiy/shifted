@@ -12,4 +12,5 @@ module.exports = {
 	get siteUrl() {
 		return `${this.scheme}://${this.domain}`;
 	},
+	tagline: "静的サイト構築のためのフロントエンド開発環境",
 };
