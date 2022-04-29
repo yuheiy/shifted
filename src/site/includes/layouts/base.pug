@@ -4,6 +4,11 @@ include ../components/.components
 	const documentTitleParts = title
 		? [title, metadata.siteTitle]
 		: [metadata.siteTitle, metadata.tagline];
+	const menuItems = [
+		['ホーム', f.url('/')],
+		['私たちについて', f.url('/about/')],
+		['ニュース', f.url('/news/')]
+	];
 
 doctype html
 html(lang=metadata.lang)
@@ -44,13 +49,17 @@ html(lang=metadata.lang)
 			x-data,
 			x-init=`
 				new ResizeObserver(([entry]) => {
-					document.documentElement.style.setProperty('--height-site-head', \`\${entry.contentRect.height}px\`);
+					document.documentElement.style.setProperty(
+						'--height-site-head',
+						\`\${entry.contentRect.height}px\`
+					);
 				}).observe($el);
 			`
 		)
 			div(class="container flex gap-x-6 justify-between", x-data="dialog", x-id="['menu-trigger']")
 				a(class="py-3", href=f.url("/"))= metadata.siteTitle
-				button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true") メニュー
+				button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true")
+					| メニュー
 				template(x-teleport="#js-overlay-container")
 					div
 						div(class="fixed inset-0 z-20 bg-black/50", x-show="isOpen", x-transition.opacity)
@@ -69,16 +78,17 @@ html(lang=metadata.lang)
 							@click.outside="isOpen = false"
 						)
 							ul(class="divide-y")
-								each page, index in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ニュース', f.url('/news/')] ]
+								each page, index in menuItems
 									li
-										a(class="block px-5 py-3", href=page[1], x-bind=index === 0 && "autoFocus")= page[0]
+										a(class="block px-5 py-3", href=page[1], x-bind=index === 0 && "autoFocus")
+											= page[0]
 
 		block content
 
 		footer(class="sticky top-full mt-20 py-2 text-sm bg-slate-100")
 			nav
 				ul(class="container flex gap-x-6")
-					each page in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ニュース', f.url('/news/')] ]
+					each page in menuItems
 						li
 							a(class="block py-3", href=page[1])= page[0]
 
