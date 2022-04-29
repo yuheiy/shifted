@@ -23,10 +23,10 @@ block content
 				+base-button(href=f.url("/about/")) さらに詳しく
 
 		section(class="container max-w-4xl mt-16")
-			h2(class="font-bold") ブログ
+			h2(class="font-bold") ニュース
 
 			ol(class="mt-8 divide-y")
-				each page in Array.from(collections.blog).reverse()
+				each page in Array.from(collections.news).reverse()
 					li
 						a(class="flex justify-between items-center gap-x-6 py-3", href=f.url(page.url))
 							= page.data.title
@@ -34,4 +34,4 @@ block content
 								= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
 
 			div(class="flex justify-center mt-8")
-				+base-button(href=f.url("/blog/")) さらに表示
+				+base-button(href=f.url("/news/")) さらに表示

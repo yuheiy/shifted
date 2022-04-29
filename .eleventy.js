@@ -7,8 +7,8 @@ let prettierOptions;
 module.exports = (eleventyConfig) => {
 	eleventyConfig.setUseGitIgnore(false);
 
-	eleventyConfig.addCollection("blog", (collection) => {
-		return collection.getFilteredByGlob("src/site/pages/blog/*.md");
+	eleventyConfig.addCollection("news", (collection) => {
+		return collection.getFilteredByGlob("src/site/pages/news/*.md");
 	});
 
 	eleventyConfig.addTransform("formatHTML", async (content, outputPath) => {

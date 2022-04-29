@@ -70,7 +70,7 @@ html(lang=metadata.lang)
 							@click.outside="isOpen = false"
 						)
 							ul(class="divide-y")
-								each page, index in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
+								each page, index in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ニュース', f.url('/news/')] ]
 									li
 										a(class="block px-5 py-3", href=page[1], x-bind=index === 0 && "autoFocus")= page[0]
 
@@ -79,7 +79,7 @@ html(lang=metadata.lang)
 		footer(class="sticky top-full mt-20 py-2 text-sm bg-slate-100")
 			nav
 				ul(class="container flex gap-x-6")
-					each page in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ブログ', f.url('/blog/')] ]
+					each page in [ ['ホーム', f.url('/')], ['私たちについて', f.url('/about/')], ['ニュース', f.url('/news/')] ]
 						li
 							a(class="block py-3", href=page[1])= page[0]
 

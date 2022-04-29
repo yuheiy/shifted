@@ -6,7 +6,7 @@ block content
 
 		div(class="container max-w-4xl")
 			ol(class="divide-y")
-				each page in Array.from(collections.blog).reverse()
+				each page in Array.from(collections.news).reverse()
 					li
 						a(class="flex justify-between items-center gap-x-6 py-3", href=f.url(page.url))
 							= page.data.title

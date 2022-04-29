@@ -1,4 +1,4 @@
 module.exports = {
-	title: "ブログ",
+	title: "ニュース",
 	description: "ぼくはおっかさんが病気なんですかと訊こうとしてごらん。",
 };
