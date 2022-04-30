@@ -4,6 +4,7 @@ include ../components/.components
 	const documentTitleParts = title
 		? [title, metadata.siteTitle]
 		: [metadata.siteTitle, metadata.tagline];
+
 	const menuItems = [
 		['ホーム', f.url('/')],
 		['私たちについて', f.url('/about/')],
@@ -78,19 +79,20 @@ html(lang=metadata.lang)
 							@click.outside="isOpen = false"
 						)
 							ul(class="divide-y")
-								each page, index in menuItems
+								each item, i in menuItems
 									li
-										a(class="block px-5 py-3", href=page[1], x-bind=index === 0 && "autoFocus")
-											= page[0]
+										a(class="block px-5 py-3", href=item[1], x-bind=i === 0 && "autoFocus")
+											= item[0]
 
 		block content
 
+		//- https://css-tricks.com/a-clever-sticky-footer-technique/
 		footer(class="sticky top-full mt-20 py-2 text-sm bg-slate-100")
 			nav
 				ul(class="container flex gap-x-6")
-					each page in menuItems
+					each item in menuItems
 						li
-							a(class="block py-3", href=page[1])= page[0]
+							a(class="block py-3", href=item[1])= item[0]
 
 		//- https://atfzl.com/don-t-attach-tooltips-to-document-body
 		div#js-overlay-container
