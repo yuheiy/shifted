@@ -6,7 +6,9 @@ html {
 
 	/* https://schepp.dev/posts/smooth-scrolling-and-page-search/ */
 	&:focus-within {
-		scroll-behavior: smooth;
+		@media (prefers-reduced-motion: no-preference) {
+			scroll-behavior: smooth;
+		}
 	}
 }
 
