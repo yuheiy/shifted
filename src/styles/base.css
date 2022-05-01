@@ -3,6 +3,11 @@ html {
 	line-break: normal;
 	text-underline-position: under;
 	overflow-wrap: break-word;
+
+	/* https://schepp.dev/posts/smooth-scrolling-and-page-search/ */
+	&:focus-within {
+		scroll-behavior: smooth;
+	}
 }
 
 body {
@@ -36,6 +41,10 @@ textarea {
 
 select {
 	appearance: none;
+}
+
+[id] {
+	scroll-margin-top: calc(var(--height-site-head) + 1rem);
 }
 
 [x-cloak] {
