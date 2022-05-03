@@ -30,7 +30,7 @@
 		"vite": "^2.9.6"
 	},
 	"engines": {
-		"node": "16"
+		"node": "16.x"
 	},
 	"private": true
 }
