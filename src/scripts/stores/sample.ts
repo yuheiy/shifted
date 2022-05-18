@@ -1,5 +1,7 @@
 export default () => ({
 	init() {
-		console.log("init store");
+		if (import.meta.env.DEV) {
+			console.log("init store");
+		}
 	},
 });
