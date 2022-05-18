@@ -1,18 +1,30 @@
 {
 	"compilerOptions": {
-		/* Basic Options */
-		"target": "ES2021",
-		"module": "ES2020",
+		/* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+		/* Language and Environment */
+		"target": "ESNext",
 		"lib": ["DOM"],
-		"allowJs": true,
-		"noEmit": true,
-		/* Module Resolution Options */
+
+		/* Modules */
+		"module": "ESNext",
 		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+
+		/* JavaScript Support */
+		"allowJs": true,
+
+		/* Emit */
+		"noEmit": true,
+
+		/* Interop Constraints */
+		"isolatedModules": true,
+		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
-		/* Advanced Options */
-		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"resolveJsonModule": true
+
+		/* Completeness */
+		"skipLibCheck": true
 	},
-	"include": ["src/**/*"]
+	"include": ["src"]
 }
