@@ -9,6 +9,7 @@
 		/* Modules */
 		"module": "ESNext",
 		"moduleResolution": "Node",
+		"types": ["vite/client"],
 		"resolveJsonModule": true,
 
 		/* JavaScript Support */
