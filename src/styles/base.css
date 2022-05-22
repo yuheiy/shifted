@@ -1,7 +1,7 @@
 html {
 	hyphens: auto;
 	line-break: normal;
-	text-underline-position: under;
+	text-underline-offset: 0.1em;
 	overflow-wrap: break-word;
 
 	/* https://schepp.dev/posts/smooth-scrolling-and-page-search/ */
