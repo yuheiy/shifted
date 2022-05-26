@@ -3,12 +3,12 @@ html {
 	line-break: normal;
 	text-underline-offset: 0.1em;
 	overflow-wrap: break-word;
+}
 
-	/* https://schepp.dev/posts/smooth-scrolling-and-page-search/ */
-	&:focus-within {
-		@media (prefers-reduced-motion: no-preference) {
-			scroll-behavior: smooth;
-		}
+/* https://schepp.dev/posts/smooth-scrolling-and-page-search/ */
+html:focus-within {
+	@media (prefers-reduced-motion: no-preference) {
+		scroll-behavior: smooth;
 	}
 }
 
