@@ -1,4 +1,4 @@
-const { fluidText, container } = require("./tailwind-plugins");
+const { container, fluidText, kerning } = require("./tailwind-plugins");
 
 module.exports = {
 	content: ["./src/**/*.{pug,md,js,ts}"],
@@ -8,5 +8,5 @@ module.exports = {
 	corePlugins: {
 		container: false,
 	},
-	plugins: [fluidText, container],
+	plugins: [container, fluidText, kerning],
 };

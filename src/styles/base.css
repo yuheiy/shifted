@@ -1,4 +1,5 @@
 html {
+	font-kerning: none;
 	hyphens: auto;
 	line-break: normal;
 	text-underline-offset: 0.1em;

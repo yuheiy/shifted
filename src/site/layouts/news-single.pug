@@ -4,7 +4,7 @@ block content
 	main
 		article(class="container max-w-xl")
 			header
-				h1(class="mt-16 text-xl font-bold")= title
+				h1(class="mt-16 text-xl font-bold kerning")= title
 				p(class="mt-2 text-sm")
 					time(datetime=page.date.toISOString())
 						= page.date.toLocaleDateString("ja-JP", { dateStyle: "long" })
