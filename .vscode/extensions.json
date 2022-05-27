@@ -3,7 +3,6 @@
 		"editorconfig.editorconfig",
 		"esbenp.prettier-vscode",
 		"bradlc.vscode-tailwindcss",
-		"csstools.postcss",
 		"adrianwilczynski.alpine-js-intellisense"
 	]
 }
