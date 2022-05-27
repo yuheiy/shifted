@@ -1,5 +1,4 @@
 html {
-	font-kerning: none;
 	hyphens: auto;
 	line-break: normal;
 	text-underline-offset: 0.1em;
@@ -11,6 +10,10 @@ html:focus-within {
 	@media (prefers-reduced-motion: no-preference) {
 		scroll-behavior: smooth;
 	}
+}
+
+:lang(ja) {
+	font-kerning: none;
 }
 
 body {
