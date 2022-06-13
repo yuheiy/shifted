@@ -1,8 +1,8 @@
 {
 	"recommendations": [
-		"editorconfig.editorconfig",
-		"esbenp.prettier-vscode",
+		"adrianwilczynski.alpine-js-intellisense",
 		"bradlc.vscode-tailwindcss",
-		"adrianwilczynski.alpine-js-intellisense"
+		"editorconfig.editorconfig",
+		"esbenp.prettier-vscode"
 	]
 }
