@@ -7,7 +7,12 @@ module.exports = {
 		hoverOnlyWhenSupported: true,
 	},
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ["sans-serif"],
+				serif: ["serif"],
+			},
+		},
 	},
 	corePlugins: {
 		container: false,
