@@ -1,4 +1,4 @@
-const fsPromises = require("fs/promises");
+const fsPromises = require("node:fs/promises");
 
 module.exports = async () => {
 	let result = null;
