@@ -1,5 +1,4 @@
 module.exports = {
-	// root: `/`
-	// subdir: `/path/to/subdir/`
+	// for the subdirectory, set this like `/path/to/subdir/`
 	pathPrefix: "/",
 };

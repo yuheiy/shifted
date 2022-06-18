@@ -170,5 +170,6 @@ import.meta.env.BASE_URL; // "/my-subdir/"
 
 ## 推奨ライブラリ
 
+- [eleventy-navigation](https://www.11ty.dev/docs/plugins/navigation/): 階層構造になったナビゲーションやパンくずリストを生成する Eleventy プラグイン
 - [eleventy-img](https://www.11ty.dev/docs/plugins/image/): 指定した画像を複数のサイズと形式で出力する Eleventy プラグイン
 - [eleventy-fetch](https://www.11ty.dev/docs/plugins/fetch/): 外部ネットワークに依存する、取得に時間がかかるデータをキャッシュするための Eleventy プラグイン
