@@ -4,15 +4,12 @@
 module.exports = {
 	rules: [
 		{
-			name: "components/.components.pug",
-			dependencies: [
-				"src/site/includes/components/*.pug",
-				"!src/site/includes/components/.components.pug",
-			],
+			name: "mixins/.mixins.pug",
+			dependencies: ["src/site/includes/mixins/*.pug", "!src/site/includes/mixins/.mixins.pug"],
 			outputs: [
 				{
-					path: "src/site/includes/components/.components.pug",
-					template: "src/site/includes/components/.import.pug.ejs",
+					path: "src/site/includes/mixins/.mixins.pug",
+					template: "src/site/includes/mixins/.import.pug.ejs",
 				},
 			],
 		},

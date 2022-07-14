@@ -113,29 +113,6 @@ npm run dev
 
 本番用にビルドしたファイルをプレビューできる静的サーバーを起動します。事前に `npm run build` を実行しておく必要があります。http://localhost:5000 から確認できます。
 
-### `npx hygen`
-
-[Hygen](http://www.hygen.io/) を利用して、ソースコードの雛形（scaffold）となるファイルを生成します。テンプレートは `_templates` ディレクトリに配置されています。
-
-コンポーネント:
-
-```bash
-npx hygen component new my-component
-```
-
-ページ:
-
-```bash
-npx hygen page new path/to/page
-```
-
-[Hygen](http://www.hygen.io/) をグローバルインストールすることで、入力するコマンドから `npx` を省略できます。
-
-```bash
-npm install --global hygen
-hygen component new my-component
-```
-
 ### `npm run format`
 
 [Prettier](https://prettier.io/) を利用して、ファイルの自動整形を行います。

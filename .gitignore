@@ -4,5 +4,5 @@ npm-debug.log*
 /dist/
 /src/scripts/components/index.ts
 /src/scripts/stores/index.ts
-/src/site/includes/components/.components.pug
+/src/site/includes/mixins/.mixins.pug
 /stats.html
