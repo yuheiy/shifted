@@ -64,27 +64,7 @@ html(lang=metadata.lang)
 				button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true")
 					| メニュー
 				template(x-teleport="#js-overlay-container")
-					div
-						div(class="fixed inset-0 z-20 bg-black/50", x-show="isOpen", x-transition.opacity)
-						div(
-							class="fixed inset-0 left-16 z-20 overflow-auto max-w-2xl ml-auto py-5 bg-white",
-							role="dialog",
-							:aria-labelledby="$id('menu-trigger')",
-							x-bind="root",
-							x-show="isOpen",
-							x-transition:enter="transition duration-200",
-							x-transition:enter-start="translate-x-full",
-							x-transition:enter-end="translate-x-0",
-							x-transition:leave="transition duration-200",
-							x-transition:leave-start="translate-x-0",
-							x-transition:leave-end="translate-x-full",
-							@click.outside="isOpen = false"
-						)
-							ul(class="divide-y")
-								each item, i in menuItems
-									li
-										a(class="block px-5 py-3", href=item[1], x-bind=i === 0 && "autoFocus")
-											= item[0]
+					include /partial/site-menu
 
 		block content
 
