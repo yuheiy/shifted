@@ -1,3 +1,7 @@
+:root {
+	--page-header-height: 2.75rem;
+}
+
 html {
 	hyphens: auto;
 	line-break: normal;
@@ -21,7 +25,7 @@ html:focus-within {
 }
 
 body {
-	padding-top: var(--height-site-head);
+	padding-top: var(--page-header-height);
 }
 
 /* https://css-tricks.com/a-clever-sticky-footer-technique/ */
@@ -54,7 +58,7 @@ select {
 }
 
 [id] {
-	scroll-margin-top: calc(var(--height-site-head) + 1rem);
+	scroll-margin-top: calc(var(--page-header-height) + 1rem);
 }
 
 [x-cloak] {

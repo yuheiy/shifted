@@ -47,24 +47,14 @@ html(lang=metadata.lang)
 		link(rel="apple-touch-icon", href=f.url("/assets/images/apple-touch-icon.png"))
 
 	body(class="text-slate-500 bg-white")
-		header(
-			class="fixed top-0 inset-x-0 z-10 text-sm font-bold bg-white border-b border-slate-300",
-			x-data,
-			x-init=`
-				new ResizeObserver(([entry]) => {
-					document.documentElement.style.setProperty(
-						'--height-site-head',
-						\`\${entry.contentRect.height}px\`
-					);
-				}).observe($el);
-			`
-		)
-			div(class="container flex gap-x-6 justify-between", x-data="dialog", x-id="['menu-trigger']")
+		header(class="fixed top-0 inset-x-0 z-10 text-sm font-bold bg-white border-b border-slate-300")
+			div(class="container flex gap-x-6 justify-between")
 				a(class="py-3", href=f.url("/"))= metadata.siteTitle
-				button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true")
-					| メニュー
-				template(x-teleport="#js-overlay-container")
-					include /partial/site-menu
+				div(class="contents", x-data="dialog", x-id="['menu-trigger']")
+					button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true")
+						| メニュー
+					template(x-teleport="#js-overlay-container")
+						include /partial/site-menu
 
 		block content
 
