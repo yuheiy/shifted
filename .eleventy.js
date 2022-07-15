@@ -34,7 +34,7 @@ module.exports = (eleventyConfig) => {
 				const proxy = httpProxy.createProxyServer();
 
 				browserSync.addMiddleware("*", (req, res) => {
-					proxy.web(req, res, { target: "http://localhost:3000" });
+					proxy.web(req, res, { target: "http://localhost:5173" });
 				});
 			},
 		},
