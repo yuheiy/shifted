@@ -1,4 +1,4 @@
-const { container, fluidText, kerning } = require("./tailwind-plugins");
+const { container, kerning } = require("./tailwind-plugins");
 
 /** @type {import('tailwindcss/types').Config} */
 module.exports = {
@@ -17,5 +17,5 @@ module.exports = {
 	corePlugins: {
 		container: false,
 	},
-	plugins: [container, fluidText, kerning],
+	plugins: [container, kerning],
 };
