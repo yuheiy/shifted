@@ -4,7 +4,7 @@
 
 		/* Language and Environment */
 		"target": "ESNext",
-		"lib": ["DOM", "DOM.Iterable"],
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 
 		/* Modules */
 		"module": "ESNext",
