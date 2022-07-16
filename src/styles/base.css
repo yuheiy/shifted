@@ -3,7 +3,7 @@
 }
 
 html {
-	hyphens: auto;
+	@apply not-kerning;
 	line-break: normal;
 	text-underline-offset: 0.125em;
 	overflow-wrap: break-word;
@@ -14,14 +14,6 @@ html:focus-within {
 	@media (prefers-reduced-motion: no-preference) {
 		scroll-behavior: smooth;
 	}
-}
-
-:lang(ja) {
-	font-kerning: none;
-}
-
-:lang(en) {
-	font-kerning: auto;
 }
 
 body {
