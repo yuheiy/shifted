@@ -54,7 +54,7 @@ html(lang=metadata.lang)
 					button(class="py-3", type="button", :id="$id('menu-trigger')", @click="isOpen = true")
 						| メニュー
 					template(x-teleport="#js-overlay-container")
-						include /partial/site-menu
+						include /partials/site-menu
 
 		block content
 
