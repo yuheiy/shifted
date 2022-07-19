@@ -61,7 +61,7 @@ npm run dev
 │   │   ├── data/
 │   │   │   └── metadata.js
 │   │   ├── includes/
-│   │   │   ├── components/
+│   │   │   ├── mixins/
 │   │   │   │   └── base-button.pug
 │   │   │   └── layouts/
 │   │   │       └── base.pug
