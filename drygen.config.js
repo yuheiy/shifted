@@ -9,7 +9,7 @@ module.exports = {
 			outputs: [
 				{
 					path: "src/site/includes/mixins/.mixins.pug",
-					template: "src/site/includes/mixins/.import.pug.ejs",
+					template: "src/site/includes/mixins/.mixins.pug.ejs",
 				},
 			],
 		},
@@ -19,7 +19,7 @@ module.exports = {
 			outputs: [
 				{
 					path: "src/scripts/components/index.ts",
-					template: "src/scripts/components/.import.ts.ejs",
+					template: "src/scripts/components/index.ts.ejs",
 				},
 			],
 		},
@@ -29,7 +29,7 @@ module.exports = {
 			outputs: [
 				{
 					path: "src/scripts/stores/index.ts",
-					template: "src/scripts/stores/.import.ts.ejs",
+					template: "src/scripts/stores/index.ts.ejs",
 				},
 			],
 		},
