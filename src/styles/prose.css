@@ -1,5 +1,5 @@
 .prose {
-	@apply space-y-6 text-base text-slate-700 leading-relaxed;
+	@apply space-y-6 text-base leading-relaxed text-slate-700;
 
 	img {
 		@apply py-2;
