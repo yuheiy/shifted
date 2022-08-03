@@ -4,6 +4,7 @@ div
 		class="fixed inset-0 left-16 z-20 overflow-auto max-w-2xl ml-auto py-5 bg-white",
 		role="dialog",
 		:aria-labelledby="$id('menu-trigger')",
+		aria-modal="true",
 		x-bind="root",
 		x-show="isOpen",
 		x-transition:enter="transition duration-200",
