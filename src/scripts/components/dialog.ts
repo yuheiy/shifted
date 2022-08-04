@@ -1,4 +1,4 @@
-import { forceFocus } from "../lib/dom-utils";
+import { forceFocus } from "../utils/dom";
 
 export default () => ({
 	isOpen: false,
