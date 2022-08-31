@@ -2,7 +2,7 @@ import { Alpine } from "alpinejs";
 import camelCase from "camelcase";
 
 export default function (Alpine: Alpine) {
-	const modules = import.meta.glob<(...initialStateArgs: unknown[]) => {}>("./*.ts", {
+	const modules = import.meta.glob<Parameters<typeof Alpine.data>[1]>("./*.ts", {
 		import: "default",
 		eager: true,
 	});
