@@ -1,5 +1,6 @@
 const httpProxy = require("http-proxy");
 const prettier = require("prettier");
+const pugIncludeGlob = require("pug-include-glob");
 const config = require("./config");
 
 let prettierOptions;
@@ -40,10 +41,10 @@ module.exports = (eleventyConfig) => {
 		},
 	});
 
-	// https://github.com/11ty/eleventy/issues/1523#issuecomment-733419587
 	global.f = eleventyConfig.javascriptFunctions;
 	eleventyConfig.setPugOptions({
-		globals: ["f"],
+		globals: ["f"], // https://github.com/11ty/eleventy/issues/1523#issuecomment-733419587
+		plugins: [pugIncludeGlob()],
 	});
 
 	return {
