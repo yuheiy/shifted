@@ -1,7 +1,7 @@
 {
 	"scripts": {
-		"dev": "rimraf dist/ && concurrently --raw \"vite\" \"cross-env ELEVENTY_ENV=development eleventy --serve --incremental\" \"drygen --watch\"",
-		"build": "drygen && tsc && vite build && cross-env ELEVENTY_ENV=production eleventy && rimraf dist/manifest.json",
+		"dev": "rimraf dist/ && concurrently --raw \"vite\" \"cross-env ELEVENTY_ENV=development eleventy --serve --incremental\"",
+		"build": "tsc && vite build && cross-env ELEVENTY_ENV=production eleventy && rimraf dist/manifest.json",
 		"preview": "vite preview",
 		"format": "prettier . --write"
 	},
