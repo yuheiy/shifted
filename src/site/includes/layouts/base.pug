@@ -15,6 +15,7 @@ doctype html
 html(lang=metadata.lang)
 	head
 		meta(charset=metadata.encoding)
+		meta(name="viewport", content="width=device-width")
 
 		title!= documentTitleParts.join(" &#8211; ")
 
@@ -32,7 +33,6 @@ html(lang=metadata.lang)
 		meta(name="twitter:card", content="summary_large_image")
 		meta(name="twitter:site", content="@Twitter")
 		meta(name="twitter:title", content=title || metadata.siteTitle)
-		meta(name="viewport", content="width=device-width")
 
 		meta(property="og:title", content=title || metadata.siteTitle)
 		meta(property="og:type", content="website")
