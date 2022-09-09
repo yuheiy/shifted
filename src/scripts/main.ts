@@ -3,6 +3,8 @@ import "focus-options-polyfill";
 import "focus-visible";
 import "wicg-inert";
 import Alpine from "alpinejs";
+import focus from "@alpinejs/focus";
+import ui from "@alpinejs/ui";
 import components from "./components";
 import stores from "./stores";
 
@@ -21,6 +23,8 @@ if (import.meta.env.DEV) {
 	});
 }
 
+Alpine.plugin(focus);
+Alpine.plugin(ui);
 Alpine.plugin(components);
 Alpine.plugin(stores);
 

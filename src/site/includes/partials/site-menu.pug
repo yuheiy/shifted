@@ -1,22 +1,23 @@
-div
-	div(class="fixed inset-0 z-50 bg-black/50", x-show="isOpen", x-transition.opacity)
+div(x-dialog, x-model="open")
+	div(class="fixed inset-0 z-50 bg-black/50", x-dialog:overlay, x-transition.opacity)
+
 	div(
-		class="fixed inset-0 left-16 z-50 overflow-auto max-w-2xl ml-auto py-5 bg-white",
-		role="dialog",
-		:aria-labelledby="$id('menu-trigger')",
-		aria-modal="true",
-		x-bind="root",
-		x-show="isOpen",
+		class="fixed inset-0 z-50 left-16 overflow-auto max-w-2xl ml-auto py-3 bg-white",
+		x-dialog:panel,
 		x-transition:enter="transition duration-200",
 		x-transition:enter-start="translate-x-full",
 		x-transition:enter-end="translate-x-0",
 		x-transition:leave="transition duration-200",
 		x-transition:leave-start="translate-x-0",
-		x-transition:leave-end="translate-x-full",
-		@click.outside="isOpen = false"
+		x-transition:leave-end="translate-x-full"
 	)
-		ul(class="divide-y")
+		p(class="sr-only", x-dialog:title) メニュー
+
+		div(class="px-5")
+			button(class="px-2 py-1 border rounded", type="button", @click="$dialog.close()") 閉じる
+
+		ul(class="mt-3 divide-y")
 			each item, i in menuItems
 				li
-					a(class="block px-5 py-3", href=item[1], x-bind=i === 0 && "autoFocus")
+					a(class="block px-5 py-3", href=item[1])
 						= item[0]

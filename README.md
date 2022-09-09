@@ -54,9 +54,9 @@ npm run dev
 ├── src/
 │   ├── scripts/
 │   │   ├── components/
-│   │   │   └── dialog.ts
+│   │   │   └── sample.ts
 │   │   ├── stores/
-│   │   │   └── home.ts
+│   │   │   └── sample.ts
 │   │   └── main.ts
 │   ├── site/
 │   │   ├── data/
