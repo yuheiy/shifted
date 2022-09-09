@@ -38,11 +38,10 @@ npm run dev
 
 ```
 .
-├── _templates/
 ├── dist/
 │   ├── assets/
 │   │   ├── images/
-│   │   │   └── apple-touch-icon.png
+│   │   │   └── ogp.png
 │   │   ├── main.[hash].css
 │   │   └── main.[hash].js
 │   ├── favicon.ico
@@ -50,21 +49,25 @@ npm run dev
 ├── public/
 │   ├── assets/
 │   │   └── images/
-│   │       └── apple-touch-icon.png
+│   │       └── ogp.png
 │   └── favicon.ico
 ├── src/
 │   ├── scripts/
 │   │   ├── components/
 │   │   │   └── dialog.ts
+│   │   ├── stores/
+│   │   │   └── home.ts
 │   │   └── main.ts
 │   ├── site/
 │   │   ├── data/
 │   │   │   └── metadata.js
 │   │   ├── includes/
+│   │   │   ├── layouts/
+│   │   │   │   └── base.pug
 │   │   │   ├── mixins/
-│   │   │   │   └── base-button.pug
-│   │   │   └── layouts/
-│   │   │       └── base.pug
+│   │   │   │   └── page-title.pug
+│   │   │   └── partials/
+│   │   │       └── site-menu.pug
 │   │   └── pages/
 │   │       ├── index.11tydata.js
 │   │       └── index.pug
@@ -111,7 +114,7 @@ npm run dev
 
 ### `npm run preview`
 
-本番用にビルドしたファイルをプレビューできる静的サーバーを起動します。事前に `npm run build` を実行しておく必要があります。http://localhost:5000 から確認できます。
+本番用にビルドしたファイルをプレビューできる静的サーバーを起動します。事前に `npm run build` を実行しておく必要があります。http://localhost:4173 から確認できます。
 
 ### `npm run format`
 
