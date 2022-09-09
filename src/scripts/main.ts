@@ -8,12 +8,6 @@ import ui from "@alpinejs/ui";
 import components from "./components";
 import stores from "./stores";
 
-declare global {
-	interface HTMLElement {
-		inert: boolean;
-	}
-}
-
 // https://vitejs.dev/guide/env-and-mode.html#env-variables
 if (import.meta.env.DEV) {
 	console.log({
