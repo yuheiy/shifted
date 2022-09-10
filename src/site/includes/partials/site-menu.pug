@@ -11,7 +11,7 @@ div(x-dialog, x-model="open")
 		x-transition:leave-start="translate-x-0",
 		x-transition:leave-end="translate-x-full"
 	)
-		p(class="sr-only", x-dialog:title) メニュー
+		div(hidden, x-dialog:title) メニュー
 
 		div(class="px-5")
 			button(class="px-2 py-1 border rounded", type="button", @click="$dialog.close()") 閉じる
