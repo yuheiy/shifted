@@ -10,9 +10,7 @@
 		"@alpinejs/ui": "^3.10.3-beta.2",
 		"alpinejs": "^3.10.3",
 		"camelcase": "^7.0.0",
-		"focus-options-polyfill": "^1.6.0",
-		"focus-visible": "^5.2.0",
-		"wicg-inert": "^3.1.2"
+		"focus-visible": "^5.2.0"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^1.0.2",
