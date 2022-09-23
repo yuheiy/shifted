@@ -61,10 +61,9 @@ html(lang=metadata.lang)
 		//- https://css-tricks.com/a-clever-sticky-footer-technique/
 		footer(class="sticky top-full mt-20 py-2 text-sm bg-slate-100")
 			nav
-				ul(class="container flex gap-x-6")
+				p(class="container flex gap-x-6")
 					each item in menuItems
-						li
-							a(class="block py-3", href=item[1])= item[0]
+						a(class="py-3", href=item[1])= item[0]
 
 		//- https://atfzl.com/don-t-attach-tooltips-to-document-body
 		div#js-overlay-container
