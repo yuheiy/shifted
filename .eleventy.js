@@ -14,19 +14,19 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.addTransform("formatHTML", async (content, outputPath) => {
 		if (outputPath?.endsWith(".html")) {
-			if (!prettierOptions) {
-				prettierOptions = await prettier.resolveConfig("test.html", {
-					editorconfig: true,
-				});
-			}
+			return content;
+		}
 
-			return prettier.format(content, {
-				...prettierOptions,
-				parser: "html",
+		if (!prettierOptions) {
+			prettierOptions = await prettier.resolveConfig("test.html", {
+				editorconfig: true,
 			});
 		}
 
-		return content;
+		return prettier.format(content, {
+			...prettierOptions,
+			parser: "html",
+		});
 	});
 
 	eleventyConfig.setBrowserSyncConfig({
