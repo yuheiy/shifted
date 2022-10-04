@@ -1,5 +1,4 @@
 import "../styles/main.css";
-import "focus-visible";
 import Alpine from "alpinejs";
 import focus from "@alpinejs/focus";
 import ui from "@alpinejs/ui";

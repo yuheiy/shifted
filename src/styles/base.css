@@ -26,11 +26,6 @@ body {
 	height: 100%;
 }
 
-/* https://github.com/WICG/focus-visible#2-update-your-css */
-.js-focus-visible :focus:not(.focus-visible) {
-	outline: none;
-}
-
 svg {
 	max-width: 100%;
 	height: auto;
