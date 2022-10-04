@@ -13,7 +13,7 @@ module.exports = (eleventyConfig) => {
 	});
 
 	eleventyConfig.addTransform("formatHTML", async (content, outputPath) => {
-		if (outputPath?.endsWith(".html")) {
+		if (!outputPath?.endsWith(".html")) {
 			return content;
 		}
 
