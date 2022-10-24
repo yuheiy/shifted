@@ -8,8 +8,8 @@ export default function (Alpine: Alpine) {
 	});
 
 	for (const [path, module] of Object.entries(modules)) {
-		const [base] = path.split("/").reverse();
-		const [name] = base.split(".");
+		const base = path.split("/").at(-1);
+		const name = base.split(".").slice(0, -1).join(".");
 		Alpine.store(camelCase(name), module());
 	}
 }
