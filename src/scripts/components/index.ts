@@ -8,7 +8,7 @@ export default function (Alpine: Alpine) {
 	});
 
 	for (const [path, module] of Object.entries(modules)) {
-		const base = path.split("/").at(-1);
+		const base = path.split("/").pop();
 		const name = base.split(".").slice(0, -1).join(".");
 		Alpine.data(camelCase(name), module);
 	}
